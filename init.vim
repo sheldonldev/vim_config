@@ -1,3 +1,4 @@
+" load ~/.vimrc and ~/.vim"
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
@@ -31,10 +32,6 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'vim-airline/vim-airline'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
-let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
-
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
 
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdtree'
@@ -81,6 +78,39 @@ let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 
 " === coc === "
+
+let g:coc_global_extensions = [
+            \ 'coc-emmet',
+            \ 'coc-css',
+            \ 'coc-html',
+            \ 'coc-json',
+            \ 'coc-prettier',
+            \ 'coc-tsserver',
+            \ 'coc-vetur',
+            \ 'coc-python',
+            \ 'coc-yaml',
+            \ 'coc-pairs',
+            \ 'coc-eslint',
+            \ 'coc-stylelint'
+            \ ]
+
+" for scss extention "
+autocmd FileType scss setl iskeyword+=@-@
+
+" for prettier extention "
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+" Prettier range format only support languageId including: "
+" javascript, javascriptreact, typescript, typescriptreact, json and graphql. "
+
+" for vetur extention "
+" if you need lint: `npm i eslint eslint-plugin-vue -D` "
+
+" for python extention "
+set statusline^=%{coc#status()}
+" if you need lint: `pip3 install pylint`"
+" run `:Python` to see all available settings, then run commands in :CocCommand "
 
 " Use tab for trigger completion with characters ahead and navigate. "
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin. "

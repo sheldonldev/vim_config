@@ -41,17 +41,18 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " --- Auto Complete Braces and Quotes --- "
 
-inoremap { {}<Esc>ha
-inoremap [ []<Esc>ha
-inoremap ( ()<Esc>ha
-inoremap < <><ESC>ha
+if !has('nvim')
+    inoremap { {}<Esc>ha
+    inoremap [ []<Esc>ha
+    inoremap ( ()<Esc>ha
+    inoremap < <><ESC>ha
 
-inoremap ' ''<Esc>ha
-inoremap " ""<Esc>ha    ""ignore this comment, just to make the quote paired"
-inoremap ` ``<Esc>ha
+    inoremap ' ''<Esc>ha
+    inoremap " ""<Esc>ha    ""ignore this comment, just to make the quote paired"
+    inoremap ` ``<Esc>ha
 
-inoremap % %%<Esc>ha
-
+    inoremap % %%<Esc>ha
+endif
 
 " --- set <leader> key ---"
 let mapleader = " "
