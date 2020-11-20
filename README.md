@@ -46,6 +46,7 @@ endfunction
 
 * Read the `init.vim` to learn the keymaps, or use `:h _search_term_` to read the manual.
 
-## Any Question?
+## READ MORE
 
-* [READE MORE](https://doc.sheldonl.dev/working-env/vim-based-workspace/nvim-for-web-dev.md)
+* [How I Build My First `.vimrc`](https://doc.sheldonl.dev/working-env/vim-based-workspace/make-vim-awesome.md)
+* [How I Build My First `init.vim`](https://doc.sheldonl.dev/working-env/vim-based-workspace/nvim-for-web-dev.md)
