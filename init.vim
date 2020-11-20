@@ -18,7 +18,7 @@ tnoremap <Esc> <C-\><C-n>
 " open terminal "
 function! OpenTerminal()
     split term://zsh
-    resize 7
+    resize 5
 endfunction
 nnoremap <C-n> :call OpenTerminal()<CR>
 
@@ -55,7 +55,7 @@ set background=dark
 set number relativenumber
 
 
-" === nerdtree === "
+" === NERDTree === "
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeIgnore = []
@@ -81,7 +81,7 @@ let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 
 " === coc ==="
-"
+
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
@@ -119,4 +119,3 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" === end ==="

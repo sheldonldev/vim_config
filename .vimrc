@@ -41,7 +41,6 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " --- Auto Complete Braces and Quotes --- "
 
-"if you do not use auto indent, add `<tab>` in the end"
 inoremap { {}<Esc>ha
 inoremap [ []<Esc>ha
 inoremap ( ()<Esc>ha
@@ -50,6 +49,8 @@ inoremap < <><ESC>ha
 inoremap ' ''<Esc>ha
 inoremap " ""<Esc>ha
 inoremap ` ``<Esc>ha
+
+inoremap % %%<Esc>ha
 
 
 " --- set <leader> key ---"
@@ -63,6 +64,19 @@ nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 
 
+" --- quickly open explorer --- "
+nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 25<CR>
+
+
+" --- quickly adjust window size --- "
+nnoremap <silent> <leader>] :vertical resize +10<CR>
+nnoremap <silent> <leader>[ :vertical resize -10<CR>
+nnoremap <silent> <leader>= :resize +5<CR>
+nnoremap <silent> <leader>- :resize -5<CR>
+nnoremap <silent> <leader>va :vertical resize 100<CR>
+nnoremap <silent> <leader>ha :resize 30<CR>
+
+
 " --- netrw sidewindow --- "
 let g:netrw_preview   = 0
 let g:netrw_alto      = 0
@@ -72,22 +86,13 @@ let g:netrw_winsize = 25
 let g:netrw_banner = 0
 
 
-" --- quickly open explorer ---"
-nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 25<CR>
-nnoremap <silent> <leader>] :vertical resize +10<CR>
-nnoremap <silent> <leader>[ :vertical resize -10<CR>
-nnoremap <silent> <leader>= :resize +5<CR>
-nnoremap <silent> <leader>- :resize -5<CR>
-nnoremap <silent> <leader>va :vertical resize 100<CR>
-nnoremap <silent> <leader>ha :resize 30<CR>
+" --- Finding Files ---- "
 
-" --- Finding Files ----"
-
-"search down for subfolders"
-"provides tab-completion for all file related tasks"
+" search down for subfolders"
+" provides tab-completion for all file related tasks"
 set path+=**
 
-"display all matching files when we tab complete"
+" display all matching files when we tab complete"
 set wildmenu
 
 " Now you can us :find with tab"
