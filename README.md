@@ -44,6 +44,8 @@ function! OpenTerminal()
 endfunction
 ```
 
+* Read the `init.vim` to learn the keymaps, or use `:h _search_term_` to read the manual.
+
 ## Any Question?
 
 * [READE MORE](https://doc.sheldonl.dev/working-env/vim-based-workspace/nvim-for-web-dev.md)
