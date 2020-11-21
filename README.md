@@ -8,29 +8,21 @@ cd ~ && curl -fLo ".vimrc" https://raw.githubusercontent.com/sheldonldev/nvim_co
 
 - If you want to use neovim with awesome plugins, read the followings.
 
-## Install Dependencies
 
-- [NodeJS & npm](https://nodejs.org) and some global npm packages:
+## Quick Start
 
-```bash
-npm i -g eslint -D  # DO NOT install any eslint-pluin-* globally
-```
+### Install Dependencies
 
-- [nerd-font](https://github.com/ryanoasis/nerd-fonts#font-installation")
-- [the_silver_searcher](https://github.com/ggreer/the_silver_searcher)
+- Install [NodeJS & npm](https://nodejs.org);
+- Install [nerd-font](https://github.com/ryanoasis/nerd-fonts#font-installation");
+- Install [the_silver_searcher](https://github.com/ggreer/the_silver_searcher);
 
-## Install Neovim and Plugin Manager
+### Install Neovim and Plugin Manager
 
-- [Neovim](https://neovim.io)
-- run `:checkhealth` in nvim to checkout more todos
-- [vim-plugin](https://github.com/junegunn/vim-plug)
+- Install [Neovim](https://neovim.io), then run `:checkhealth` to checkout more todos;
+- Install [vim-plugin](https://github.com/junegunn/vim-plug);
 
-## Language Server Protocol
-
-- We use [coc.nvim](https://github.com/neoclide/coc.nvim) as LSP;
-- Checkout [most extentions of coc.nvim](https://github.com/neoclide);
-
-## Clone This Repo As Config
+### Clone This Repo As Config
 
 ```bash
 # remove the old ~/.config/nvim/ folder at first
@@ -41,8 +33,8 @@ git clone git@github.com:sheldonldev/nvim_config.git nvim
 
 # create symbolic links
 ln -s ~/.config/nvim/.vimrc ~/.vimrc
+ln -s ~/.config/nvim/.eslintrc.json ~/.eslintrc.json
 ln -s ~/.config/nvim/.prettierrc.json ~/.prettierrc.json
-ls -s ~/.config/nvim/.eslintrc.json ~/.eslintrc.json
 ```
 
 - Adjust the integrated terminal settings in `init.vim`:
@@ -57,11 +49,18 @@ resize 5
 endfunction
 ```
 
-- Read the `.vimrc` and `init.vim` to learn the keymaps, or use `:h _search_term_` to read the manual.
+- Read the `.vimrc` and `init.vim` to learn the keymaps, or use `:h _search_term_` to read the manual;
+
+- If you want to use lint, please run npm installation locally, such a `npm i eslint -D`;
+
+- Default use `~/.eslitrc.json` and `~/.prettierrc.json`, run `:CocConfig` to set `eslint.option`;
 
 ## More Dependencies and Config For Specific Languages
 
-- Default use `~/.eslintrc.json` and `~/.prettierrc.json` to lint.
+### Language Server Protocol
+
+- We use [coc.nvim](https://github.com/neoclide/coc.nvim) as LSP;
+- Checkout [most extentions of coc.nvim](https://github.com/neoclide);
 
 ### Python
 

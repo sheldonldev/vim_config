@@ -4,7 +4,7 @@
     "tsserver.trace.server": "verbose",
     "javascript.validate.enable": false,
     "typescript.validate.enable": false,
-//    "eslint.options": {"configFile": "~/.eslintrc.json"},
+    "eslint.options": {"configFile": "~/.eslintrc.json"},
 
     //emmet
     "emmet.priority": 1,
