@@ -41,12 +41,12 @@ ln -s ~/.config/nvim/.vimrc ~/.vimrc
 
 " open terminal "
 function! OpenTerminal()
-split term://zsh    "change this line, default is zsh"
-resize 5
+    split term://zsh    "change this line, default is zsh"
+    resize 5
 endfunction
 ```
 
--   Read the `.vimrc` and `init.vim` to learn the keymaps, or use `:h _search_term_` to read the manual;
+-   Read the `.vimrc` and `init.vim` to learn the keymaps. And use `:h _search_term_` to open the manual if have any question;
 
 -   If you want to use lint, please run npm installation locally, for example:
 
@@ -56,12 +56,11 @@ npm install --save-dev eslint prettier eslint-config-prettier eslint-plugin-pret
 
 -   You can copy the `.eslintrc.json` and `prettierrc.json` to your project root.
 
-## More Dependencies and Config For Specific Languages
+## More Dependencies and Configurations For More Languages
 
-### Language Server Protocol
-
--   We use [coc.nvim](https://github.com/neoclide/coc.nvim) as LSP;
--   Checkout [most extentions of coc.nvim](https://github.com/neoclide);
+-   We use [coc.nvim](https://github.com/neoclide/coc.nvim) as LSP. The Extentions installed can be seen in `init.vim`, the line with `g: coc_global_extensions`;
+-   If have any question, just checkout in their github repositories.
+-   What we've done can support many aspects for your coding. For more enhanced, followings are the references.
 
 ### Python
 
