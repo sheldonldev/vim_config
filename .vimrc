@@ -48,11 +48,12 @@ if !has('nvim')
     inoremap < <><ESC>ha
 
     inoremap ' ''<Esc>ha
-    inoremap " ""<Esc>ha    ""ignore this comment, just to make the quote paired"
+    inoremap " ""<Esc>ha
     inoremap ` ``<Esc>ha
 
     inoremap % %%<Esc>ha
 endif
+"" I use coc-pairs in nvim "
 
 " --- set <leader> key ---"
 let mapleader = " "
@@ -63,10 +64,6 @@ nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
-
-
-" --- quickly open explorer --- "
-nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 25<CR>
 
 
 " --- quickly adjust window size --- "
@@ -85,6 +82,10 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
 let g:netrw_banner = 0
+
+
+" --- quickly open explorer --- "
+nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 25<CR>
 
 
 " --- Finding Files ---- "
