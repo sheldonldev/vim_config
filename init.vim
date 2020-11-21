@@ -27,14 +27,14 @@ nnoremap <C-n> :call OpenTerminal()<CR>
 " --- Plugins --- "
 
 " disable some color for polyglot "
-let g:polyglot_disabled = []
-"            \'css',
-"            \'cs',
-"            \'markdown',
-"            \'reactjavascript',
-"            \'reacttypescript',
-"            \'php'
-"            \]
+let g:polyglot_disabled = [
+            \'css',
+            \'cs',
+            \'markdown',
+            \'reactjavascript',
+            \'reacttypescript',
+            \'php'
+            \]
 
 " coc extentions "
 let g:coc_global_extensions = [

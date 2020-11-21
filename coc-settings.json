@@ -4,7 +4,7 @@
     "tsserver.trace.server": "verbose",
     "javascript.validate.enable": false,
     "typescript.validate.enable": false,
-    "eslint.options": {"configFile": "~/.eslintrc.json"},
+    "eslint.options": { "configFile": ".eslintrc.json" },
 
     //emmet
     "emmet.priority": 1,
@@ -23,6 +23,16 @@
     "prettier.arrowParens": "avoid",
     "prettier.htmlWhitespaceSensitivity": "ignore",
     "prettier.proseWrap": "always",
+    "coc.preferences.formatOnSaveFiletypes": [
+        "javascript",
+        "typescript",
+        "typescriptreact",
+        "json",
+        "javascriptreact",
+        "typescript.tsx",
+        "css",
+        "markdown"
+    ],
 
     //vue
     "vetur.trace.server": "verbose",
@@ -66,7 +76,14 @@
     "prettier.eslintIntegration": true,
     "eslint.autoFix": true,
     "eslint.autoFixOnSave": true,
-    "eslint.filetypes": ["javascript", "javascriptreact", "typescriptreact", "vue", "typescript"],
+    "eslint.filetypes": [
+        "vue",
+        "typescript.tsx",
+        "javascript",
+        "javascriptreact",
+        "typescriptreact",
+        "typescript"
+    ],
     "eslint.run": "onSave",
 
     // java
@@ -77,19 +94,8 @@
     "languageserver": {
         "ccls": {
             "command": "ccls",
-            "filetypes": [
-                "c",
-                "cpp",
-                "objc",
-                "objcpp"
-            ],
-            "rootPatterns": [
-                ".ccls",
-                "compile_commands.json",
-                ".vim/",
-                ".git/",
-                ".hg/"
-            ],
+            "filetypes": ["c", "cpp", "objc", "objcpp"],
+            "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
             "initializationOptions": {
                 "cache": {
                     "directory": "/tmp/ccls"
