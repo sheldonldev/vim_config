@@ -17,7 +17,7 @@ set t_vb=""                     "set null to visualbell, now no warning anymore 
 
 set tabstop=4                   "4 chars long"
 set softtabstop=4               "4 spaces long"
-set shiftwidth=4                "4 spaces if press arrow key"
+set shiftwidth=4                "4 spaces if press >"
 set expandtab                   "convert tabs to spaces"
 set smartindent                 "try best job to indent for you"
 
