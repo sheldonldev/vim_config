@@ -72,7 +72,9 @@ nnoremap <silent> <leader>[ :vertical resize -10<CR>
 nnoremap <silent> <leader>= :resize +5<CR>
 nnoremap <silent> <leader>- :resize -5<CR>
 nnoremap <silent> <leader>va :vertical resize 100<CR>
-nnoremap <silent> <leader>ha :resize 30<CR>
+nnoremap <silent> <leader>ha :resize 35<CR>
+nnoremap <silent> <leader>vn :vertical resize 25<CR>
+nnoremap <silent> <leader>hn :resize 5<CR>
 
 
 " --- netrw sidewindow --- "

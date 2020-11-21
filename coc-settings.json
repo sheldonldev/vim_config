@@ -15,5 +15,8 @@
     "typescriptreact",
     "javascriptreact",
     "typescript.tsx"
-  ]
+  ],
+  "eslint.options": {
+    "configFile": "./.eslintrc.json"
+  }
 }

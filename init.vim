@@ -91,7 +91,11 @@ let g:coc_global_extensions = [
             \ 'coc-yaml',
             \ 'coc-pairs',
             \ 'coc-eslint',
-            \ 'coc-stylelint'
+            \ 'coc-stylelint',
+            \ 'coc-snippets',
+            \ 'coc-highlight',
+            \ 'coc-phpls',
+            \ 'coc-wxml'
             \ ]
 
 " for scss extention "
@@ -106,6 +110,10 @@ nmap <leader>f  <Plug>(coc-format-selected)
 
 " for vetur extention "
 " if you need lint: `npm i eslint eslint-plugin-vue -D` "
+" and tell :CocConfig where is the `.eslintrc.json`"
+" {
+"   'eslint.options': { 'configFile': 'mydirectory/.eslintrc.json' }
+" }
 
 " for python extention "
 set statusline^=%{coc#status()}
