@@ -1,10 +1,10 @@
 {
     //tsserver
     //use eslint to check js and ts
-    "_commentOne": "use eslint to check js and ts",
     "tsserver.trace.server": "verbose",
     "javascript.validate.enable": false,
     "typescript.validate.enable": false,
+//    "eslint.options": {"configFile": "~/.eslintrc.json"},
 
     //emmet
     "emmet.priority": 1,
@@ -69,7 +69,32 @@
     "eslint.filetypes": ["javascript", "javascriptreact", "typescriptreact", "vue", "typescript"],
     "eslint.run": "onSave",
 
-    //java
+    // java
     "java.trace.server": "verbose",
-    "java.errors.incompleteClasspath.severity": "ignore"
+    "java.errors.incompleteClasspath.severity": "ignore",
+
+    // c/c++
+    "languageserver": {
+        "ccls": {
+            "command": "ccls",
+            "filetypes": [
+                "c",
+                "cpp",
+                "objc",
+                "objcpp"
+            ],
+            "rootPatterns": [
+                ".ccls",
+                "compile_commands.json",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                }
+            }
+        }
+    }
 }
