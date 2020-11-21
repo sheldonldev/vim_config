@@ -23,6 +23,7 @@ set smartindent                 "try best job to indent for you"
 
 set nu                          "nice line numbers"
 set nowrap                      "no wrap if line too long"
+set foldenable                  "line too long can be fold"
 
 set noswapfile                  "no need swap because we use undodir"
 set nobackup                    "no need backup either"
@@ -34,7 +35,7 @@ set hlsearch                    "highlight searches"
 set smartcase                   "case sensitive searching"
 
 set clipboard=unnamed           "in MacOS, or use `unnamedplus` otherwise"
-
+set cul                         "highlight currnt line"
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 

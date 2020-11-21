@@ -95,7 +95,10 @@ let g:coc_global_extensions = [
             \ 'coc-snippets',
             \ 'coc-highlight',
             \ 'coc-phpls',
-            \ 'coc-wxml'
+            \ 'coc-wxml',
+            \ 'coc-java',
+            \ 'coc-omnisharp',
+            \ 'coc-angular'
             \ ]
 
 " for scss extention "
