@@ -27,6 +27,7 @@ set smartindent                 "try best job to indent for you"
 
 set nu                          "nice line numbers"
 set nowrap                      "no wrap if line too long"
+set number relativenumber       "relative line number"
 
 set noswapfile                  "no need swap because we use undodir"
 set nobackup                    "no need backup either"
@@ -44,8 +45,8 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " --- blink bar ---"
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-            \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-            \,sm:block-blinkwait175-blinkoff150-blinkon175
+        \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+        \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 
 " --- Finding Files ---- "
@@ -64,16 +65,16 @@ set wildmenu
 " --- Auto Complete Braces and Quotes --- "
 
 if !has('nvim')
-    inoremap { {}<Esc>ha
-    inoremap [ []<Esc>ha
-    inoremap ( ()<Esc>ha
-    inoremap < <><ESC>ha
+inoremap { {}<Esc>ha
+inoremap [ []<Esc>ha
+inoremap ( ()<Esc>ha
+inoremap < <><ESC>ha
 
-    inoremap ' ''<Esc>ha
-    inoremap " ""<Esc>ha
-    inoremap ` ``<Esc>ha
+inoremap ' ''<Esc>ha
+inoremap " ""<Esc>ha
+inoremap ` ``<Esc>ha
 
-    inoremap % %%<Esc>ha
+inoremap % %%<Esc>ha
 endif
 "" I use coc-pairs in nvim "
 
@@ -115,9 +116,9 @@ nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 25<CR>
 " --- Trim white space --- "
 
 fun! TrimWhiteSpace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
+let l:save = winsaveview()
+keeppatterns %s/\s\+$//e
+call winrestview(l:save)
 endfun
 
 autocmd BufWritePre * :call TrimWhiteSpace()

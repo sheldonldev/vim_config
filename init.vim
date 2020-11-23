@@ -2,7 +2,7 @@
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
-source ~/.config/nvim/plug-config/coc.vim
+source ~/.config/nvim/coc.vim
 
 " disable python2 "
 let g:loaded_python_provider = 0
@@ -39,42 +39,21 @@ let g:polyglot_disabled = [
 
 call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
-Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'vim-airline/vim-airline'
-
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
-
 Plug 'sheerun/vim-polyglot'
-
-Plug 'ryanoasis/vim-devicons'
-Plug 'preservim/nerdtree'
 
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
 call plug#end()
 
 
 " --- Plug Settings --- "
 
-
 " === color scheme === "
 colorscheme gruvbox
 set background=dark
-
-
-" === relative number === "
-set number relativenumber
-
-
-" === NERDTree === "
-let g:NERDTreeShowHidden = 1
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeIgnore = []
-let g:NERDTreeStatusline = ''
-" Automaticaly close nvim if NERDTree is only thing left open "
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" Toggle "
-nnoremap <silent> <leader>e :NERDTreeToggle<CR>
 
 
 " === fzf === "

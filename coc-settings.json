@@ -17,7 +17,7 @@
 
     //emmet
     "emmet.priority": 1,
-    "emmet.excludeLanguages": ["vue"],
+    "emmet.excludeLanguages": [],
 
     //prettier
     "prettier.useTabs": false,
