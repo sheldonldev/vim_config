@@ -5,11 +5,15 @@ set showcmd
 set cmdheight=2
 set ruler
 set laststatus=2
-set wildmenu
 set hidden
 set showmatch
 set encoding=UTF-8
 set termencoding=UTF-8
+
+set nowritebackup
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
 
 set confirm                     "raise an asking dialog instead of failling command when saving files"
 set visualbell                  "use visual bell instead of error beeping"
@@ -42,6 +46,19 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
             \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
             \,sm:block-blinkwait175-blinkoff150-blinkon175
+
+
+" --- Finding Files ---- "
+
+" search down for subfolders"
+" provides tab-completion for all file related tasks"
+set path+=**
+
+" display all matching files when we tab complete"
+set wildmenu
+
+" Now you can us :find with tab"
+" and use :b with incomplete match by just entering <CR> "
 
 
 " --- Auto Complete Braces and Quotes --- "
@@ -93,19 +110,6 @@ let g:netrw_banner = 0
 
 " --- quickly open explorer --- "
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 25<CR>
-
-
-" --- Finding Files ---- "
-
-" search down for subfolders"
-" provides tab-completion for all file related tasks"
-set path+=**
-
-" display all matching files when we tab complete"
-set wildmenu
-
-" Now you can us :find with tab"
-" and use :b with incomplete match by just entering <CR> "
 
 
 " --- Trim white space --- "
