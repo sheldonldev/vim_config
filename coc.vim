@@ -22,7 +22,7 @@ let g:coc_global_extensions = [
 " === Explorer === "
 
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
-nmap <C-e> :CocCommand explorer<CR>
+nmap <leader>e :CocCommand explorer<CR>
 
 " Explorer preset "
 let g:coc_explorer_global_presets = {
