@@ -1,99 +1,125 @@
 {
-    //eslint,js
-    "eslint.trace.server": "verbose",
-    "eslint.packageManager": "yarn",
-    "prettier.eslintIntegration": true,
-    "eslint.autoFix": true,
-    "eslint.autoFixOnSave": true,
-    "eslint.filetypes": ["vue", "typescript.tsx", "javascript", "javascriptreact", "typescriptreact", "typescript"],
-    "eslint.run": "onSave",
+  //eslint,js
+  "eslint.trace.server": "verbose",
+  "eslint.packageManager": "yarn",
+  "prettier.eslintIntegration": true,
+  "eslint.autoFix": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": [
+    "vue",
+    "typescript.tsx",
+    "javascript",
+    "javascriptreact",
+    "typescriptreact",
+    "typescript"
+  ],
+  "eslint.run": "onSave",
 
-    //tsserver
-    //use eslint to check js and ts
-    "tsserver.trace.server": "verbose",
-    "javascript.validate.enable": false,
-    "typescript.validate.enable": false,
-    "eslint.options": { "configFile": ".eslintrc.json" },
+  //tsserver
+  //use eslint to check js and ts
+  "tsserver.trace.server": "verbose",
+  "javascript.validate.enable": false,
+  "typescript.validate.enable": false,
+  "eslint.options": { "configFile": ".eslintrc.json" },
 
-    //emmet
-    "emmet.priority": 1,
-    "emmet.excludeLanguages": [],
+  //emmet
+  "emmet.priority": 1,
+  "emmet.excludeLanguages": [],
 
-    //prettier
-    "prettier.useTabs": false,
-    "prettier.tabWidth": 4,
-    "prettier.semi": false,
-    "prettier.singleQuote": true,
-    "prettier.jsxBracketSameLine": true,
-    "prettier.printWidth": 120,
-    "prettier.jsxSingleQuote": false,
-    "prettier.bracketSpacing": true,
-    "prettier.trailingComma": "none",
-    "prettier.arrowParens": "avoid",
-    "prettier.htmlWhitespaceSensitivity": "ignore",
-    "prettier.proseWrap": "always",
-    "coc.preferences.formatOnSaveFiletypes": [
-        "javascript",
-        "typescript",
-        "typescriptreact",
-        "json",
-        "javascriptreact",
-        "typescript.tsx",
-        "css",
-        "markdown"
-    ],
+  //prettier
+  "prettier.useTabs": false,
+  "prettier.tabWidth": 2,
+  "prettier.semi": true,
+  "prettier.singleQuote": true,
+  "prettier.jsxBracketSameLine": true,
+  "prettier.jsxSingleQuote": false,
+  "prettier.bracketSpacing": true,
+  "prettier.trailingComma": "none",
+  "prettier.arrowParens": "avoid",
+  "prettier.htmlWhitespaceSensitivity": "ignore",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "javascriptreact",
+    "typescript.tsx",
+    "css",
+    "markdown"
+  ],
 
-    //json
-    "json.format.enable": false,
+  //json
+  "json.format.enable": true,
 
-    //html
-    "html.trace.server": "verbose",
-    "html.enable": true,
-    "html.format.enable": true,
-    "html.validate.html": true,
-    "html.validate.styles": true,
-    "html.validate.scripts": true,
-    "html.format.wrapLineLength": 100,
-    "html.format.endWithNewline": false,
-    "html.format.wrapAttributes": "auto",
+  //html
+  "html.trace.server": "verbose",
+  "html.enable": true,
+  "html.format.enable": true,
+  "html.validate.html": true,
+  "html.validate.styles": true,
+  "html.validate.scripts": true,
+  "html.format.endWithNewline": false,
+  "html.format.wrapAttributes": "auto",
 
-    //vue
-    "vetur.trace.server": "verbose",
-    "vetur.format.enable": true,
-    "vetur.validation.style": true,
-    "vetur.validation.script": true,
-    "vetur.validation.template": true,
-    "vetur.format.defaultFormatterOptions": {
-        "prettyhtml": {
-            "sortAttributes": true,
-            "singleQuote": false,
-            "printWidth": 120
-        }
-    },
-    "vetur.format.defaultFormatter.js": "prettier-eslint",
-    "vetur.format.defaultFormatter.html": "prettier",
-    "vetur.format.defaultFormatter.css": "prettier",
-    "vetur.format.defaultFormatter.less": "prettier",
-    "vetur.format.defaultFormatter.scss": "prettier",
-    "vetur.format.defaultFormatter.ts": "prettier-tslint",
-    "vetur.format.defaultFormatter.stylus": "stylus-supremacy",
-    "vetur.format.defaultFormatter.postcss": "prettier",
-
-    // java
-    "java.trace.server": "verbose",
-    "java.errors.incompleteClasspath.severity": "ignore",
-
-    // c/c++
-    "languageserver": {
-        "ccls": {
-            "command": "ccls",
-            "filetypes": ["c", "cpp", "objc", "objcpp"],
-            "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-            "initializationOptions": {
-                "cache": {
-                    "directory": "/tmp/ccls"
-                }
-            }
-        }
+  //vue
+  "vetur.trace.server": "verbose",
+  "vetur.format.enable": true,
+  "vetur.validation.style": true,
+  "vetur.validation.script": true,
+  "vetur.validation.template": true,
+  "vetur.format.defaultFormatterOptions": {
+    "prettyhtml": {
+      "sortAttributes": true,
+      "singleQuote": false
     }
+  },
+  "vetur.format.defaultFormatter.js": "prettier-eslint",
+  "vetur.format.defaultFormatter.html": "prettier",
+  "vetur.format.defaultFormatter.css": "prettier",
+  "vetur.format.defaultFormatter.less": "prettier",
+  "vetur.format.defaultFormatter.scss": "prettier",
+  "vetur.format.defaultFormatter.ts": "prettier-tslint",
+  "vetur.format.defaultFormatter.stylus": "stylus-supremacy",
+  "vetur.format.defaultFormatter.postcss": "prettier",
+
+  // java
+  "java.trace.server": "verbose",
+  "java.errors.incompleteClasspath.severity": "ignore",
+  // codelens
+  "codeLens.enable": true,
+  "java.referencesCodeLens.enabled": true,
+  "java.jdt.ls.vmargs": "-javaagent:/usr/local/share/lombok.jar",
+
+  // c/c++
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "objc", "objcpp"],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        }
+      }
+    }
+  },
+
+  // explorer
+  "explorer.width": 25,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.previewAction.onHover": false,
+  "explorer.file.showHiddenFiles": true,
+  "explorer.keyMappings.global": {
+    "<cr>": ["expandable?", "expand", "open"],
+    "v": "open:vsplit"
+  },
+
+  // snippets
+  "snippets.userSnippetsDirectory": "~/.config/nvim/snips"
 }

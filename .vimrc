@@ -1,47 +1,64 @@
 " --- Main Settings ---"
 
-syntax on
+syntax enable
 set showcmd
 set cmdheight=2
-set ruler
-set laststatus=2
-set hidden
-set showmatch
-set encoding=UTF-8
-set termencoding=UTF-8
+set pumheight=10        " Makes popup menu smaller
 
-set nowritebackup
-set updatetime=300
+set ruler               " Ruler in status line"
+set laststatus=2        " Always display the status line
+set showtabline=2       " Always show tabs
+set showmatch
+set noshowmode          " We don't need to see things like -- INSERT -- anymore
+
+set hidden              " Required to keep multiple buffers open multiple buffers"
+
+set encoding=UTF-8      " the encoding displayed"
+set termencoding=UTF-8
+set fileencoding=UTF-8  " The encoding written to file
+
+set splitbelow          " Horizontal splits will automatically be below
+set splitright          " Vertical splits will automatically be to the right
+
+set nowritebackup       " This is recommended by coc
+set updatetime=300      " Fast completion "
+set timeoutlen=500      " Default is 1000 "
 set shortmess+=c
+set iskeyword+=-        " treat dash separated words as a word text object"
 set signcolumn=yes
 
-set confirm                     "raise an asking dialog instead of failling command when saving files"
-set visualbell                  "use visual bell instead of error beeping"
-set t_vb=""                     "set null to visualbell, now no warning anymore when hit the end of line"
+set confirm             " raise an asking dialog instead of failling command when saving files"
+set visualbell          " use visual bell instead of error beeping"
+set t_vb=""             " set null to visualbell, now no warning anymore when hit the end of line"
 
-set tabstop=4                   "4 chars long"
-set softtabstop=4               "4 spaces long"
-set shiftwidth=4                "4 spaces if press >"
-set expandtab                   "convert tabs to spaces"
-set smartindent                 "try best job to indent for you"
+set tabstop=2           " chars long"
+set softtabstop=2       " spaces long"
+set shiftwidth=2        " spaces if press >"
+set expandtab           " convert tabs to spaces"
+set smarttab            " Makes tabbing smarter will realize you have 2 vs 4"
+set autoindent
+set smartindent         " try best job to indent for you"
 
-set nu                          "nice line numbers"
-set nowrap                      "no wrap if line too long"
-set number relativenumber       "relative line number"
+set nu                  " nice line numbers"
+set relativenumber      " relative line number"
+set nowrap              " no wrap if line too long"
 
-set noswapfile                  "no need swap because we use undodir"
-set nobackup                    "no need backup either"
-set undodir=~/.vim/undodir      "for save undo files"
-set undofile                    "an undo file per file"
+set noswapfile                  " no need swap because we use undodir"
+set nobackup                    " no need backup either"
+set undodir=~/.vim/undodir      " for save undo files"
+set undofile                    " an undo file per file"
 
-set incsearch                   "get result while entering"
-set hlsearch                    "highlight searches"
-set smartcase                   "case sensitive searching"
+set incsearch                   " get result while entering"
+set hlsearch                    " highlight searches"
+set smartcase                   " case sensitive searching"
 
-set clipboard=unnamed           "in MacOS, or use `unnamedplus` otherwise"
+set clipboard=unnamed           " in MacOS, or use `unnamedplus` otherwise"
+
+set t_Co=256                    " Support 256 colors
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
+set conceallevel=0              " So that I can see `` in markdown files
 
 " --- blink bar ---"
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
@@ -64,7 +81,6 @@ set wildmenu
 
 " --- Auto Complete Braces and Quotes --- "
 
-if !has('nvim')
 inoremap { {}<Esc>ha
 inoremap [ []<Esc>ha
 inoremap ( ()<Esc>ha
@@ -75,18 +91,17 @@ inoremap " ""<Esc>ha
 inoremap ` ``<Esc>ha
 
 inoremap % %%<Esc>ha
-endif
-"" I use coc-pairs in nvim "
+
 
 " --- set <leader> key ---"
 let mapleader = " "
 
 
 " --- Jump between windows --- "
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>j :wincmd j<CR>
 
 
 " --- quickly adjust window size --- "
@@ -94,10 +109,19 @@ nnoremap <silent> <leader>] :vertical resize +10<CR>
 nnoremap <silent> <leader>[ :vertical resize -10<CR>
 nnoremap <silent> <leader>= :resize +5<CR>
 nnoremap <silent> <leader>- :resize -5<CR>
-nnoremap <silent> <leader>va :vertical resize 100<CR>
-nnoremap <silent> <leader>ha :resize 35<CR>
-nnoremap <silent> <leader>vn :vertical resize 25<CR>
-nnoremap <silent> <leader>hn :resize 5<CR>
+nnoremap <silent> <leader>ll :vertical resize 100<CR>
+nnoremap <silent> <leader>hh :vertical resize 25<CR>
+nnoremap <silent> <leader>kk :resize 35<CR>
+nnoremap <silent> <leader>jj :resize 5<CR>
+
+
+" --- Alternate way to save, quit --- "
+nnoremap <C-s> :wa<CR>
+nnoremap <C-Q> :q<CR>
+
+
+" --- <TAB>: completion --- "
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 
 " --- netrw sidewindow --- "
@@ -106,19 +130,19 @@ let g:netrw_alto      = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
-let g:netrw_banner = 0
+"" let g:netrw_banner = 0
 
 
-" --- quickly open explorer --- "
+" --- quickly open netrw explorer --- "
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 25<CR>
 
 
 " --- Trim white space --- "
 
 fun! TrimWhiteSpace()
-let l:save = winsaveview()
-keeppatterns %s/\s\+$//e
-call winrestview(l:save)
+  let l:save = winsaveview()
+  keeppatterns %s/\s\+$//e
+  call winrestview(l:save)
 endfun
 
 autocmd BufWritePre * :call TrimWhiteSpace()

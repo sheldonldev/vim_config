@@ -1,117 +1,88 @@
 # nvim_config
 
--   If you just want to use vim without any plugin, the only thing need to do is:
+- If you just want to use vim without any plugin, the only thing need to do is:
 
 ```bash
 cd ~ && curl -fLo ".vimrc" https://raw.githubusercontent.com/sheldonldev/nvim_config/main/.vimrc
 ```
 
--   If you want to use neovim with awesome plugins, read the followings.
+- If you want to use neovim with awesome plugins, read the followings.
 
 ## Quick Start
 
 ### Install Dependencies
 
--   Install [NodeJS & npm](https://nodejs.org);
--   Install [nerd-font](https://github.com/ryanoasis/nerd-fonts#font-installation");
--   Install [the_silver_searcher](https://github.com/ggreer/the_silver_searcher);
+- Install [NodeJS & npm](https://nodejs.org);
+- Install [nerd-font](https://github.com/ryanoasis/nerd-fonts#font-installation");
+- Install [Neovim](https://neovim.io) (HEAD version is recommended);
+- Open `nvim` and run `:checkhealth` to checkout more todos;
 
-### Install Neovim and Plugin Manager
+- Awesome searching tools are needed for fuzzy finder plugins:
 
--   Install [Neovim](https://neovim.io), then run `:checkhealth` to checkout more todos;
--   Install [vim-plugin](https://github.com/junegunn/vim-plug);
+  - [FZF](https://github.com/junegunn/fzf.vim)
+  - [ripgrep](https://github.com/BurntSushi/ripgrep)
+  - [universal-ctags](https://github.com/universal-ctags/ctags)
 
-### Clone This Repo As Config
+  > You can install them in macOS with following commands:
+
+  ```bash
+  brew install fzf
+
+  # To install useful key bindings and fuzzy completion:
+  $(brew --prefix)/opt/fzf/install
+
+  brew install ripgrep
+
+  brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+  ```
+
+### Clone This Repo As Configurations
+
+- Backup and remove the old `~/.config/nvim/` folder if you've got one.
+
+- Clone this repo to `~/.config/nvim`:
 
 ```bash
-# remove the old ~/.config/nvim/ folder at first
-
-# then clone this repo as ~/.config/nvim
 cd ~/.config/
 git clone git@github.com:sheldonldev/nvim_config.git nvim
+```
 
-# create symbolic links
+- Create a symbolic link for `~/.vimrc`, so you can use awesome settings for your `vim` also.
+
+```bash
 ln -s ~/.config/nvim/.vimrc ~/.vimrc
 ```
 
--   Adjust the integrated terminal settings in `init.vim`:
+- Open `nvim`, the script will help you install `vim-plug` automatically.
+
+- If you use `zsh`, skip this step: adjust the shell type in `init.vim`:
 
 ```bash
-# find the following lines and change settings adapt to your own shell
+# find the following lines in `init.vim`
 
 " open terminal "
 function! OpenTerminal()
-    split term://zsh    "change this line, default is zsh"
+    split term://zsh    " change 'zsh' to any shell you use "
     resize 5
 endfunction
 ```
 
--   Read the `.vimrc` and `init.vim` to learn the keymaps. And use `:h _search_term_` to open the manual if have any
-    question;
+- Read the `.vimrc` and `*.vim` to learn the keymaps;
 
--   If you want to use lint, run `:CocCommand eslint.createConfig`
+- Use `:h _search_term_` to open the manual if have any question;
 
-### If you use C/C++
+- How to enable lint? For example:
+  - If you want to use lint in javascript project, run `:CocCommand eslint.createConfig`;
+  - If you want to use python, run `pip install pylint`
 
--   The C/C++ part referres to <https://ianding.io/2019/07/29/configure-coc-nvim-for-c-c++-development/>
+## More Suggestions
 
--   Install `brew install ccls` for C/C++.
-
--   To set up a C/C++ project:
-
-    -   generate `compile_commands.json` and put it to your project root. In macOS, you can use one of the following
-        methods;
-        1. Intercepting the system calls and extracting the arguments passed to the compiler by dynamic library
-           injection (e.g. Bear, scan-build):
-            - pros: works for hard-coded compiler path;
-            - cons: macOS prohibits dynamic library injection for security reasons if the the program to be injected is
-              system software (e.g. clang from Xcode).
-        2. Using a compiler wrapper (e.g. scan-build):
-            - pros: doesn’t violate security policies;
-            - cons: the compiler path must not be hard-coded.
-    -   place `.ccls` to your project root. It is a text file, in which each line is a command line argument passed to
-        the compiler. Here is an example of .ccls:
-
-        ```text
-        -I
-        ../include
-        -I
-        ../vendor/include
-        -std=c++14
-        -stdlib=libc++
-        -fPIC
-        ```
-
--   If ccls cannot find your system headers…
-
-    -   If you are using macOS, then chances are ccls cannot find system headers and as a result reports a bunch of
-        errors.
-    -   This is because new macOS systems moves system headers into the macOS SDK directory and no longer places them in
-        `/usr/include`. And the reason why ccls can find the system headers previously is that `/usr/include` is
-        hard-coded into ccls during compilation.
-    -   To solve this problem, you can manually adding the path of the system headers to `.ccls`. Here is how to get the
-        path:
-
-        -   Run `g++ -E -x c++ - -v < /dev/null` in your terminal and you’ll see a list of include paths that the
-            compiler searches. They are between `#include <...> search starts here:` and End of search list..
-        -   Now put them into your `.ccls` file as `-isystem` options (unlike `-I`, the errors and warnings in the
-            header files found in `-isystem` paths are ignored by the syntax checker).
-        -   After manually adding these system header paths, the `.ccls` file might look like this:
-
-            ```text
-            -isystem
-            /usr/local/include
-            -isystem
-            /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1
-            -isystem
-            /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include
-            -isystem
-            /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
-            -isystem
-            /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include
-            ```
+- [More About Coc Extensions](https://doc.sheldonl.dev/working-env/vim-based-workspace/nvim-for-web-dev#more-about-coc-extensions)
+- [More About Coc Language Suport Commands](https://doc.sheldonl.dev/working-env/vim-based-workspace/nvim-for-web-dev#more-about-coc-language-suport-commands)
+- [More Support for Java](https://doc.sheldonl.dev/working-env/vim-based-workspace/nvim-for-web-dev#more-support-for-java)
+- [More Support for C/C++](https://doc.sheldonl.dev/working-env/vim-based-workspace/nvim-for-web-dev#more-support-for-c-c)
 
 ## READ MORE
 
--   [make vim awesome](https://doc.sheldonl.dev/working-env/vim-based-workspace/make-vim-awesome.md)
--   [nvim fore web dev](https://doc.sheldonl.dev/working-env/vim-based-workspace/nvim-for-web-dev.md)
+- [make vim awesome](https://doc.sheldonl.dev/working-env/vim-based-workspace/make-vim-awesome.md)
+- [nvim fore web dev](https://doc.sheldonl.dev/working-env/vim-based-workspace/nvim-for-web-dev.md)
