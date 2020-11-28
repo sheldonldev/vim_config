@@ -1,22 +1,18 @@
 " coc extentions "
 let g:coc_global_extensions = [
+            \ 'coc-marketplace',
+            \ 'coc-explorer',
             \ 'coc-emmet',
             \ 'coc-css',
-            \ 'coc-html',
+            \ 'coc-tailwindcss',
             \ 'coc-json',
-            \ 'coc-prettier',
             \ 'coc-tsserver',
             \ 'coc-vetur',
-            \ 'coc-python',
-            \ 'coc-yaml',
             \ 'coc-eslint',
-            \ 'coc-stylelint',
-            \ 'coc-snippets',
-            \ 'coc-highlight',
+            \ 'coc-prettier',
+            \ 'coc-jedi',
+            \ 'coc-yaml',
             \ 'coc-phpls',
-            \ 'coc-java',
-            \ 'coc-explorer',
-            \ 'coc-marketplace',
             \ ]
 
 " === Explorer === "
@@ -26,40 +22,34 @@ nmap <leader>e :CocCommand explorer<CR>
 
 " Explorer preset "
 let g:coc_explorer_global_presets = {
-\   '.config/nvim': {
-\     'root-uri': '~/.config/nvim',
-\   },
-\   'hub/doc': {
-\     'root-uri': '~/Documents/hub/doc'
-\   },
 \   'floating': {
 \     'position': 'floating',
 \     'open-action-strategy': 'sourceWindow',
+\     'floating-width': -50
 \   },
 \ }
 
 " Use preset argument to open it "
 nmap <leader>ef :CocCommand explorer --preset floating<CR>
-nmap <leader>ev :CocCommand explorer --preset .config/nvim<CR>
-nmap <leader>ed :CocCommand explorer --preset hub/doc<CR>
+nmap <leader>ev :CocCommand explorer --preset floating ~/.config/nvim<CR>
+nmap <leader>ed :CocCommand explorer --preset floating ~/Documents/hub/doc<CR>
 
 " List all presets "
 nmap <leader>el :CocList explPresets
 
 
-" === for scss extention === "
+" === for scss === "
 autocmd FileType scss setl iskeyword+=@-@
-
 
 " === for prettier extention === "
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
+" === Highlight symbol under cursor on CursorHold === "
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" === for other === "
-" Add status line support, for integration with other plugin, checkout `:h coc-status` "
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" === Remaps === "
 
 " Use tab for trigger completion with characters ahead and navigate. "
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin. "
@@ -99,19 +89,8 @@ function! s:show_documentation()
     endif
 endfunction
 
-" Highlight symbol under cursor on CursorHold "
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
 " Remap for rename current word "
 nmap <leader>rn <Plug>(coc-rename)
-
-augroup mygroup
-    autocmd!
-    " Setup formatexpr specified filetype(s). "
-    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-    " Update signature help on jump placeholder "
-    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph "
 xmap <leader>a  <Plug>(coc-codeaction-selected)
@@ -135,3 +114,17 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " use `:OR` for organize import of current buffer "
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+
+" === for other === "
+" Add status line support, for integration with other plugin, checkout `:h coc-status` "
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+augroup mygroup
+    autocmd!
+    " Setup formatexpr specified filetype(s). "
+    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+    " Update signature help on jump placeholder "
+    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+

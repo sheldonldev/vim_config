@@ -9,7 +9,6 @@ set ruler               " Ruler in status line "
 set laststatus=2        " Always display the status line "
 set showtabline=2       " Always show tabs "
 set showmatch
-set noshowmode          " We don't need to see things like -- INSERT -- anymore "
 
 set hidden              " Required to keep multiple buffers open multiple buffers "
 
@@ -24,8 +23,6 @@ set nowritebackup       " This is recommended by coc "
 set updatetime=300      " Fast completion "
 set timeoutlen=500      " Default is 1000 "
 set shortmess+=c
-set iskeyword+=-        " treat dash separated words as a word text object"
-set signcolumn=yes
 
 set confirm             " raise an asking dialog instead of failling command when saving files "
 set visualbell          " use visual bell instead of error beeping "
@@ -58,7 +55,12 @@ set t_Co=256                    " Support 256 colors "
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
+set signcolumn=yes
 set conceallevel=0              " So that I can see `` in markdown files "
+
+set iskeyword+=-        " treat dash separated words as a word text object"
+set iskeyword+=@        " vue-on and css "
+
 
 " --- blink bar ---"
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50

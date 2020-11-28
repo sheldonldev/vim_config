@@ -1,6 +1,6 @@
 # nvim_config
 
-- If you just want to use vim without any plugin, the only thing need to do is:
+- If you want to use vim without any plugin:
 
 ```bash
 cd ~ && curl -fLo ".vimrc" https://raw.githubusercontent.com/sheldonldev/nvim_config/main/.vimrc
@@ -8,12 +8,40 @@ cd ~ && curl -fLo ".vimrc" https://raw.githubusercontent.com/sheldonldev/nvim_co
 
 - If you want to use neovim with awesome plugins, read the followings.
 
+## Features of the Neovim Configurations
+
+> I want to keep the config powerful but still as lean as possible.
+
+- Integrated nvim terminal;
+- Theme: `gruvbox`;
+- Explorer: `coc-explorer` with Nerd Font;
+- Status line and tabline: `vim-aireline`;
+- Fuzzy Finder: `fzf.vim` with `vim-rooter`, `FZF`, `universal-ctags`, and `ripgrep`;
+- Git: `fugitive`;
+- Commentary: `vim-commentary`;
+- Auto-completion: `coc.nvim`;
+- Syntax highlight: `vim-treesitter`, you should checkout `:TSInstallInfo` and run `:TSInstall`/`:TSUninstall`/`:TSUpdate` as needed;
+- Lint: `coc-eslint`, other languages' lint depend on lint tools such as `pylint`;
+- Prettier: `coc-prettier`;
+- Well supported languages (highlight, lint, prettier, auto completion):
+  - js/ts: `coc.nvim`, `coc-tsserver`, `coc-vue`;
+  - html: `coc-emmet`;
+  - css and scss: `coc-css`, `coc-tailwindcss`;
+  - php: `coc-phpls`;
+  - python: `coc-jedi`;
+  - json: `coc-json`;
+  - yaml: `coc-yaml`;
+- Languages can be more featured:
+  - Java: [Java in Neovim](https://www.chrisatmachine.com/Neovim/24-neovim-and-java/)
+  - C++: [Configure coc.nvim for C/C++ Development](https://ianding.io/2019/07/29/configure-coc-nvim-for-c-c++-development/)
+- Other languages are not considered here.
+
 ## Quick Start
 
 ### Install Dependencies
 
 - Install [NodeJS & npm](https://nodejs.org);
-- Install [nerd-font](https://github.com/ryanoasis/nerd-fonts#font-installation");
+- Install [Nerd Font](https://github.com/ryanoasis/nerd-fonts#font-installation");
 - Install [Neovim](https://neovim.io) (HEAD version is recommended);
 - Open `nvim` and run `:checkhealth` to checkout more todos;
 
@@ -74,13 +102,6 @@ endfunction
 - How to enable lint? For example:
   - If you want to use lint in javascript project, run `:CocCommand eslint.createConfig`;
   - If you want to use python, run `pip install pylint`
-
-## More Suggestions
-
-- [More About Coc Extensions](https://doc.sheldonl.dev/working-env/vim-based-workspace/nvim-for-web-dev#more-about-coc-extensions)
-- [More About Coc Language Suport Commands](https://doc.sheldonl.dev/working-env/vim-based-workspace/nvim-for-web-dev#more-about-coc-language-suport-commands)
-- [More Support for Java](https://doc.sheldonl.dev/working-env/vim-based-workspace/nvim-for-web-dev#more-support-for-java)
-- [More Support for C/C++](https://doc.sheldonl.dev/working-env/vim-based-workspace/nvim-for-web-dev#more-support-for-c-c)
 
 ## READ MORE
 
