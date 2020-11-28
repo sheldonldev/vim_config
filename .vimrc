@@ -7,12 +7,11 @@ set pumheight=10        " Makes popup menu smaller "
 
 set ruler               " Ruler in status line "
 set laststatus=2        " Always display the status line "
-set showtabline=2       " Always show tabs "
 set showmatch
 
-set hidden              " Required to keep multiple buffers open multiple buffers "
+set hidden              " Required to keep multiple buffers "
 
-set encoding=UTF-8      " the encoding displayed"
+set encoding=UTF-8      " the encoding displayed "
 set termencoding=UTF-8
 set fileencoding=UTF-8  " The encoding written to file "
 
