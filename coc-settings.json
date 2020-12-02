@@ -51,12 +51,17 @@
   "javascript.validate.enable": false,
   "typescript.validate.enable": false,
 
+  //html
+  "html.trace.server": "verbose",
+  "html.format.unformatted": null,
+  "html.format.indentInnerHtml": true,
+  "html.format.endWithNewline": true,
+  "html.autoClosingTags": true,
+
   //emmet
-  "emmet.excludeLanguages": [],
-  "emmet.includeLanguages": {
-    "vue-html": "html",
-    "javascript": "javascriptreact"
-  },
+  "emmet.showExpandedAbbreviation": "always",
+  "emmet.showAbbreviationSuggestions": true,
+  "emmet.priority": 1,
 
   //css
   "css.trace.server": "verbose",
@@ -73,5 +78,9 @@
     }
   },
   "vetur.format.defaultFormatter.js": "prettier-eslint",
-  "vetur.format.defaultFormatter.ts": "prettier-tslint"
+  "vetur.format.defaultFormatter.ts": "prettier-tslint",
+
+  //emoji
+  "coc.source.emoji.filetypes": ["markdown", "html", "vue"],
+  "coc.source.emoji.triggerCharacters": ["emoji"]
 }

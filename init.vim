@@ -7,7 +7,7 @@ source ~/.vimrc
 let g:loaded_python_provider = 0
 
 " if you use virtual python3 environment "
-"" let g:python3_host_prog = expand("<path to python with pynvim installed>")
+let g:python3_host_prog = expand("/opt/anaconda3/envs/default/bin/python3")
 " ^ example ^ "
 
 " if you use virtual node environment "
@@ -20,12 +20,9 @@ let g:loaded_python_provider = 0
 " turn terminal to normal mode with escape "
 tnoremap <Esc> <C-\><C-n>
 
-" open terminal "
-function! OpenTerminal()
-  split term://zsh
-  resize 5
-endfunction
-nnoremap <C-n> :call OpenTerminal()<CR>
+" open terminal"
+nnoremap <C-v> :vsplit term://zsh<CR>
+nnoremap <C-b> :split term://zsh<bar> :resize 5<CR>
 
 
 " --- auto-install vim-plug --- "
@@ -39,12 +36,6 @@ endif
 " should call before plugin caller "
 let g:polyglot_disabled = [
   \ 'markdown',
-  \ 'html',
-  \ 'css',
-  \ 'java',
-  \ 'c/c++',
-  \ 'php',
-  \ 'python',
   \ ]
 
 
@@ -52,15 +43,18 @@ let g:polyglot_disabled = [
 call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
-Plug 'tpope/vim-commentary'
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'sheerun/vim-polyglot'
 
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+Plug 'Yggdroot/indentLine'
+
+Plug 'sheerun/vim-polyglot'
+Plug 'nvim-treesitter/nvim-treesitter'
 
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'airblade/vim-rooter'
+
+Plug 'tpope/vim-fugitive'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
 call plug#end()
@@ -70,6 +64,9 @@ call plug#end()
 
 source ~/.config/nvim/coc.vim
 source ~/.config/nvim/fzf.vim
+
+lua require'treesitter'
+
 
 " === color scheme === "
 colorscheme gruvbox
@@ -93,26 +90,3 @@ let g:airline#extensions#tabline#right_alt_sep = '|'
 set showtabline=2       " Always show tabs "
 set noshowmode          " We don't need to see things like -- INSERT -- anymore "
 
-" === Enable all moduals in treesitter === "
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  highlight = {
-    enable = true,        -- false will disable the whole extension
-    disable = {},         -- list of language that will be disabled
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
-    },
-  },
-  indent = {
-    enable = true
-  },
-  textobjects = { enable = true },
-}
-EOF

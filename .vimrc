@@ -1,5 +1,3 @@
-" --- Main Settings ---"
-
 syntax enable
 set showcmd
 set cmdheight=2
@@ -55,10 +53,12 @@ set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 set signcolumn=yes
-set conceallevel=0              " So that I can see `` in markdown files "
+set conceallevel=0              " So that I can see ` ` in markdown files "
 
 set iskeyword+=-        " treat dash separated words as a word text object"
 set iskeyword+=@        " vue-on and css "
+
+set termguicolors
 
 
 " --- blink bar ---"
@@ -80,19 +80,19 @@ set wildmenu
 " and use :b with incomplete match by just entering <CR> "
 
 
-" --- Auto Complete Braces and Quotes --- "
+" --- Auto Complete Braces and Quotes ---
 
-inoremap { {}<Esc>ha
-inoremap [ []<Esc>ha
+inoremap { {<CR><CR>}<Esc>ka<Tab>
+inoremap [ [<CR><CR>]<Esc>ka<Tab>
 inoremap ( ()<Esc>ha
-inoremap < <><ESC>ha
+inoremap < <><Esc>ha
 
 inoremap ' ''<Esc>ha
 inoremap " ""<Esc>ha
 inoremap ` ``<Esc>ha
 
-inoremap % %%<Esc>ha
-
+inoremap {{ {{<space><space>}}<Esc>hhha
+inoremap {% {%<space><space>%}<Esc>hhha
 
 " --- set <leader> key --- "
 let mapleader = " "
@@ -121,14 +121,12 @@ nnoremap <C-s> :wa<CR>
 nnoremap <C-Q> :q<CR>
 
 
-" --- <TAB>: completion --- "
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" --- <Tab>: completion --- "
+inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 
 " --- netrw sidewindow --- "
-let g:netrw_preview   = 0
-let g:netrw_alto      = 0
-let g:netrw_liststyle = 3
+let g:netrw_liststyle = 1
 let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
 "" let g:netrw_banner = 0
@@ -147,4 +145,5 @@ fun! TrimWhiteSpace()
 endfun
 
 autocmd BufWritePre * :call TrimWhiteSpace()
+
 
