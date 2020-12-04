@@ -1,22 +1,23 @@
 " coc extentions "
 let g:coc_global_extensions = [
-            \ 'coc-marketplace',
-            \ 'coc-explorer',
-            \ 'coc-json',
-            \ 'coc-yaml',
-            \ 'coc-emoji',
-            \ 'coc-html',
-            \ 'coc-emmet',
-            \ 'coc-css',
-            \ 'coc-tailwindcss',
-            \ 'coc-tsserver',
-            \ 'coc-vetur',
-            \ 'coc-eslint',
-            \ 'coc-prettier',
-            \ 'coc-highlight',
-            \ 'coc-jedi',
-            \ 'coc-phpls',
-            \ ]
+        \ 'coc-marketplace',
+        \ 'coc-explorer',
+        \ 'coc-json',
+        \ 'coc-yaml',
+        \ 'coc-html',
+        \ 'coc-emmet',
+        \ 'coc-css',
+        \ 'coc-tailwindcss',
+        \ 'coc-tsserver',
+        \ 'coc-vetur',
+        \ 'coc-eslint',
+        \ 'coc-prettier',
+        \ 'coc-highlight',
+        \ 'coc-snippets',
+        \ 'coc-jedi',
+        \ 'coc-phpls',
+        \ 'coc-emoji',
+        \ ]
 
 " === Remaps === "
 
@@ -133,3 +134,20 @@ augroup mygroup
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
+
+" === Snippets === "
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)

@@ -41,27 +41,35 @@ let g:polyglot_disabled = [
 
 " --- Call plugins ---- "
 call plug#begin('~/.vim/plugged')
-Plug 'morhetz/gruvbox'
-Plug 'vim-airline/vim-airline'
-
-Plug 'tpope/vim-commentary'
+Plug 'sheldonldev/gruvbox'
+Plug 'psliwka/vim-smoothie'
 Plug 'Yggdroot/indentLine'
 
+""Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+""Plug 'kristijanhusak/defx-icons'
+""Plug 'ryanoasis/vim-devicons'
+""Plug 'kristijanhusak/defx-git'
+Plug 'vim-airline/vim-airline'
+
+Plug 'terryma/vim-multiple-cursors'
 Plug 'sheerun/vim-polyglot'
 Plug 'nvim-treesitter/nvim-treesitter'
+
+Plug 'voldikss/vim-floaterm'
 
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'airblade/vim-rooter'
 
-Plug 'tpope/vim-fugitive'
-
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
+""Plug 'neovim/nvim-lspconfig'
+Plug 'neoclide/coc.nvim'
+Plug 'honza/vim-snippets'
 call plug#end()
 
 
 " --- Plug Settings --- "
 
+""source ~/.config/nvim/defx.vim
 source ~/.config/nvim/coc.vim
 source ~/.config/nvim/fzf.vim
 
@@ -69,13 +77,20 @@ lua require'treesitter'
 
 
 " === color scheme === "
+let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 set background=dark
-
 
 " === commentary === "
 nnoremap <leader>/ :Commentary<CR>
 vnoremap <leader>/ :Commentary<CR>
+
+
+" === Emoji ==== "
+augroup emoji_complete
+  autocmd!
+  autocmd FileType * setlocal completefunc=emoji#complete
+augroup END
 
 
 " === aire line === "
@@ -90,3 +105,28 @@ let g:airline#extensions#tabline#right_alt_sep = '|'
 set showtabline=2       " Always show tabs "
 set noshowmode          " We don't need to see things like -- INSERT -- anymore "
 
+
+" === floaterm === "
+let g:floaterm_complete_options = {'shortcut': 'floaterm', 'priority': 0, 'filter_length': [5, 20]}
+nnoremap   <silent>   <F1>    :FloatermNew<CR>
+tnoremap   <silent>   <F1>    <C-\><C-n>:FloatermNew<CR>
+nnoremap   <silent>   <F7>    :FloatermPrev<CR>
+tnoremap   <silent>   <F7>    <C-\><C-n>:FloatermPrev<CR>
+nnoremap   <silent>   <F9>    :FloatermNext<CR>
+tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNext<CR>
+nnoremap   <silent>   <F12>   :FloatermToggle<CR>
+tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
+
+
+" === multi cursors === "
+
+let g:multi_cursor_use_default_mapping=0
+
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'

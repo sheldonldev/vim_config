@@ -17,10 +17,10 @@ cd ~ && curl -fLo ".vimrc" https://raw.githubusercontent.com/sheldonldev/nvim_co
 - Explorer: `coc-explorer` with Nerd Font;
 - Status line and tabline: `vim-aireline`;
 - Fuzzy Finder: `fzf.vim` with `vim-rooter`, `FZF`, `universal-ctags`, and `ripgrep`;
-- Git: `fugitive`;
-- Commentary: `vim-commentary`;
 - Auto-completion: `coc.nvim`;
-- Syntax highlight: `vim-treesitter`, you should checkout `:TSInstallInfo` and run `:TSInstall`/`:TSUninstall`/`:TSUpdate` as needed;
+- Syntax highlight:
+  - `vim-polyglot`;
+  - `nvim-treesitter`, you should checkout `:TSInstallInfo` and run `:TSInstall`/`:TSUninstall`/`:TSUpdate` as needed;
 - Lint: `coc-eslint`, other languages' lint depend on lint tools such as `pylint`;
 - Prettier: `coc-prettier`;
 - Well supported languages (highlight, lint, prettier, auto completion):

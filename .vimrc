@@ -82,8 +82,8 @@ set wildmenu
 
 " --- Auto Complete Braces and Quotes ---
 
-inoremap { {<CR><CR>}<Esc>ka<Tab>
-inoremap [ [<CR><CR>]<Esc>ka<Tab>
+inoremap { {<CR>}<Esc>O
+inoremap [ []<Esc>ha
 inoremap ( ()<Esc>ha
 inoremap < <><Esc>ha
 
@@ -147,3 +147,6 @@ endfun
 autocmd BufWritePre * :call TrimWhiteSpace()
 
 
+" --- quickly switch buffers --- "
+nnoremap  <silent> <S-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
+nnoremap  <silent> <leader><S-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>

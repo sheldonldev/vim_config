@@ -79,8 +79,12 @@
   },
   "vetur.format.defaultFormatter.js": "prettier-eslint",
   "vetur.format.defaultFormatter.ts": "prettier-tslint",
+  "vetur.completion.autoImport": true,
+
+  //snippets
+  "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
 
   //emoji
-  "coc.source.emoji.filetypes": ["markdown", "html", "vue"],
-  "coc.source.emoji.triggerCharacters": ["emoji"]
+  "coc.source.emoji.triggerCharacters": ["|"],
+  "coc.source.emoji.filetypes": ["markdown", "html", "vue"]
 }
