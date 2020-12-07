@@ -15,95 +15,96 @@ let g:python3_host_prog = expand("/opt/anaconda3/envs/default/bin/python3")
 " ^ example ^ "
 
 
-" --- Integrated Terminal --- "
-
-" turn terminal to normal mode with escape "
-tnoremap <Esc> <C-\><C-n>
-
-" open terminal"
-nnoremap <C-v> :vsplit term://zsh<CR>
-nnoremap <C-b> :split term://zsh<bar> :resize 5<CR>
-
-
 " --- auto-install vim-plug --- "
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.nvim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
+
+
+" --- integrated terminal --- "
+tnoremap <Esc> <C-\><C-n>
+nnoremap <A-v> :vsplit term://zsh<CR>
+nnoremap <A-b> :split term://zsh <bar>resize 5<CR>
 
 
 " --- disable some languages that already been well colorized --- "
 " should call before plugin caller "
 let g:polyglot_disabled = [
-  \ 'markdown',
-  \ ]
+      \ 'markdown',
+      \ ]
 
 
 " --- Call plugins ---- "
 call plug#begin('~/.vim/plugged')
 Plug 'sheldonldev/gruvbox'
+Plug 'sheerun/vim-polyglot'
 Plug 'psliwka/vim-smoothie'
 Plug 'Yggdroot/indentLine'
 
-""Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-""Plug 'kristijanhusak/defx-icons'
-""Plug 'ryanoasis/vim-devicons'
-""Plug 'kristijanhusak/defx-git'
 Plug 'vim-airline/vim-airline'
+Plug 'ryanoasis/vim-devicons'
 
-Plug 'terryma/vim-multiple-cursors'
-Plug 'sheerun/vim-polyglot'
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'tpope/vim-fugitive'
 
 Plug 'voldikss/vim-floaterm'
+
+Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'kristijanhusak/defx-icons'
+Plug 'kristijanhusak/defx-git'
 
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'airblade/vim-rooter'
 
-""Plug 'neovim/nvim-lspconfig'
-Plug 'neoclide/coc.nvim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'neovim/nvim-lspconfig',
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
+Plug 'sbdchd/neoformat'
+
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'norcalli/nvim-colorizer.lua'
 call plug#end()
 
 
 " --- Plug Settings --- "
 
-""source ~/.config/nvim/defx.vim
-source ~/.config/nvim/coc.vim
+source ~/.config/nvim/defx.vim
 source ~/.config/nvim/fzf.vim
+source ~/.config/nvim/deoplete.vim
+source ~/.config/nvim/prettier.vim
 
 lua require'treesitter'
 
+lua require'colorizer'
+nnoremap <leader>c :ColorizerToggle<CR>
+nnoremap <A-c> :ColorizerAttachToBuffer<CR>
 
-" === color scheme === "
+
+" === gruvbox === "
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 set background=dark
 
-" === commentary === "
-nnoremap <leader>/ :Commentary<CR>
-vnoremap <leader>/ :Commentary<CR>
 
-
-" === Emoji ==== "
-augroup emoji_complete
-  autocmd!
-  autocmd FileType * setlocal completefunc=emoji#complete
-augroup END
-
-
-" === aire line === "
-
+" === airline === "
 " enable tabline "
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#right_sep = ' '
 let g:airline#extensions#tabline#right_alt_sep = '|'
-
 set showtabline=2       " Always show tabs "
 set noshowmode          " We don't need to see things like -- INSERT -- anymore "
+" next buffer "
+nnoremap  <silent> <S-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
+" previous buffer "
+nnoremap  <silent> <A-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
+" quit current buffer "
+nnoremap  <silent> <A-q>    :bd<CR>
 
 
 " === floaterm === "
@@ -118,10 +119,8 @@ nnoremap   <silent>   <F12>   :FloatermToggle<CR>
 tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
 
 
-" === multi cursors === "
-
-let g:multi_cursor_use_default_mapping=0
-
+" === multiple-cursors === "
+let g:multi_cursor_use_default_mapping = 0
 let g:multi_cursor_start_word_key      = '<C-n>'
 let g:multi_cursor_select_all_word_key = '<A-n>'
 let g:multi_cursor_start_key           = 'g<C-n>'

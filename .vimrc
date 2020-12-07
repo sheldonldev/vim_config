@@ -16,8 +16,8 @@ set fileencoding=UTF-8  " The encoding written to file "
 set splitbelow          " Horizontal splits will automatically be below "
 set splitright          " Vertical splits will automatically be to the right "
 
-set nowritebackup       " This is recommended by coc "
-set updatetime=300      " Fast completion "
+set nowritebackup
+set updatetime=100      " Fast completion "
 set timeoutlen=500      " Default is 1000 "
 set shortmess+=c
 
@@ -50,52 +50,49 @@ set clipboard=unnamed           " in MacOS, or use `unnamedplus` otherwise "
 
 set t_Co=256                    " Support 256 colors "
 set colorcolumn=80
+set termguicolors
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 set signcolumn=yes
-set conceallevel=0              " So that I can see ` ` in markdown files "
 
 set iskeyword+=-        " treat dash separated words as a word text object"
 set iskeyword+=@        " vue-on and css "
 
-set termguicolors
-
+set path+=**  " search down for subfolders provides tab-completion for all file related tasks "
+set wildmenu  " Now you can us search commands such as :find :b :h with Tab incompletion and Enter the match"
 
 " --- blink bar ---"
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-        \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-        \,sm:block-blinkwait175-blinkoff150-blinkon175
+      \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+      \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 
-" --- Finding Files ---- "
-
-" search down for subfolders "
-" provides tab-completion for all file related tasks "
-set path+=**
-
-" display all matching files when we tab complete "
-set wildmenu
-
-" Now you can us :find with tab "
-" and use :b with incomplete match by just entering <CR> "
+" --- set <leader> key --- "
+let mapleader = " "
 
 
 " --- Auto Complete Braces and Quotes ---
 
-inoremap { {<CR>}<Esc>O
-inoremap [ []<Esc>ha
-inoremap ( ()<Esc>ha
-inoremap < <><Esc>ha
+inoremap () ()<Esc>ha
+vnoremap <leader>( ( di<space>()<Esc>hp
 
-inoremap ' ''<Esc>ha
-inoremap " ""<Esc>ha
-inoremap ` ``<Esc>ha
+inoremap <> <><Esc>ha
+vnoremap <leader>< di<space><><Esc>hp
 
-inoremap {{ {{<space><space>}}<Esc>hhha
-inoremap {% {%<space><space>%}<Esc>hhha
+inoremap '' ''<Esc>ha
+vnoremap <leader>' di<space>''<Esc>hp
+inoremap "" ""<Esc>ha
+vnoremap <leader>" di<space>""<Esc>hp
+inoremap `` ``<Esc>ha
+vnoremap <leader>` di<space>``<Esc>hp
 
-" --- set <leader> key --- "
-let mapleader = " "
+inoremap [] []<Esc>ha
+inoremap [  [<CR>]<Esc>O
+
+inoremap {} {}<Esc>ha
+inoremap {  {<CR>}<Esc>O
+inoremap {{ {{<space><space>}}<Esc>F<space>i
+inoremap {% {%<space><space>%}<Esc>F<space>i
 
 
 " --- Jump between windows --- "
@@ -117,36 +114,13 @@ nnoremap <silent> <leader>jj :resize 5<CR>
 
 
 " --- Alternate way to save, quit --- "
-nnoremap <C-s> :wa<CR>
-nnoremap <C-Q> :q<CR>
+nnoremap <silent> <C-s>   :wa<CR>
+nnoremap <silent> <C-q>   :q<CR>
 
 
-" --- <Tab>: completion --- "
-inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-
-
-" --- netrw sidewindow --- "
+" --- netrw --- "
 let g:netrw_liststyle = 1
 let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
-"" let g:netrw_banner = 0
-
-
-" --- quickly open netrw explorer --- "
+" Quickly open netrw explorer "
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 25<CR>
-
-
-" --- Trim white space --- "
-
-fun! TrimWhiteSpace()
-  let l:save = winsaveview()
-  keeppatterns %s/\s\+$//e
-  call winrestview(l:save)
-endfun
-
-autocmd BufWritePre * :call TrimWhiteSpace()
-
-
-" --- quickly switch buffers --- "
-nnoremap  <silent> <S-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
-nnoremap  <silent> <leader><S-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
