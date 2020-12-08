@@ -3,6 +3,7 @@ set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
 
+
 " disable python2 "
 let g:loaded_python_provider = 0
 
@@ -30,24 +31,18 @@ nnoremap <A-b> :split term://zsh <bar>resize 5<CR>
 
 " --- disable some languages that already been well colorized --- "
 " should call before plugin caller "
-let g:polyglot_disabled = [
-      \ 'markdown',
-      \ ]
+" let g:polyglot_disabled = [
+"       \ 'markdown',
+"       \ ]
 
 
 " --- Call plugins ---- "
 call plug#begin('~/.vim/plugged')
-Plug 'sheldonldev/gruvbox'
+Plug 'lifepillar/vim-gruvbox8'
 Plug 'sheerun/vim-polyglot'
-Plug 'psliwka/vim-smoothie'
-Plug 'Yggdroot/indentLine'
 
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
-
-Plug 'tpope/vim-fugitive'
-
-Plug 'voldikss/vim-floaterm'
 
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'kristijanhusak/defx-icons'
@@ -57,16 +52,22 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'airblade/vim-rooter'
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'neovim/nvim-lspconfig',
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'tpope/vim-fugitive'
 
-Plug 'sbdchd/neoformat'
+Plug 'voldikss/vim-floaterm'
 
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'dense-analysis/ale'
+Plug 'neoclide/coc.nvim'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'deoplete-plugins/deoplete-jedi'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
+
 Plug 'terryma/vim-multiple-cursors'
 Plug 'norcalli/nvim-colorizer.lua'
+Plug 'tpope/vim-commentary'
+Plug 'psliwka/vim-smoothie'
+Plug 'Yggdroot/indentLine'
 call plug#end()
 
 
@@ -74,10 +75,9 @@ call plug#end()
 
 source ~/.config/nvim/defx.vim
 source ~/.config/nvim/fzf.vim
-source ~/.config/nvim/deoplete.vim
-source ~/.config/nvim/prettier.vim
+source ~/.config/nvim/completion.vim
 
-lua require'treesitter'
+" lua require'treesitter'
 
 lua require'colorizer'
 nnoremap <leader>c :ColorizerToggle<CR>
@@ -85,10 +85,8 @@ nnoremap <A-c> :ColorizerAttachToBuffer<CR>
 
 
 " === gruvbox === "
-let g:gruvbox_contrast_dark = 'hard'
-colorscheme gruvbox
+colorscheme gruvbox8_hard
 set background=dark
-
 
 " === airline === "
 " enable tabline "
@@ -99,12 +97,9 @@ let g:airline#extensions#tabline#right_sep = ' '
 let g:airline#extensions#tabline#right_alt_sep = '|'
 set showtabline=2       " Always show tabs "
 set noshowmode          " We don't need to see things like -- INSERT -- anymore "
-" next buffer "
-nnoremap  <silent> <S-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
-" previous buffer "
-nnoremap  <silent> <A-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
-" quit current buffer "
-nnoremap  <silent> <A-q>    :bd<CR>
+nnoremap  <silent> <leader><tab>    :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
+nnoremap  <silent> <leader><S-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
+nnoremap  <silent> <A-q>      :bd<CR>
 
 
 " === floaterm === "
@@ -129,3 +124,8 @@ let g:multi_cursor_next_key            = '<C-n>'
 let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
+
+
+" === vim-commentary === "
+nnoremap <space>/ :Commentary<CR>
+vnoremap <space>/ :Commentary<CR>

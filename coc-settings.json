@@ -1,0 +1,77 @@
+{
+  //eslint
+  "eslint.trace.server": "verbose",
+  "eslint.packageManager": "yarn",
+  "eslint.autoFix": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "typescript.tsx",
+    "vue"
+  ],
+  "eslint.run": "onSave",
+  "eslint.options": { "configFile": ".eslintrc.json" },
+
+  //prettier
+  "prettier.requireConfig": false,
+  "prettier.eslintIntegration": true,
+  "prettier.tslintIntegration": true,
+  "prettier.trailingComma": "all",
+  "prettier.arrowParens": "avoid",
+  "prettier.htmlWhitespaceSensitivity": "ignore",
+  "prettier.disableLanguages": [],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "typescript.tsx",
+    "json",
+    "css",
+    "markdown",
+    "html",
+    "vue"
+  ],
+
+  //js and ts
+  "tsserver.trace.server": "verbose",
+  "javascript.validate.enable": false,
+  "typescript.validate.enable": false,
+
+  //html
+  "html.trace.server": "verbose",
+  "html.format.unformatted": null,
+  "html.format.indentInnerHtml": true,
+  "html.format.endWithNewline": true,
+  "html.autoClosingTags": true,
+
+  //emmet
+  "emmet.showExpandedAbbreviation": "always",
+  "emmet.showAbbreviationSuggestions": true,
+  "emmet.priority": 1,
+
+  //css
+  "css.trace.server": "verbose",
+  "css.lint.unknownAtRules": "ignore",
+
+  //vue
+  "vetur.trace.server": "verbose",
+  "vetur.format.defaultFormatterOptions": {
+    "prettyhtml": {
+      "sortAttributes": true
+    }
+  },
+  "vetur.format.defaultFormatter.js": "prettier-eslint",
+  "vetur.format.defaultFormatter.ts": "prettier-tslint",
+  "vetur.completion.autoImport": true,
+
+  //snippets
+  "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
+
+  //emoji
+  "coc.source.emoji.triggerCharacters": ["|"],
+  "coc.source.emoji.filetypes": ["markdown", "html", "vue"]
+}

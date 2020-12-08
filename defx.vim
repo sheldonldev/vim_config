@@ -1,5 +1,7 @@
 nnoremap <silent> <Leader>e
-  \ :<C-U>:Defx -show-ignored-files -resume -split=floating<CR>
+\ :<C-U>:Defx -show-ignored-files -resume -toggle -split=vertical -vertical_preview -winwidth=25<CR>
+nnoremap <silent> <Leader>ef
+  \ :<C-U>:Defx -show-ignored-files -resume -toggle -split=floating<CR>
 
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort

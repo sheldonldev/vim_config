@@ -19,7 +19,6 @@ set splitright          " Vertical splits will automatically be to the right "
 set nowritebackup
 set updatetime=100      " Fast completion "
 set timeoutlen=500      " Default is 1000 "
-set shortmess+=c
 
 set confirm             " raise an asking dialog instead of failling command when saving files "
 set visualbell          " use visual bell instead of error beeping "
