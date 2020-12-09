@@ -35,14 +35,26 @@ let g:polyglot_disabled = [
             \ 'markdown',
             \ ]
 
+" ---- Complettion Settings ---"
 
 " === vim settings === "
 " use Tab to scroll, and Enter to select "
 inoremap <expr><Tab>    pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr><CR>     pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" set completeopt=menuone,noinsert,noselect
+filetype plugin on      " To use $NVIM_HOME/after/ftplugin
+set completeopt=menuone,noinsert,noselect
 set shortmess+=c
+set signcolumn=number
+set updatetime=300      " Fast completion "
+set timeoutlen=500      " Default is 1000 "
+
+" === ALE ==="
+" Note: should load before called
+" Note: should turn off if use other completion source 
+let g:ale_completion_enabled = 0
+" Note: should turn on if use other LSP
+let g:ale_disable_lsp = 1
 
 
 " --- Call plugins ---- "
@@ -82,9 +94,9 @@ call plug#end()
 
 source ~/.config/nvim/defx.vim
 source ~/.config/nvim/fzf.vim
-source ~/.config/nvim/completion.vim
+source ~/.config/nvim/coc.vim
 
-" lua require'treesitter'
+lua require'treesitter'
 
 lua require'colorizer'
 nnoremap <leader>c :ColorizerToggle<CR>
@@ -92,10 +104,27 @@ nnoremap <A-c> :ColorizerAttachToBuffer<CR>
 
 
 " === gruvbox === "
-set t_Co=256                    " Support 256 colors "
+set t_Co=256 
 set termguicolors
 set background=dark
 colorscheme gruvbox8_hard
+
+
+" === multiple-cursors === "
+let g:multi_cursor_use_default_mapping = 0
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
+
+
+" === vim-commentary === "
+nnoremap <space>/ :Commentary<CR>
+vnoremap <space>/ :Commentary<CR>
 
 
 " === airline === "
@@ -123,19 +152,3 @@ tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNext<CR>
 nnoremap   <silent>   <F12>   :FloatermToggle<CR>
 tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
 
-
-" === multiple-cursors === "
-let g:multi_cursor_use_default_mapping = 0
-let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_select_all_word_key = '<A-n>'
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<A-n>'
-let g:multi_cursor_next_key            = '<C-n>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
-
-
-" === vim-commentary === "
-nnoremap <space>/ :Commentary<CR>
-vnoremap <space>/ :Commentary<CR>

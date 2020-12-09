@@ -42,8 +42,6 @@ set smartcase                   " case sensitive searching "
 
 set clipboard=unnamed           " in MacOS, or use `unnamedplus` otherwise "
 
-set signcolumn=yes
-
 set iskeyword+=-        " treat dash separated words as a word text object"
 set iskeyword+=@        " vue-on and css "
 
@@ -97,7 +95,7 @@ nnoremap <silent> <leader>jj :resize 5<CR>
 
 
 " --- Alternate way to indent and save, quit --- "
-nnoremap <silent> <C-s>       mn`ngg=GG<Esc>:wa<CR>
+nnoremap <silent> <C-s>       mngg=GG`n<Esc>:wa<CR>
 nnoremap <silent> <C-q>       :q<CR>
 
 
