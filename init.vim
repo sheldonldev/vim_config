@@ -35,6 +35,7 @@ let g:polyglot_disabled = [
             \ 'markdown',
             \ ]
 
+
 " ---- Complettion Settings ---"
 
 " === vim settings === "
@@ -58,6 +59,8 @@ let g:ale_disable_lsp = 1
 
 
 " --- Call plugins ---- "
+" Note: if install slow in China,
+" try switching to an accelorator such as 'https://github.com.cnpmjs.org' "
 call plug#begin('~/.vim/plugged')
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'sheerun/vim-polyglot'
@@ -129,20 +132,20 @@ vnoremap <space>/ :Commentary<CR>
 
 " === airline === "
 " enable tabline "
+set showtabline=2       " Always show tabs "
+set noshowmode          " We don't need to see things like -- INSERT -- anymore "
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#right_sep = ' '
 let g:airline#extensions#tabline#right_alt_sep = '|'
-set showtabline=2       " Always show tabs "
-set noshowmode          " We don't need to see things like -- INSERT -- anymore "
 nnoremap  <silent> <leader><tab>    :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
 nnoremap  <silent> <leader><S-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
-nnoremap  <silent> <A-q>      :bd<CR>
+nnoremap  <silent> <A-q>            :bd<CR>
 
 
 " === floaterm === "
-let g:floaterm_complete_options = {'shortcut': 'floaterm', 'priority': 0, 'filter_length': [5, 20]}
+let g:floaterm_complete_options = {'shortcut': 'floaterm', 'priority': 9, 'filter_length': [5, 20]}
 nnoremap   <silent>   <F1>    :FloatermNew<CR>
 tnoremap   <silent>   <F1>    <C-\><C-n>:FloatermNew<CR>
 nnoremap   <silent>   <F7>    :FloatermPrev<CR>
