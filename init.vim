@@ -18,8 +18,8 @@ let g:python3_host_prog = expand("/opt/anaconda3/envs/default/bin/python3")
 
 " --- auto-install vim-plug --- "
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.nvim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    silent !curl -fLo ~/.nvim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
 
@@ -31,15 +31,30 @@ nnoremap <A-b> :split term://zsh <bar>resize 5<CR>
 
 " --- disable some languages that already been well colorized --- "
 " should call before plugin caller "
-" let g:polyglot_disabled = [
-"       \ 'markdown',
-"       \ ]
+let g:polyglot_disabled = [
+            \ 'markdown',
+            \ ]
+
+
+" === vim settings === "
+" use Tab to scroll, and Enter to select "
+inoremap <expr><Tab>    pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr><CR>     pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" set completeopt=menuone,noinsert,noselect
+set shortmess+=c
 
 
 " --- Call plugins ---- "
 call plug#begin('~/.vim/plugged')
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'sheerun/vim-polyglot'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'terryma/vim-multiple-cursors'
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'tpope/vim-commentary'
+Plug 'psliwka/vim-smoothie'
+Plug 'Yggdroot/indentLine'
 
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
@@ -47,6 +62,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'kristijanhusak/defx-icons'
 Plug 'kristijanhusak/defx-git'
+Plug 'tmd/vim-choosewin'
 
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -57,17 +73,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'voldikss/vim-floaterm'
 
 Plug 'dense-analysis/ale'
-Plug 'neoclide/coc.nvim'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'deoplete-plugins/deoplete-jedi'
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
-
-Plug 'terryma/vim-multiple-cursors'
-Plug 'norcalli/nvim-colorizer.lua'
-Plug 'tpope/vim-commentary'
-Plug 'psliwka/vim-smoothie'
-Plug 'Yggdroot/indentLine'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'honza/vim-snippets'
 call plug#end()
 
 
@@ -85,8 +92,11 @@ nnoremap <A-c> :ColorizerAttachToBuffer<CR>
 
 
 " === gruvbox === "
-colorscheme gruvbox8_hard
+set t_Co=256                    " Support 256 colors "
+set termguicolors
 set background=dark
+colorscheme gruvbox8_hard
+
 
 " === airline === "
 " enable tabline "

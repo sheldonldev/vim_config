@@ -1,4 +1,7 @@
 {
+  //send diagnostics to ALE
+  "diagnostic.displayByAle": true,
+
   //eslint
   "eslint.trace.server": "verbose",
   "eslint.packageManager": "yarn",
@@ -15,13 +18,18 @@
   "eslint.run": "onSave",
   "eslint.options": { "configFile": ".eslintrc.json" },
 
+  //tslint
+  "tslint.enable": false,
+  "tslint.run": "onSave",
+  "tslint.autoFixOnSave": true,
+
   //prettier
   "prettier.requireConfig": false,
   "prettier.eslintIntegration": true,
   "prettier.tslintIntegration": true,
   "prettier.trailingComma": "all",
   "prettier.arrowParens": "avoid",
-  "prettier.htmlWhitespaceSensitivity": "ignore",
+  "prettier.htmlWhitespaceSensitivity": "strict",
   "prettier.disableLanguages": [],
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
@@ -29,11 +37,11 @@
     "javascriptreact",
     "typescriptreact",
     "typescript.tsx",
+    "vue",
     "json",
     "css",
     "markdown",
-    "html",
-    "vue"
+    "html"
   ],
 
   //js and ts
@@ -47,11 +55,6 @@
   "html.format.indentInnerHtml": true,
   "html.format.endWithNewline": true,
   "html.autoClosingTags": true,
-
-  //emmet
-  "emmet.showExpandedAbbreviation": "always",
-  "emmet.showAbbreviationSuggestions": true,
-  "emmet.priority": 1,
 
   //css
   "css.trace.server": "verbose",
@@ -69,7 +72,7 @@
   "vetur.completion.autoImport": true,
 
   //snippets
-  "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
+  "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
 
   //emoji
   "coc.source.emoji.triggerCharacters": ["|"],

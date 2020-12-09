@@ -1,4 +1,3 @@
-syntax enable
 set showcmd
 set cmdheight=2
 set pumheight=10        " Makes popup menu smaller "
@@ -15,10 +14,6 @@ set fileencoding=UTF-8  " The encoding written to file "
 
 set splitbelow          " Horizontal splits will automatically be below "
 set splitright          " Vertical splits will automatically be to the right "
-
-set nowritebackup
-set updatetime=100      " Fast completion "
-set timeoutlen=500      " Default is 1000 "
 
 set confirm             " raise an asking dialog instead of failling command when saving files "
 set visualbell          " use visual bell instead of error beeping "
@@ -47,11 +42,6 @@ set smartcase                   " case sensitive searching "
 
 set clipboard=unnamed           " in MacOS, or use `unnamedplus` otherwise "
 
-set t_Co=256                    " Support 256 colors "
-set colorcolumn=80
-set termguicolors
-highlight ColorColumn ctermbg=0 guibg=lightgrey
-
 set signcolumn=yes
 
 set iskeyword+=-        " treat dash separated words as a word text object"
@@ -62,8 +52,8 @@ set wildmenu  " Now you can us search commands such as :find :b :h with Tab inco
 
 " --- blink bar ---"
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-      \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-      \,sm:block-blinkwait175-blinkoff150-blinkon175
+            \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+            \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 
 " --- set <leader> key --- "
@@ -73,17 +63,11 @@ let mapleader = " "
 " --- Auto Complete Braces and Quotes ---
 
 inoremap () ()<Esc>ha
-vnoremap <leader>( ( di<space>()<Esc>hp
-
 inoremap <> <><Esc>ha
-vnoremap <leader>< di<space><><Esc>hp
 
 inoremap '' ''<Esc>ha
-vnoremap <leader>' di<space>''<Esc>hp
 inoremap "" ""<Esc>ha
-vnoremap <leader>" di<space>""<Esc>hp
 inoremap `` ``<Esc>ha
-vnoremap <leader>` di<space>``<Esc>hp
 
 inoremap [] []<Esc>ha
 inoremap [  [<CR>]<Esc>O
@@ -112,9 +96,9 @@ nnoremap <silent> <leader>kk :resize 35<CR>
 nnoremap <silent> <leader>jj :resize 5<CR>
 
 
-" --- Alternate way to save, quit --- "
-nnoremap <silent> <C-s>   :wa<CR>
-nnoremap <silent> <C-q>   :q<CR>
+" --- Alternate way to indent and save, quit --- "
+nnoremap <silent> <C-s>       mn`ngg=GG<Esc>:wa<CR>
+nnoremap <silent> <C-q>       :q<CR>
 
 
 " --- netrw --- "
