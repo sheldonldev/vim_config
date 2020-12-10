@@ -1,19 +1,18 @@
 let g:coc_global_extensions = [
-  \ 'coc-marketplace',
-  \ 'coc-json',
-  \ 'coc-html',
-  \ 'coc-css',
-  \ 'coc-tailwindcss',
-  \ 'coc-tsserver',
-  \ 'coc-vetur',
-  \ 'coc-eslint',
-  \ 'coc-tslint',
-  \ 'coc-prettier',
-  \ 'coc-snippets',
-  \ 'coc-jedi',
-  \ 'coc-phpls',
-  \ 'coc-emoji',
-  \ ]
+      \ 'coc-marketplace',
+      \ 'coc-json',
+      \ 'coc-css',
+      \ 'coc-tailwindcss',
+      \ 'coc-tsserver',
+      \ 'coc-vetur',
+      \ 'coc-eslint',
+      \ 'coc-tslint',
+      \ 'coc-prettier',
+      \ 'coc-snippets',
+      \ 'coc-jedi',
+      \ 'coc-phpls',
+      \ 'coc-emoji',
+      \ ]
 
 
 " Remap keys for gotos "

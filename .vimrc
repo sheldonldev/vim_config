@@ -88,7 +88,7 @@ nnoremap <silent> <leader>] :vertical resize +10<CR>
 nnoremap <silent> <leader>[ :vertical resize -10<CR>
 nnoremap <silent> <leader>= :resize +5<CR>
 nnoremap <silent> <leader>- :resize -5<CR>
-nnoremap <silent> <leader>ll :vertical resize 100<CR>
+nnoremap <silent> <leader>ll :vertical resize 120<CR>
 nnoremap <silent> <leader>hh :vertical resize 25<CR>
 nnoremap <silent> <leader>kk :resize 35<CR>
 nnoremap <silent> <leader>jj :resize 5<CR>

@@ -1,6 +1,7 @@
 {
-  //send diagnostics to ALE
-  "diagnostic.displayByAle": true,
+  "languageserver": {},
+
+  "diagnostic.refreshAfterSave": true,
 
   //eslint
   "eslint.trace.server": "verbose",

@@ -1,8 +1,8 @@
+" --- nvim ---"
 " load ~/.vimrc and ~/.vim "
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
-
 
 " disable python2 "
 let g:loaded_python_provider = 0
@@ -29,16 +29,15 @@ nnoremap <A-v> :vsplit term://zsh<CR>
 nnoremap <A-b> :split term://zsh <bar>resize 5<CR>
 
 
-" --- disable some languages that already been well colorized --- "
-" should call before plugin caller "
+" === Polyglot === "
+" disable some languages that already been well colorized "
+" Note: should load before caller "
 let g:polyglot_disabled = [
             \ 'markdown',
             \ ]
 
 
 " ---- Complettion Settings ---"
-
-" === vim settings === "
 " use Tab to scroll, and Enter to select "
 inoremap <expr><Tab>    pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -47,15 +46,7 @@ filetype plugin on      " To use $NVIM_HOME/after/ftplugin
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 set signcolumn=number
-set updatetime=300      " Fast completion "
-set timeoutlen=500      " Default is 1000 "
-
-" === ALE ==="
-" Note: should load before called
-" Note: should turn off if use other completion source 
-let g:ale_completion_enabled = 0
-" Note: should turn on if use other LSP
-let g:ale_disable_lsp = 1
+set updatetime=0        " Fast completion "
 
 
 " --- Call plugins ---- "
@@ -65,11 +56,16 @@ call plug#begin('~/.vim/plugged')
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'sheerun/vim-polyglot'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 Plug 'terryma/vim-multiple-cursors'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'tpope/vim-commentary'
 Plug 'psliwka/vim-smoothie'
 Plug 'Yggdroot/indentLine'
+
+Plug 'tpope/vim-fugitive'
+
+Plug 'voldikss/vim-floaterm'
 
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
@@ -77,17 +73,12 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'kristijanhusak/defx-icons'
 Plug 'kristijanhusak/defx-git'
-Plug 'tmd/vim-choosewin'
+Plug 't9md/vim-choosewin'
 
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'airblade/vim-rooter'
 
-Plug 'tpope/vim-fugitive'
-
-Plug 'voldikss/vim-floaterm'
-
-Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 call plug#end()
