@@ -122,8 +122,6 @@ vnoremap <space>/ :Commentary<CR>
 
 
 " === airline === "
-" enable tabline "
-set showtabline=2       " Always show tabs "
 set noshowmode          " We don't need to see things like -- INSERT -- anymore "
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
