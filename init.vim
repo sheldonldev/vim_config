@@ -45,6 +45,7 @@ set updatetime=0        " Fast completion "
 " try switching to an accelorator such as 'https://github.com.cnpmjs.org' "
 call plug#begin('~/.vim/plugged')
 Plug 'lifepillar/vim-gruvbox8'
+Plug 'akinsho/nvim-bufferline.lua'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'tpope/vim-commentary'
 
@@ -57,11 +58,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'airblade/vim-rooter'
 
-" Plug 'neovim/nvim-lspconfig'
-" Plug 'nvim-lua/completion-nvim'
-" Plug 'dense-analysis/ale'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'SirVer/ultisnips'
 Plug 'neoclide/coc.nvim'
 Plug 'honza/vim-snippets'
 call plug#end()
@@ -72,13 +68,6 @@ call plug#end()
 source ~/.config/nvim/defx.vim
 source ~/.config/nvim/fzf.vim
 source ~/.config/nvim/coc.vim
-" source ~/.config/nvim/ale.vim
-
-
-" === colorizer === "
-lua require'colorizer'
-nnoremap <leader>c  :ColorizerToggle<CR>
-nnoremap <leader>ca :ColorizerAttachToBuffer<CR>
 
 
 " === gruvbox === "
@@ -86,6 +75,13 @@ set termguicolors
 set background=dark
 colorscheme gruvbox8_hard
 
+" === bufferline === "
+lua require'bufferline'.setup()
+
+" === colorizer === "
+lua require'colorizer'
+nnoremap <leader>c  :ColorizerToggle<CR>
+nnoremap <leader>ca :ColorizerAttachToBuffer<CR>
 
 " === vim-commentary === "
 nnoremap <space>/ :Commentary<CR>

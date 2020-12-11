@@ -120,7 +120,6 @@ set statusline+=
 set statusline+=\ %{StatuslineGit()}
 set statusline+=\ %#LineNr#
 set statusline+=
-set statusline+=\ %f
 set statusline+=\ %M
 set statusline+=\ 
 set statusline+=\ %R
