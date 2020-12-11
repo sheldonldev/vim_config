@@ -10,7 +10,7 @@ let g:coc_global_extensions = [
       \ 'coc-prettier',
       \ 'coc-snippets',
       \ 'coc-jedi',
-      \ 'coc-phpls',
+      \ 'coc-java',
       \ 'coc-emoji',
       \ ]
 

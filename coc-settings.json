@@ -1,9 +1,19 @@
 {
-  "languageserver": {},
+  "languageserver": {
+    "intelephense": {
+      "command": "intelephense",
+      "args": ["--stdio"],
+      "filetypes": ["php"],
+      "initializationOptions": {
+        "storagePath": "/tmp/intelephense"
+      }
+    }
+  },
 
   "diagnostic.refreshAfterSave": true,
+  "diagnostic.level": "warning",
+  "diagnostic.messageTarget": "echo",
 
-  //eslint
   "eslint.trace.server": "verbose",
   "eslint.packageManager": "yarn",
   "eslint.autoFix": true,
@@ -19,12 +29,10 @@
   "eslint.run": "onSave",
   "eslint.options": { "configFile": ".eslintrc.json" },
 
-  //tslint
   "tslint.enable": false,
   "tslint.run": "onSave",
   "tslint.autoFixOnSave": true,
 
-  //prettier
   "prettier.requireConfig": false,
   "prettier.eslintIntegration": true,
   "prettier.tslintIntegration": true,
@@ -45,23 +53,13 @@
     "html"
   ],
 
-  //js and ts
   "tsserver.trace.server": "verbose",
   "javascript.validate.enable": false,
   "typescript.validate.enable": false,
 
-  //html
-  "html.trace.server": "verbose",
-  "html.format.unformatted": null,
-  "html.format.indentInnerHtml": true,
-  "html.format.endWithNewline": true,
-  "html.autoClosingTags": true,
-
-  //css
   "css.trace.server": "verbose",
   "css.lint.unknownAtRules": "ignore",
 
-  //vue
   "vetur.trace.server": "verbose",
   "vetur.format.defaultFormatterOptions": {
     "prettyhtml": {
@@ -72,10 +70,8 @@
   "vetur.format.defaultFormatter.ts": "prettier-tslint",
   "vetur.completion.autoImport": true,
 
-  //snippets
   "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
 
-  //emoji
   "coc.source.emoji.triggerCharacters": ["|"],
   "coc.source.emoji.filetypes": ["markdown", "html", "vue"]
 }
