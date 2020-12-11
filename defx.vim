@@ -6,6 +6,7 @@ nnoremap <silent> <Leader>ef
       \ :<C-U>:Defx -show-ignored-files -resume -toggle -split=floating -bufname=defx<CR>
 
 autocmd FileType defx call s:defx_my_settings()
+
 function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> <CR>
         \ defx#is_directory() ?

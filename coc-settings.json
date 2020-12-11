@@ -14,24 +14,21 @@
   "diagnostic.level": "warning",
   "diagnostic.messageTarget": "echo",
 
-  "eslint.trace.server": "verbose",
+  "eslint.enable": true,
+  "eslint.quiet": true,
   "eslint.packageManager": "yarn",
+  "eslint.run": "onSave",
   "eslint.autoFix": true,
   "eslint.autoFixOnSave": true,
+  "eslint.options": { "configFile": ".eslintrc.json" },
   "eslint.filetypes": [
     "javascript",
     "typescript",
     "javascriptreact",
     "typescriptreact",
-    "typescript.tsx",
+    "typscript.tsx",
     "vue"
   ],
-  "eslint.run": "onSave",
-  "eslint.options": { "configFile": ".eslintrc.json" },
-
-  "tslint.enable": false,
-  "tslint.run": "onSave",
-  "tslint.autoFixOnSave": true,
 
   "prettier.requireConfig": false,
   "prettier.eslintIntegration": true,
@@ -53,14 +50,15 @@
     "html"
   ],
 
-  "tsserver.trace.server": "verbose",
-  "javascript.validate.enable": false,
-  "typescript.validate.enable": false,
+  "tsserver.enable": true,
+  "tsserver.formatOnType": false,
+  "tsserver.enableJavascript": true,
+  "tsserver.reportStyleChecksAsWarnings": false,
+  "typescript.format.enabled": true,
+  "typescript.preferences.quoteStyle": "double",
+  "javascript.format.enabled": true,
+  "javascript.preferences.quoteStyle": "double",
 
-  "css.trace.server": "verbose",
-  "css.lint.unknownAtRules": "ignore",
-
-  "vetur.trace.server": "verbose",
   "vetur.format.defaultFormatterOptions": {
     "prettyhtml": {
       "sortAttributes": true

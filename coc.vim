@@ -1,19 +1,17 @@
 let g:coc_global_extensions = [
       \ 'coc-marketplace',
       \ 'coc-json',
-      \ 'coc-css',
       \ 'coc-tailwindcss',
       \ 'coc-tsserver',
       \ 'coc-vetur',
+      \ 'coc-react-refactor',
       \ 'coc-eslint',
-      \ 'coc-tslint',
       \ 'coc-prettier',
       \ 'coc-snippets',
       \ 'coc-jedi',
-      \ 'coc-java',
       \ ]
 
-
+" Remap: "
 " Remap keys for gotos "
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -31,38 +29,37 @@ function! s:show_documentation()
 endfunction
 
 " navigate diagnostics "
-nmap <silent> gn <Plug>(coc-diagnostic-prev)
-nmap <silent> gp <Plug>(coc-diagnostic-next)
+nmap <silent> <C-k> <Plug>(coc-diagnostic-prev)
+nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
 
 " Remap for rename current word "
 nmap <leader>rn <Plug>(coc-rename)
 
-" Fix autofix problem of current line "
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Format selected "
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-augroup mygroup
-  autocmd!
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-
-" Use `:Format` to format current buffer "
-command! -nargs=0 Format    :call CocAction('format')
-" Use `:Fold` to fold current buffer "
-command! -nargs=? Fold      :call CocAction('fold', <f-args>)
-" use `:Org` for organize import of current buffer "
-command! -nargs=0 Org       :call CocAction('runCommand', 'editor.action.organizeImport')
-
+" Code action "
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " for scss "
 autocmd FileType scss setl iskeyword+=@-@
 
-" for prettier "
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
+" Prettier:"
+" prettier-eslint and prettier-tslint are included with the installation of this extension.
+" eslint, tslint, and all peer dependencies required by your specific configuration 
+" must be installed locally.
+
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status` "
+function! StatusDiagnostic() abort
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info) | return '' | endif
+  let msgs = []
+  if get(info, 'error', 0)
+    call add(msgs, 'E' . info['error'])
+  endif
+  if get(info, 'warning', 0)
+    call add(msgs, 'W' . info['warning'])
+  endif
+  return join(msgs, ' ') . ' ' . get(g:, 'coc_status', '')
+endfunction
+set statusline+=%{StatusDiagnostic()}
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
