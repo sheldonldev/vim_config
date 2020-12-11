@@ -19,8 +19,8 @@ cd ~ && curl -fLo ".vimrc" https://raw.githubusercontent.com/sheldonldev/nvim_co
 - Fuzzy Finder: `fzf.vim` with `vim-rooter`, `FZF`, `universal-ctags`, and `ripgrep`;
 - Auto-completion: `coc.nvim`;
 - Syntax highlight:
-  - `vim-polyglot`;
-  - `nvim-treesitter`, you should checkout `:TSInstallInfo` and run `:TSInstall`/`:TSUninstall`/`:TSUpdate` as needed;
+- `vim-polyglot`;
+- `nvim-treesitter`, you should checkout `:TSInstallInfo` and run `:TSInstall`/`:TSUninstall`/`:TSUpdate` as needed;
 - Lint: `coc-eslint`, other languages' lint depend on lint tools such as `pylint`;
 - Prettier: `coc-prettier`;
 - Well supported languages (highlight, lint, prettier, auto completion):
@@ -31,10 +31,10 @@ cd ~ && curl -fLo ".vimrc" https://raw.githubusercontent.com/sheldonldev/nvim_co
   - python: `coc-jedi`;
   - json: `coc-json`;
   - yaml: `coc-yaml`;
-- Languages can be more featured:
+  - Languages can be more featured:
   - Java: [Java in Neovim](https://www.chrisatmachine.com/Neovim/24-neovim-and-java/)
   - C++: [Configure coc.nvim for C/C++ Development](https://ianding.io/2019/07/29/configure-coc-nvim-for-c-c++-development/)
-- Other languages are not considered here.
+  - Other languages are not considered here.
 
 ## Quick Start
 
@@ -47,22 +47,22 @@ cd ~ && curl -fLo ".vimrc" https://raw.githubusercontent.com/sheldonldev/nvim_co
 
 - Awesome searching tools are needed for fuzzy finder plugins:
 
-  - [FZF](https://github.com/junegunn/fzf.vim)
-  - [ripgrep](https://github.com/BurntSushi/ripgrep)
-  - [universal-ctags](https://github.com/universal-ctags/ctags)
+- [FZF](https://github.com/junegunn/fzf.vim)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [universal-ctags](https://github.com/universal-ctags/ctags)
 
-  > You can install them in macOS with following commands:
+> You can install them in macOS with following commands:
 
-  ```bash
-  brew install fzf
+```bash
+brew install fzf
 
-  # To install useful key bindings and fuzzy completion:
-  $(brew --prefix)/opt/fzf/install
+# To install useful key bindings and fuzzy completion:
+$(brew --prefix)/opt/fzf/install
 
-  brew install ripgrep
+brew install ripgrep
 
-  brew install --HEAD universal-ctags/universal-ctags/universal-ctags
-  ```
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+```
 
 ### Clone This Repo As Configurations
 
@@ -90,8 +90,8 @@ ln -s ~/.config/nvim/.vimrc ~/.vimrc
 
 " open terminal "
 function! OpenTerminal()
-    split term://zsh    " change 'zsh' to any shell you use "
-    resize 5
+split term://zsh    " change 'zsh' to any shell you use "
+resize 5
 endfunction
 ```
 
@@ -100,8 +100,8 @@ endfunction
 - Use `:h _search_term_` to open the manual if have any question;
 
 - How to enable lint? For example:
-  - If you want to use lint in javascript project, run `:CocCommand eslint.createConfig`;
-  - If you want to use python, run `pip install pylint`
+- If you want to use lint in javascript project, run `:CocCommand eslint.createConfig`;
+- If you want to use python, run `pip install pylint`
 
 ## READ MORE
 

@@ -70,8 +70,5 @@
   "vetur.format.defaultFormatter.ts": "prettier-tslint",
   "vetur.completion.autoImport": true,
 
-  "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
-
-  "coc.source.emoji.triggerCharacters": ["|"],
-  "coc.source.emoji.filetypes": ["markdown", "html", "vue"]
+  "snippets.userSnippetsDirectory": "~/.config/nvim/snippets"
 }

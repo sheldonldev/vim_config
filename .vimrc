@@ -12,8 +12,9 @@ set showmatch           " bracket match highlight "
 set nu                  " nice line numbers "
 set relativenumber      " relative line number "
 set nowrap              " no wrap if line too long "
-
 set hidden              " Required to keep multiple buffers "
+set cursorcolumn
+set cursorline
 
 set splitright          " Vertical splits will automatically be to the right "
 set splitbelow          " Horizontal splits will automatically be below "
@@ -29,6 +30,7 @@ set expandtab           " convert tabs to spaces "
 set smarttab            " Makes tabbing smarter will realize you have 2 vs 4 "
 set autoindent
 set smartindent         " try best job to indent for you "
+set cindent             " stricter rules for C programs "
 
 set noswapfile                  " no need swap because we use undodir "
 set nobackup                    " no need backup either "
@@ -52,8 +54,6 @@ set wildmenu  " Now you can us search commands such as :find :b :h with Tab inco
 
 " --- mappings --- "
 set timeoutlen=500
-
-" set <leader> key "
 let mapleader = " "
 
 " Auto Complete Braces and Quotes "
@@ -111,28 +111,30 @@ endfunction
 
 function! StatuslineGit()
   let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+  return strlen(l:branchname) > 0 ? ' '.l:branchname :''
 endfunction
 
 set statusline=
 set statusline+=%#PmenuSel#
 set statusline+=
-set statusline+=%{StatuslineGit()}
+set statusline+=\ %{StatuslineGit()}
 set statusline+=\ %#LineNr#
 set statusline+=
 set statusline+=\ %f
-set statusline+=\ %m
+set statusline+=\ %M
 set statusline+=\ 
+set statusline+=\ %R
 set statusline+=\ %=
 set statusline+= 
 set statusline+=%#CursorColumn#
-set statusline+=\ %y
+set statusline+=\ %Y
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\  
-set statusline+=\ %p%%
-set statusline+=\ %l:%c
+set statusline+=\ %p%%\ %L\\%l\ :%c
 set statusline+=\  
 
+
+" switch tabs "
 nnoremap  <silent> <leader><tab>    :if &modifiable && !&readonly && &modified
       \ <CR> :write<CR> :endif<CR>:bnext<CR>
 nnoremap  <silent> <leader><S-tab>  :if &modifiable && !&readonly && &modified

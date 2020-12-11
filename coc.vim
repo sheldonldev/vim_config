@@ -11,7 +11,6 @@ let g:coc_global_extensions = [
       \ 'coc-snippets',
       \ 'coc-jedi',
       \ 'coc-java',
-      \ 'coc-emoji',
       \ ]
 
 
@@ -32,8 +31,8 @@ function! s:show_documentation()
 endfunction
 
 " navigate diagnostics "
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> gn <Plug>(coc-diagnostic-prev)
+nmap <silent> gp <Plug>(coc-diagnostic-next)
 
 " Remap for rename current word "
 nmap <leader>rn <Plug>(coc-rename)

@@ -21,6 +21,12 @@ tnoremap <Esc> <C-\><C-n>
 nnoremap <A-v> :vsplit term://zsh<CR>
 nnoremap <A-b> :split term://zsh <bar>resize 5<CR>
 
+" === Polyglot === "
+" disable some languages that already been well colorized "
+" Note: should load before caller "
+let g:polyglot_disabled = [
+      \ 'markdown',
+      \ ]
 
 " ---- Complettion Settings ---"
 " use Tab to scroll, and Enter to select "
@@ -39,9 +45,6 @@ set updatetime=0        " Fast completion "
 " try switching to an accelorator such as 'https://github.com.cnpmjs.org' "
 call plug#begin('~/.vim/plugged')
 Plug 'lifepillar/vim-gruvbox8'
-Plug 'Yggdroot/indentLine'
-
-Plug 'terryma/vim-multiple-cursors'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'tpope/vim-commentary'
 
@@ -76,18 +79,6 @@ nnoremap <leader>ca :ColorizerAttachToBuffer<CR>
 set termguicolors
 set background=dark
 colorscheme gruvbox8_hard
-
-
-" === multiple-cursors === "
-let g:multi_cursor_use_default_mapping = 0
-let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_select_all_word_key = '<A-n>'
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<A-n>'
-let g:multi_cursor_next_key            = '<C-n>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
 
 
 " === vim-commentary === "
