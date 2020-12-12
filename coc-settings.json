@@ -47,7 +47,8 @@
     "json",
     "css",
     "markdown",
-    "html"
+    "html",
+    "vim"
   ],
 
   "tsserver.enable": true,

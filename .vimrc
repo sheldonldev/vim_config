@@ -6,6 +6,7 @@ set fileencoding=UTF-8  " The encoding written to file "
 set showcmd             " Always show command line "
 set cmdheight=2         " Command line height is 2 "
 set laststatus=2        " Always display the status line "
+set showtabline=2       " Always display ths tab line "
 set ruler               " Ruler in status line "
 set pumheight=10        " Makes popup menu smaller "
 set showmatch           " bracket match highlight "
@@ -30,7 +31,7 @@ set expandtab           " convert tabs to spaces "
 set smarttab            " Makes tabbing smarter will realize you have 2 vs 4 "
 set autoindent
 set smartindent         " try best job to indent for you "
-set cindent             " stricter rules for C programs "
+set preserveindent
 
 set noswapfile                  " no need swap because we use undodir "
 set nobackup                    " no need backup either "
@@ -44,7 +45,7 @@ set smartcase                   " case sensitive if Capital is typed "
 
 set clipboard=unnamed           " in MacOS, or use `unnamedplus` otherwise "
 
-set t_Co=256 
+set t_Co=256
 
 set iskeyword+=-        " treat dash separated words as a word text object"
 set iskeyword+=@        " vue-on and scss "
@@ -85,10 +86,6 @@ nnoremap <silent> <leader>hh :vertical resize 30<CR>
 nnoremap <silent> <leader>kk :resize 35<CR>
 nnoremap <silent> <leader>jj :resize 5<CR>
 
-" Alternate way to indent and save, quit "
-nnoremap <silent> <C-s>       mngg=GG`nzz<Esc>:wa<CR>
-nnoremap <silent> <C-q>       :q<CR>
-
 " put cursor middle of the screen after up and down "
 nnoremap <silent> <C-d>   <C-d>zz
 nnoremap <silent> <C-u>   <C-u>zz
@@ -120,23 +117,52 @@ set statusline+=
 set statusline+=\ %{StatuslineGit()}
 set statusline+=\ %#LineNr#
 set statusline+=
-set statusline+=\ %M
-set statusline+=\ 
+set statusline+=\ %f
+set statusline+=\ %m
 set statusline+=\ %R
+set statusline+=\ 
 set statusline+=\ %=
-set statusline+= 
+set statusline+=
 set statusline+=%#CursorColumn#
 set statusline+=\ %Y
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\  
+set statusline+=\ 
 set statusline+=\ %p%%\ %L\\%l\ :%c
-set statusline+=\  
-
+set statusline+=\ 
 
 " switch tabs "
 nnoremap  <silent> <leader><tab>    :if &modifiable && !&readonly && &modified
       \ <CR> :write<CR> :endif<CR>:bnext<CR>
 nnoremap  <silent> <leader><S-tab>  :if &modifiable && !&readonly && &modified
       \ <CR> :write<CR> :endif<CR>:bprevious<CR>
-nnoremap  <silent> <leader><C-q>    :bd<CR>
+nmap <leader>1 :b1<CR>
+nmap <leader>2 :b2<CR>
+nmap <leader>3 :b3<CR>
+nmap <leader>4 :b4<CR>
+nmap <leader>5 :b5<CR>
+nmap <leader>6 :b6<CR>
+nmap <leader>7 :b7<CR>
+nmap <leader>8 :b8<CR>
+nmap <leader>9 :b9<CR>
+nmap <leader>0 :b0<CR>
+
+" quit and hide in buffer "
+nnoremap <silent> <C-q>           :q<CR>
+" quit this buffer "
+nnoremap <silent> <leader><C-q>   :bd<CR>
+" save "
+nnoremap <silent> <C-s>           :wa<CR>
+" quickly align indent "
+nnoremap <silent> <leader>i       mngg=G`nzz
+
+" trim white space and multiple blank lines, align before save "
+fun! TrimWhite()
+  let l:save = winsaveview()
+  keeppatterns %s/\s\+$//e
+  keeppatterns %s/\n\{3,}/\r\r\r/e
+  call winrestview(l:save)
+endfun
+autocmd BufWritePre * :call TrimWhite()
+
+
 
