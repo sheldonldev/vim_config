@@ -44,22 +44,9 @@ autocmd FileType scss setl iskeyword+=@-@
 
 " Prettier:"
 " prettier-eslint and prettier-tslint are included with the installation of this extension.
-" eslint, tslint, and all peer dependencies required by your specific configuration 
+" eslint, tslint, and all peer dependencies required by your specific configuration
 " must be installed locally.
 
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status` "
-function! StatusDiagnostic() abort
-  let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info) | return '' | endif
-  let msgs = []
-  if get(info, 'error', 0)
-    call add(msgs, 'E' . info['error'])
-  endif
-  if get(info, 'warning', 0)
-    call add(msgs, 'W' . info['warning'])
-  endif
-  return join(msgs, ' ') . ' ' . get(g:, 'coc_status', '')
-endfunction
-set statusline+=%{StatusDiagnostic()}
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+set statusline+=%{coc#status()}%{get(b:,'coc_current_function','')}
