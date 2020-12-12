@@ -48,6 +48,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'airblade/vim-rooter'
 
+Plug 'neovim/nvim-lspconfig'
 Plug 'neoclide/coc.nvim'
 Plug 'honza/vim-snippets'
 call plug#end()

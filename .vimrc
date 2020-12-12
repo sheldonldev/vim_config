@@ -107,28 +107,24 @@ function! GitBranch()
 endfunction
 
 function! StatuslineGit()
-  let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0 ? ' '.l:branchname :''
+let l:branchname = GitBranch()
+return strlen(l:branchname) > 0 ? ' '.l:branchname :''
 endfunction
 
 set statusline=
-set statusline+=%#PmenuSel#
-set statusline+=
+set statusline+=%#PmenuThumb#
 set statusline+=\ %{StatuslineGit()}
-set statusline+=\ %#LineNr#
+set statusline+=\ %#TabLine#
 set statusline+=
-set statusline+=\ %f
-set statusline+=\ %m
-set statusline+=\ %R
+set statusline+=\ %f\ %m\ %R
 set statusline+=\ 
-set statusline+=\ %=
+set statusline+=%=
 set statusline+=
-set statusline+=%#CursorColumn#
-set statusline+=\ %Y
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=%#PmenuThumb#
+set statusline+=\ %Y\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\ 
 set statusline+=\ %p%%\ %L\\%l\ :%c
-set statusline+=\ 
+set statusline+=\ 
 
 " switch tabs "
 nnoremap  <silent> <leader><tab>    :if &modifiable && !&readonly && &modified
@@ -160,7 +156,7 @@ nnoremap <silent> <leader>i       mngg=G`nzz
 " trim white space and multiple blank lines, align before save "
 fun! TrimWhite()
   let l:save = winsaveview()
-  keeppatterns %s/\s\+$//e
+  keeppatterns %s/\s\s\+$//e
   keeppatterns %s/\n\{3,}/\r\r\r/e
   call winrestview(l:save)
 endfun

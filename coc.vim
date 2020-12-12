@@ -49,4 +49,5 @@ autocmd FileType scss setl iskeyword+=@-@
 
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status` "
+set statusline+=%#DiffText#
 set statusline+=%{coc#status()}%{get(b:,'coc_current_function','')}
