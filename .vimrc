@@ -152,6 +152,8 @@ nnoremap <silent> <C-q>           :q<CR>
 nnoremap <silent> <leader><C-q>   :bd<CR>
 " save "
 nnoremap <silent> <C-s>           :wa<CR>
+" exit "
+nnoremap <silent> <C-c>           <Esc>
 " quickly align indent "
 nnoremap <silent> <leader>i       mngg=G`nzz
 
