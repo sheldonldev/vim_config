@@ -113,18 +113,17 @@ endfunction
 
 set statusline=
 set statusline+=%#PmenuThumb#
-set statusline+=\ %{StatuslineGit()}
-set statusline+=\ %#TabLine#
+set statusline+=\ %{StatuslineGit()}\ 
+set statusline+=%#TabLine#
 set statusline+=
-set statusline+=\ %f\ %m\ %R
-set statusline+=\ 
+set statusline+=\ %f\ %m\ %R\ 
+set statusline+=
 set statusline+=%=
 set statusline+=
 set statusline+=%#PmenuThumb#
-set statusline+=\ %Y\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\ 
-set statusline+=\ %p%%\ %L\\%l\ :%c
-set statusline+=\ 
+set statusline+=\ %Y\ %{&fileencoding?&fileencoding:&encoding}\ 
+set statusline+=
+set statusline+=\ %p%%\ %L\\%l\ :%c\ 
 
 " switch tabs "
 nnoremap  <silent> <leader><tab>    :if &modifiable && !&readonly && &modified
