@@ -34,21 +34,21 @@ set updatetime=0        " Fast completion "
 " Note: if install slow in China, try switching
 " to an accelorator such as 'https://github.com.cnpmjs.org' "
 call plug#begin('~/.vim/plugged')
-Plug 'lifepillar/vim-gruvbox8'
+Plug 'habamax/vim-gruvbit'
 Plug 'ap/vim-buftabline'
-Plug 'norcalli/nvim-colorizer.lua'
-Plug 'tpope/vim-commentary'
 
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'kristijanhusak/defx-icons'
 Plug 'kristijanhusak/defx-git'
 Plug 't9md/vim-choosewin'
 
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'tpope/vim-commentary'
+
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'airblade/vim-rooter'
 
-Plug 'neovim/nvim-lspconfig'
 Plug 'neoclide/coc.nvim'
 Plug 'honza/vim-snippets'
 call plug#end()
@@ -56,13 +56,13 @@ call plug#end()
 " --- Plug Settings --- "
 
 source ~/.config/nvim/defx.vim
-source ~/.config/nvim/fzf.vim
-source ~/.config/nvim/coc.vim
+" source ~/.config/nvim/fzf.vim
+" source ~/.config/nvim/coc.vim
 
 " === gruvbox === "
 set termguicolors
 set background=dark
-colorscheme gruvbox8_hard
+colorscheme gruvbit
 
 " === buftabline === "
 let g:buftabline_numbers = 1

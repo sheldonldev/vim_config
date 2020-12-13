@@ -86,8 +86,8 @@ nnoremap <silent> <leader>kk :resize 35<CR>
 nnoremap <silent> <leader>jj :resize 5<CR>
 
 " put cursor middle of the screen after up and down "
-nnoremap <silent> <C-d>   <C-d>zz
-nnoremap <silent> <C-u>   <C-u>zz
+nnoremap <silent> <C-d>   Lzz
+nnoremap <silent> <C-u>   Hzz
 nnoremap <silent> G       Gzz
 
 " quickly open :vert h "
