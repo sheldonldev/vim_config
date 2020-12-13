@@ -2,6 +2,7 @@ syntax on
 
 set encoding=UTF-8      " the encoding displayed "
 set fileencoding=UTF-8  " The encoding written to file "
+set t_Co=256
 
 set showcmd             " Always show command line "
 set cmdheight=2         " Command line height is 2 "
@@ -44,8 +45,6 @@ set ignorecase                  " case ignore search "
 set smartcase                   " case sensitive if Capital is typed "
 
 set clipboard=unnamed           " in MacOS, or use `unnamedplus` otherwise "
-
-set t_Co=256
 
 set iskeyword+=-        " treat dash separated words as a word text object"
 set iskeyword+=@        " vue-on and scss "
@@ -117,12 +116,9 @@ set statusline+=\ %{StatuslineGit()}\
 set statusline+=%#TabLine#
 set statusline+=
 set statusline+=\ %f\ %m\ %R\ 
-set statusline+=
 set statusline+=%=
-set statusline+=
 set statusline+=%#PmenuThumb#
 set statusline+=\ %Y\ %{&fileencoding?&fileencoding:&encoding}\ 
-set statusline+=
 set statusline+=\ %p%%\ %L\\%l\ :%c\ 
 
 " switch tabs "
@@ -130,29 +126,11 @@ nnoremap  <silent> <leader><tab>    :if &modifiable && !&readonly && &modified
       \ <CR> :write<CR> :endif<CR>:bnext<CR>
 nnoremap  <silent> <leader><S-tab>  :if &modifiable && !&readonly && &modified
       \ <CR> :write<CR> :endif<CR>:bprevious<CR>
-nmap <leader>1 :b1<CR>
-nmap <leader>2 :b2<CR>
-nmap <leader>3 :b3<CR>
-nmap <leader>4 :b4<CR>
-nmap <leader>5 :b5<CR>
-nmap <leader>6 :b6<CR>
-nmap <leader>7 :b7<CR>
-nmap <leader>8 :b8<CR>
-nmap <leader>9 :b9<CR>
-nmap <leader>0 :b0<CR>
+nnoremap <silent> - <C-^>
 
-" quit and hide in buffer "
-nnoremap <silent> <C-q>           :q<CR>
-" quit this buffer "
-nnoremap <silent> <leader><C-q>   :bd<CR>
-" save "
-nnoremap <silent> <C-s>           :wa<CR>
-" exit "
-nnoremap <silent> <C-c>           <Esc>
-" quickly align indent "
+" formmatting, quit, save "
 nnoremap <silent> <leader>i       mngg=G`nzz
 
-" trim white space and multiple blank lines, align before save "
 fun! TrimWhite()
   let l:save = winsaveview()
   keeppatterns %s/\s\s\+$//e
@@ -160,6 +138,11 @@ fun! TrimWhite()
   call winrestview(l:save)
 endfun
 autocmd BufWritePre * :call TrimWhite()
+
+nnoremap <silent> <C-q>           :q<CR>
+nnoremap <silent> <leader><C-q>   :bd<CR>
+nnoremap <silent> <C-s>           :wa<CR>
+nnoremap <silent> <C-c>           <Esc>
 
 
 
