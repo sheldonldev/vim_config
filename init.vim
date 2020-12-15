@@ -1,9 +1,3 @@
-" --- nvim ---"
-" load ~/.vimrc and ~/.vim "
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
-source ~/.vimrc
-
 " disable python2 "
 let g:loaded_python_provider = 0
 
@@ -14,27 +8,26 @@ let g:python3_host_prog = expand("/usr/local/bin/python3")
 " if you use virtual node environment "
 "" let g:node_host_prog = expand("~/.nvm/versions/node/v12.16.1/bin/node")
 
+
 " --- integrated terminal --- "
 tnoremap <Esc> <C-\><C-n>
 nnoremap <A-v> :vsplit term://zsh<CR>
 nnoremap <A-b> :split term://zsh <bar> resize 5<CR>
 
-" ---- Complettion Settings ---"
-" use Tab to scroll, and Enter to select "
-inoremap <expr><Tab>    pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr><CR>     pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-filetype indent plugin on      " To use $NVIM_HOME/after/ftplugin
-set completeopt=menuone,noinsert,noselect
-set shortmess+=c
-set signcolumn=number
-set updatetime=0        " Fast completion "
+
+" --- load ~/.vimrc and ~/.vim --- "
+set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath = &runtimepath
+source ~/.vimrc
+
 
 " --- Call plugins ---- "
 " Note: if install slow in China, try switching
 " to an accelorator such as 'https://github.com.cnpmjs.org' "
+
 call plug#begin('~/.vim/plugged')
-Plug 'habamax/vim-gruvbit'
+Plug 'lifepillar/vim-colortemplate'
+Plug 'sheerun/vim-polyglot'
 Plug 'ap/vim-buftabline'
 
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -53,16 +46,6 @@ Plug 'neoclide/coc.nvim'
 Plug 'honza/vim-snippets'
 call plug#end()
 
-" --- Plug Settings --- "
-
-source ~/.config/nvim/defx.vim
-" source ~/.config/nvim/fzf.vim
-" source ~/.config/nvim/coc.vim
-
-" === gruvbox === "
-set termguicolors
-set background=dark
-colorscheme gruvbit
 
 " === buftabline === "
 let g:buftabline_numbers = 1
@@ -77,4 +60,8 @@ nnoremap <space>/ :Commentary<CR>
 vnoremap <space>/ :Commentary<CR>
 
 
+" --- More Plugin Settings --- "
+source ~/.config/nvim/plugconfig/defx.vim
+source ~/.config/nvim/plugconfig/fzf.vim
+source ~/.config/nvim/plugconfig/coc.vim
 

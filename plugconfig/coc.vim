@@ -1,3 +1,15 @@
+" ---- Complettion Settings ---"G
+" use Tab to scroll, and Enter to select "
+inoremap <expr><Tab>    pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr><CR>     pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+filetype indent plugin on      " To use $NVIM_HOME/after/ftplugin
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
+set signcolumn=number
+set updatetime=0        " Fast completion "
+
+
 let g:coc_global_extensions = [
       \ 'coc-marketplace',
       \ 'coc-json',
@@ -49,5 +61,5 @@ autocmd FileType scss setl iskeyword+=@-@
 
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status` "
-set statusline+=%#DiffText#
+set statusline+=%#StatusLineNC#
 set statusline+=%{coc#status()}%{get(b:,'coc_current_function','')}
