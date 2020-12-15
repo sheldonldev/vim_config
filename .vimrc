@@ -51,11 +51,6 @@ set iskeyword+=@        " vue-on and scss "
 set path+=**  " search down for subfolders provides tab-completion for all file related tasks "
 set wildmenu  " Now you can us search commands such as :find :b :h with Tab incompletion and Enter the match"
 
-" --- colorscheme --- "
-set t_Co=256
-set termguicolors
-set background=dark
-colorscheme gruvdark
 
 " --- keybindings --- "
 set timeoutlen=500
@@ -121,14 +116,62 @@ nnoremap <silent> <leader><C-q>   :bd<CR>
 nnoremap <silent> <C-s>           :wa<CR>
 nnoremap <silent> <C-c>           <Esc>
 
+" --- Call plugins ---- "
+" Note: if install slow in China, try switching
+" to an accelorator such as 'https://github.com.cnpmjs.org' "
+
+call plug#begin('~/.vim/plugged')
+if has('nvim')
+  Plug 'lifepillar/vim-colortemplate'
+  Plug 'sheldonldev/vim-gruvdark'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'ap/vim-buftabline'
+
+  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'kristijanhusak/defx-icons'
+  Plug 'kristijanhusak/defx-git'
+  Plug 't9md/vim-choosewin'
+
+  Plug 'norcalli/nvim-colorizer.lua'
+  Plug 'tpope/vim-commentary'
+
+  Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'airblade/vim-rooter'
+
+  Plug 'neoclide/coc.nvim'
+  Plug 'honza/vim-snippets'
+else
+  Plug 'lifepillar/vim-colortemplate'
+  Plug 'sheldonldev/vim-gruvdark'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'ap/vim-buftabline'
+
+  Plug 'tpope/vim-commentary'
+
+  Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'airblade/vim-rooter'
+
+  Plug 'neoclide/coc.nvim'
+  Plug 'honza/vim-snippets'
+endif
+call plug#end()
+
+" --- colorscheme --- "
+set t_Co=256
+set termguicolors
+set background=dark
+colorscheme gruvdark
+
 " --- statusline --- "
 function! GitBranch()
   return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 endfunction
 
 function! StatuslineGit()
-let l:branchname = GitBranch()
-return strlen(l:branchname) > 0 ? ' '.l:branchname :''
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0 ? ' '.l:branchname :''
 endfunction
 
 set statusline=
@@ -148,4 +191,16 @@ nnoremap  <silent> <leader><tab>    :if &modifiable && !&readonly && &modified
 nnoremap  <silent> <leader><S-tab>  :if &modifiable && !&readonly && &modified
       \ <CR> :write<CR> :endif<CR>:bprevious<CR>
 nnoremap <silent> - <C-^>
+
+
+" === buftabline === "
+let g:buftabline_numbers = 1
+
+" === vim-commentary === "
+nnoremap <space>/ :Commentary<CR>
+vnoremap <space>/ :Commentary<CR>
+
+" --- More Plugin Settings --- "
+source ~/.config/nvim/plugconfig/fzf.vim
+source ~/.config/nvim/plugconfig/coc.vim
 

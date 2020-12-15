@@ -21,47 +21,12 @@ let &packpath = &runtimepath
 source ~/.vimrc
 
 
-" --- Call plugins ---- "
-" Note: if install slow in China, try switching
-" to an accelorator such as 'https://github.com.cnpmjs.org' "
-
-call plug#begin('~/.vim/plugged')
-Plug 'lifepillar/vim-colortemplate'
-Plug 'sheerun/vim-polyglot'
-Plug 'ap/vim-buftabline'
-
-Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'kristijanhusak/defx-icons'
-Plug 'kristijanhusak/defx-git'
-Plug 't9md/vim-choosewin'
-
-Plug 'norcalli/nvim-colorizer.lua'
-Plug 'tpope/vim-commentary'
-
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'airblade/vim-rooter'
-
-Plug 'neoclide/coc.nvim'
-Plug 'honza/vim-snippets'
-call plug#end()
-
-
-" === buftabline === "
-let g:buftabline_numbers = 1
+" --- More Plugin Settings --- "
+source ~/.config/nvim/plugconfig/defx.vim
 
 " === colorizer === "
-lua require'colorizer'
 nnoremap <leader>c  :ColorizerToggle<CR>
 nnoremap <leader>ca :ColorizerAttachToBuffer<CR>
 
-" === vim-commentary === "
-nnoremap <space>/ :Commentary<CR>
-vnoremap <space>/ :Commentary<CR>
 
-
-" --- More Plugin Settings --- "
-source ~/.config/nvim/plugconfig/defx.vim
-source ~/.config/nvim/plugconfig/fzf.vim
-source ~/.config/nvim/plugconfig/coc.vim
 
