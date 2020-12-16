@@ -48,7 +48,9 @@ set clipboard=unnamed           " in MacOS, or use `unnamedplus` otherwise "
 set iskeyword+=-        " treat dash separated words as a word text object"
 set iskeyword+=@        " vue-on and scss "
 
+" Search: ----------------------------------- "
 set path+=**  " search down for subfolders provides tab-completion for all file related tasks "
+set wildignore+=**/node_modules/**  " ignore node_modules "
 set wildmenu  " Now you can us search commands such as :find :b :h with Tab incompletion and Enter the match"
 
 " Cursor: ------------------------------------ "
