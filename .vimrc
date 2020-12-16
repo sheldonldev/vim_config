@@ -93,22 +93,6 @@ let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
 let g:netrw_banner = 0
 
-" function! OpenToRight()
-"   :normal v
-"   let g:path=expand('%:p')
-"   :q!
-"   execute 'belowright vnew' g:path
-"   :normal <C-l>
-" endfunction
-
-" function! OpenBelow()
-"   :normal v
-"   let g:path=expand('%:p')
-"   :q!
-"   execute 'belowright new' g:path
-"   :normal <C-l>
-" endfunction
-
 function! ToggleNetrw()
   if g:NetrwIsOpen
     let i = bufnr("$")
@@ -126,17 +110,15 @@ function! ToggleNetrw()
 endfunction
 
 function! NetrwMappings()
-  noremap <buffer> <C-l>       <C-w>l
   noremap <silent> <leader>e   :call ToggleNetrw()<CR>
-  " noremap <buffer> <A-l>       :call OpenToRight()<CR>
-  " noremap <buffer> <A-h>       :call OpenBelow(<CR>)
 endfunction
 
 let g:NetrwIsOpen = 0
-" augroup ProjectDrawer
-"   autocmd!
-"   autocmd VimEnter * :call ToggleNetrw()
-" augroup END
+
+augroup ProjectDrawer
+  autocmd!
+  autocmd VimEnter * :call ToggleNetrw()
+augroup END
 
 augroup netrw_mappings
   autocmd!
@@ -199,11 +181,9 @@ set statusline+=\ %Y\ %{&fileencoding?&fileencoding:&encoding}\
 set statusline+=\ %p%%\ %L\\%l\ :%c\ 
 
 " BufTabSwitch: ---------------------------------- "
-nnoremap  <silent> <leader><tab>    :if &modifiable && !&readonly && &modified
-      \ <CR> :write<CR> :endif<CR>:bnext<CR>
-nnoremap  <silent> <leader><S-tab>  :if &modifiable && !&readonly && &modified
-      \ <CR> :write<CR> :endif<CR>:bprevious<CR>
-nnoremap <silent> - <C-^>
+nnoremap  <silent> <leader><tab>    :if &modifiable && !&readonly && &modified<CR> :write<CR> :endif<CR>:bnext<CR>
+nnoremap  <silent> <leader><S-tab>  :if &modifiable && !&readonly && &modified<CR> :write<CR> :endif<CR>:bprevious<CR>
+nnoremap  <silent> <leader>-        <C-^>
 
 " PlugCaller: ------------------------------------ "
 " Note: if install slow in China, try switching
