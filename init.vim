@@ -23,8 +23,10 @@ source ~/.vimrc
 
 " --- More Plugin Settings --- "
 source ~/.config/nvim/plugconfig/defx.vim
+source ~/.config/nvim/plugconfig/fzf.vim
 
 " === colorizer === "
+lua require'colorizer'.setup{}
 nnoremap <leader>c  :ColorizerToggle<CR>
 nnoremap <leader>ca :ColorizerAttachToBuffer<CR>
 

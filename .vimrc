@@ -51,22 +51,23 @@ set iskeyword+=@        " vue-on and scss "
 set path+=**  " search down for subfolders provides tab-completion for all file related tasks "
 set wildmenu  " Now you can us search commands such as :find :b :h with Tab incompletion and Enter the match"
 
+" Cursor: ------------------------------------ "
 " blinking cursor "
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
             \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
             \,sm:block-blinkwait175-blinkoff150-blinkon175
 
-" CursorShape in different mode "
-"Note: checkout solutions here: https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modesi
+" cursor shape in different mode "
+" Note: checkout solutions here: https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modesi
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
-" --- keybindings --- "
+" keybindings "
 set timeoutlen=500
 let mapleader = " "
 
-" Auto Complete Braces and Quotes "
+" auto pair "
 inoremap () ()<Esc>ha
 inoremap <> <><Esc>ha
 inoremap '' ''<Esc>ha
@@ -84,15 +85,7 @@ nnoremap <silent> <C-d>   Lzz
 nnoremap <silent> <C-u>   Hzz
 nnoremap <silent> G       Gzz
 
-" quickly open :vert h "
-nnoremap <silent> <leader>vh       :vert h<space>
-
-" Netrw: https://www.youtube.com/watch?v=nDGhjk4Eqbc&t=514s&pbjreload=101 "
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 2
-let g:netrw_winsize = 25
-let g:netrw_banner = 0
-
+" Netrw: ----------------------------------------- "
 function! ToggleNetrw()
   if g:NetrwIsOpen
     let i = bufnr("$")
@@ -110,29 +103,27 @@ function! ToggleNetrw()
 endfunction
 
 function! NetrwMappings()
-  noremap <silent> <leader>e   :call ToggleNetrw()<CR>
+  noremap <silent> <leader>e  :call ToggleNetrw()<CR>
 endfunction
 
-let g:NetrwIsOpen = 0
-
-augroup ProjectDrawer
-  autocmd!
-  autocmd VimEnter * :call ToggleNetrw()
-augroup END
-
-augroup netrw_mappings
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 2
+let g:netrw_winsize = 20
+let g:netrw_banner = 0
+let g:NetrwIsOpen = 1
+let g:netrw_preview = 1
+let g:netrw_alto = 1
+augroup netrw
   autocmd!
   autocmd filetype netrw call NetrwMappings()
 augroup END
 
 " Windows: ----------------------------------------- "
-
 " Jump between windows "
 nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>j :wincmd j<CR>
-
 " quickly adjust window size "
 nnoremap <silent> <leader>] :vertical resize +10<CR>
 nnoremap <silent> <leader>[ :vertical resize -10<CR>
@@ -143,7 +134,7 @@ nnoremap <silent> <leader>hh :vertical resize 30<CR>
 nnoremap <silent> <leader>kk :resize 35<CR>
 nnoremap <silent> <leader>jj :resize 5<CR>
 
-" formmatting, quit, save "
+" Formmat: ----------------------------------------- "
 nnoremap <silent> <leader>i       mngg=G`nzz
 
 fun! TrimWhite()
@@ -154,12 +145,13 @@ fun! TrimWhite()
 endfun
 autocmd BufWritePre * :call TrimWhite()
 
+" Leave: ------------------------------------------- "
 nnoremap <silent> <C-q>           :q<CR>
 nnoremap <silent> <leader><C-q>   :bd<CR>
 nnoremap <silent> <C-s>           :wa<CR>
 nnoremap <silent> <C-c>           <Esc>
 
-" Statusline: ------------------------------------ "
+" Statusline: -------------------------------------- "
 function! GitBranch()
   return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 endfunction
@@ -197,12 +189,6 @@ if !has('nvim')
 
   Plug 'rrethy/vim-hexokinase'
   Plug 'tpope/vim-commentary'
-
-  Plug 't9md/vim-choosewin'
-
-  Plug 'junegunn/fzf.vim'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'airblade/vim-rooter'
 
   Plug 'neoclide/coc.nvim'
   Plug 'honza/vim-snippets'
@@ -250,6 +236,5 @@ if !has('nvim')
 endif
 
 " MorePluginSettings: ------------------------------ "
-source ~/.config/nvim/plugconfig/fzf.vim
 source ~/.config/nvim/plugconfig/coc.vim
 
