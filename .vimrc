@@ -51,6 +51,16 @@ set iskeyword+=@        " vue-on and scss "
 set path+=**  " search down for subfolders provides tab-completion for all file related tasks "
 set wildmenu  " Now you can us search commands such as :find :b :h with Tab incompletion and Enter the match"
 
+" blinking cursor "
+set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+            \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+            \,sm:block-blinkwait175-blinkoff150-blinkon175
+
+" CursorShape in different mode "
+"Note: checkout solutions here: https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modesi
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " --- keybindings --- "
 set timeoutlen=500
@@ -77,12 +87,63 @@ nnoremap <silent> G       Gzz
 " quickly open :vert h "
 nnoremap <silent> <leader>vh       :vert h<space>
 
-" open netrw "
-let g:netrw_liststyle = 1
+" Netrw: https://www.youtube.com/watch?v=nDGhjk4Eqbc&t=514s&pbjreload=101 "
+let g:netrw_liststyle = 3
 let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
 let g:netrw_banner = 0
-nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 25<CR>
+
+" function! OpenToRight()
+"   :normal v
+"   let g:path=expand('%:p')
+"   :q!
+"   execute 'belowright vnew' g:path
+"   :normal <C-l>
+" endfunction
+
+" function! OpenBelow()
+"   :normal v
+"   let g:path=expand('%:p')
+"   :q!
+"   execute 'belowright new' g:path
+"   :normal <C-l>
+" endfunction
+
+function! ToggleNetrw()
+  if g:NetrwIsOpen
+    let i = bufnr("$")
+    while (i >= 1) 
+      if (getbufvar(i, "&filetype") == "netrw")
+        silent exe "bwipeout" . i
+      endif
+      let i -= 1
+    endwhile
+    let g:NetrwIsOpen = 0
+  else
+    let g:NetrwIsOpen = 1
+    silent Lexplore
+  endif
+endfunction
+
+function! NetrwMappings()
+  noremap <buffer> <C-l>       <C-w>l
+  noremap <silent> <leader>e   :call ToggleNetrw()<CR>
+  " noremap <buffer> <A-l>       :call OpenToRight()<CR>
+  " noremap <buffer> <A-h>       :call OpenBelow(<CR>)
+endfunction
+
+let g:NetrwIsOpen = 0
+" augroup ProjectDrawer
+"   autocmd!
+"   autocmd VimEnter * :call ToggleNetrw()
+" augroup END
+
+augroup netrw_mappings
+  autocmd!
+  autocmd filetype netrw call NetrwMappings()
+augroup END
+
+" Windows: ----------------------------------------- "
 
 " Jump between windows "
 nnoremap <leader>l :wincmd l<CR>
@@ -116,55 +177,7 @@ nnoremap <silent> <leader><C-q>   :bd<CR>
 nnoremap <silent> <C-s>           :wa<CR>
 nnoremap <silent> <C-c>           <Esc>
 
-" --- Call plugins ---- "
-" Note: if install slow in China, try switching
-" to an accelorator such as 'https://github.com.cnpmjs.org' "
-
-call plug#begin('~/.vim/plugged')
-if has('nvim')
-  Plug 'lifepillar/vim-colortemplate'
-  Plug 'sheldonldev/vim-gruvdark'
-  Plug 'sheerun/vim-polyglot'
-  Plug 'ap/vim-buftabline'
-
-  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'kristijanhusak/defx-icons'
-  Plug 'kristijanhusak/defx-git'
-  Plug 't9md/vim-choosewin'
-
-  Plug 'norcalli/nvim-colorizer.lua'
-  Plug 'tpope/vim-commentary'
-
-  Plug 'junegunn/fzf.vim'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'airblade/vim-rooter'
-
-  Plug 'neoclide/coc.nvim'
-  Plug 'honza/vim-snippets'
-else
-  Plug 'lifepillar/vim-colortemplate'
-  Plug 'sheldonldev/vim-gruvdark'
-  Plug 'sheerun/vim-polyglot'
-  Plug 'ap/vim-buftabline'
-
-  Plug 'tpope/vim-commentary'
-
-  Plug 'junegunn/fzf.vim'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'airblade/vim-rooter'
-
-  Plug 'neoclide/coc.nvim'
-  Plug 'honza/vim-snippets'
-endif
-call plug#end()
-
-" --- colorscheme --- "
-set t_Co=256
-set termguicolors
-set background=dark
-colorscheme gruvdark
-
-" --- statusline --- "
+" Statusline: ------------------------------------ "
 function! GitBranch()
   return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 endfunction
@@ -185,13 +198,62 @@ set statusline+=%#PmenuThumb#
 set statusline+=\ %Y\ %{&fileencoding?&fileencoding:&encoding}\ 
 set statusline+=\ %p%%\ %L\\%l\ :%c\ 
 
-" --- switch buffer tabs --- "
+" BufTabSwitch: ---------------------------------- "
 nnoremap  <silent> <leader><tab>    :if &modifiable && !&readonly && &modified
       \ <CR> :write<CR> :endif<CR>:bnext<CR>
 nnoremap  <silent> <leader><S-tab>  :if &modifiable && !&readonly && &modified
       \ <CR> :write<CR> :endif<CR>:bprevious<CR>
 nnoremap <silent> - <C-^>
 
+" PlugCaller: ------------------------------------ "
+" Note: if install slow in China, try switching
+" to an accelorator such as 'https://github.com.cnpmjs.org' "
+
+call plug#begin('~/.vim/plugged')
+if !has('nvim')
+  Plug 'sheldonldev/vim-gruvdark'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'ap/vim-buftabline'
+
+  Plug 'rrethy/vim-hexokinase'
+  Plug 'tpope/vim-commentary'
+
+  Plug 't9md/vim-choosewin'
+
+  Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'airblade/vim-rooter'
+
+  Plug 'neoclide/coc.nvim'
+  Plug 'honza/vim-snippets'
+else
+  Plug 'lifepillar/vim-colortemplate'
+  Plug 'sheldonldev/vim-gruvdark'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'ap/vim-buftabline'
+
+  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'kristijanhusak/defx-icons'
+  Plug 'kristijanhusak/defx-git'
+  Plug 't9md/vim-choosewin'
+
+  Plug 'norcalli/nvim-colorizer.lua'
+  Plug 'tpope/vim-commentary'
+
+  Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'airblade/vim-rooter'
+
+  Plug 'neoclide/coc.nvim'
+  Plug 'honza/vim-snippets'
+endif
+call plug#end()
+
+" ColorScheme: ------------------------------------- "
+set t_Co=256
+set termguicolors
+set background=dark
+colorscheme gruvdark
 
 " === buftabline === "
 let g:buftabline_numbers = 1
@@ -200,7 +262,14 @@ let g:buftabline_numbers = 1
 nnoremap <space>/ :Commentary<CR>
 vnoremap <space>/ :Commentary<CR>
 
-" --- More Plugin Settings --- "
+" === hexokinase === "
+if !has('nvim')
+  let g:Hexokinase_highlighters = ['foregroundfull']
+  let g:Hexokinase_optInPatterns = 'full_hex,triple_hex,rgb,rgba,hsl,hsla,colour_names'
+  nnoremap <leader>c :HexokinaseToggle
+endif
+
+" MorePluginSettings: ------------------------------ "
 source ~/.config/nvim/plugconfig/fzf.vim
 source ~/.config/nvim/plugconfig/coc.vim
 
