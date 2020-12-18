@@ -199,6 +199,10 @@ if !has('nvim')
   Plug 'rrethy/vim-hexokinase'
   Plug 'tpope/vim-commentary'
 
+  Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'airblade/vim-rooter'
+
   Plug 'neoclide/coc.nvim'
   Plug 'honza/vim-snippets'
 else
@@ -224,11 +228,15 @@ else
 endif
 call plug#end()
 
+
 " ColorScheme: ------------------------------------- "
 set t_Co=256
 set termguicolors
 set background=dark
 colorscheme gruvdark
+
+
+" SmallPlugins: ------------------------------------ "
 
 " === buftabline === "
 let g:buftabline_numbers = 1
@@ -245,7 +253,7 @@ if !has('nvim')
 endif
 
 
-" ComplettionSettings: ----------------------------- "
+" CompletionSettings: ----------------------------- "
 " use Tab to scroll, and Enter to select "
 inoremap <expr><Tab>    pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -256,7 +264,5 @@ set shortmess+=c
 set signcolumn=number
 set updatetime=0        " Fast completion "
 
-
-" MorePluginSettings: ------------------------------ "
 source ~/.config/nvim/plugconfig/coc.vim
-
+source ~/.config/nvim/plugconfig/fzf.vim

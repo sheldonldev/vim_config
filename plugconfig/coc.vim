@@ -1,3 +1,6 @@
+" AutoCompletion: coc ------------------------------- "
+" Completion and ESlint works fine, but some extensions seems
+" don't work with vim "
 let g:coc_global_extensions = [
       \ 'coc-emoji',
       \ 'coc-marketplace',
@@ -11,40 +14,6 @@ let g:coc_global_extensions = [
       \ 'coc-snippets',
       \ 'coc-jedi',
       \ ]
-
-" === Explorer === "
-autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
-nmap <leader>e :CocCommand explorer<CR>
-
-" Explorer preset "
-let g:coc_explorer_global_presets = {
-\   'floating': {
-\     'position': 'floating',
-\     'open-action-strategy': 'sourceWindow',
-\     'floating-width': -50
-\   },
-\ }
-
-" Use preset argument to open it "
-nmap <leader>ef :CocCommand explorer --preset floating<CR>
-nmap <leader>ev :CocCommand explorer --preset floating ~/.config/nvim<CR>
-nmap <leader>ed :CocCommand explorer --preset floating ~/Documents/hub/doc<CR>
-
-" List all presets "
-nmap <leader>el :CocList explPresets
-
-" API "
-function! s:enter_explorer()
-  if &filetype == 'coc-explorer'
-    setl nu relativenumber
-    setl statusline=coc-explorer
-  endif
-endfunction
-augroup CocExplorerCustom
-  autocmd!
-  autocmd BufEnter * call <SID>enter_explorer()
-augroup END
-
 
 " Remap: "
 " Remap keys for gotos "
@@ -77,12 +46,12 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 " for scss "
 autocmd FileType scss setl iskeyword+=@-@
 
-" Prettier:"
 " prettier-eslint and prettier-tslint are included with the installation of this extension.
 " eslint, tslint, and all peer dependencies required by your specific configuration
 " must be installed locally.
 
-
-" Add status line support, for integration with other plugin, checkout `:h coc-status` "
 set statusline+=%#StatusLineNC#
 set statusline+=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+
+
