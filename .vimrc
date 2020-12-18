@@ -1,5 +1,3 @@
-syntax on
-
 set encoding=UTF-8      " the encoding displayed "
 set fileencoding=UTF-8  " The encoding written to file "
 
@@ -14,8 +12,8 @@ set nu                  " nice line numbers "
 set relativenumber      " relative line number "
 set nowrap              " no wrap if line too long "
 set hidden              " Required to keep multiple buffers "
-set cursorcolumn
-set cursorline
+set cursorcolumn        " highlight the colum where the cursor is there "
+set cursorline          " highlight the line where the cursor is there "
 
 set splitright          " Vertical splits will automatically be to the right "
 set splitbelow          " Horizontal splits will automatically be below "
@@ -30,8 +28,8 @@ set shiftwidth=2        " spaces if press > "
 set expandtab           " convert tabs to spaces "
 set smarttab            " Makes tabbing smarter will realize you have 2 vs 4 "
 set autoindent
-set smartindent         " try best job to indent for you "
-set preserveindent
+set smartindent         " try best job to indent for you, often work together with autoindent "
+set preserveindent      " preserve as much of the indent structure as possible when changing indent "
 
 set noswapfile                  " no need swap because we use undodir "
 set nobackup                    " no need backup either "
@@ -41,12 +39,15 @@ set undofile                    " an undo file per file "
 set incsearch                   " get result while entering "
 set hlsearch                    " highlight searches "
 set ignorecase                  " case ignore search "
-set smartcase                   " case sensitive if Capital is typed "
+set smartcase                   " case sensitive if Capital is typed in "
 
-set clipboard=unnamed           " in MacOS, or use `unnamedplus` otherwise "
+set clipboard=unnamed           " use register without name. Note: use `unnamedplus` if not macOS "
 
-set iskeyword+=-        " treat dash separated words as a word text object"
-set iskeyword+=@        " vue-on and scss "
+set iskeyword+=-        " treat dash separated words as one word text object"
+set iskeyword+=@        " similar as above "
+
+syntax on               " let vim overrule your settings with default syntax "
+syntax enable           " if you have $VIMRUNTIME/syntax/syntax.vim "
 
 " Search: ----------------------------------- "
 set path+=**  " search down for subfolders provides tab-completion for all file related tasks "
@@ -56,8 +57,8 @@ set wildmenu  " Now you can us search commands such as :find :b :h with Tab inco
 " Cursor: ------------------------------------ "
 " blinking cursor "
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-            \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-            \,sm:block-blinkwait175-blinkoff150-blinkon175
+      \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+      \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 " cursor shape in different mode "
 " Note: checkout solutions here: https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modesi
@@ -65,27 +66,9 @@ let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
-" keybindings "
+" Keybindings: ------------------------------- "
 set timeoutlen=500
 let mapleader = " "
-
-" auto pair "
-inoremap () ()<Esc>ha
-inoremap <> <><Esc>ha
-inoremap '' ''<Esc>ha
-inoremap "" ""<Esc>ha
-inoremap `` ``<Esc>ha
-inoremap [] []<Esc>ha
-inoremap [  [<CR>]<Esc>O
-inoremap {} {}<Esc>ha
-inoremap {  {<CR>}<Esc>O
-inoremap {{ {{<space><space>}}<Esc>F<space>i
-inoremap {% {%<space><space>%}<Esc>F<space>i
-
-" put cursor middle of the screen after up and down "
-nnoremap <silent> <C-d>   Lzz
-nnoremap <silent> <C-u>   Hzz
-nnoremap <silent> G       Gzz
 
 " Netrw: ----------------------------------------- "
 function! ToggleNetrw()
@@ -105,16 +88,17 @@ function! ToggleNetrw()
 endfunction
 
 function! NetrwMappings()
-  noremap <silent> <leader>e  :call ToggleNetrw()<CR>
+  nnoremap <silent>  <leader>e  :call ToggleNetrw()<CR>
 endfunction
 
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 2
 let g:netrw_winsize = 20
 let g:netrw_banner = 0
-let g:NetrwIsOpen = 1
 let g:netrw_preview = 1
 let g:netrw_alto = 1
+
+let g:NetrwIsOpen = 1
 augroup netrw
   autocmd!
   autocmd filetype netrw call NetrwMappings()
@@ -136,6 +120,24 @@ nnoremap <silent> <leader>hh :vertical resize 30<CR>
 nnoremap <silent> <leader>kk :resize 35<CR>
 nnoremap <silent> <leader>jj :resize 5<CR>
 
+" AutoPair: ---------------------------------------- "
+inoremap () ()<Esc>ha
+inoremap <> <><Esc>ha
+inoremap '' ''<Esc>ha
+inoremap "" ""<Esc>ha
+inoremap `` ``<Esc>ha
+inoremap [] []<Esc>ha
+inoremap [  [<CR>]<Esc>O
+inoremap {} {}<Esc>ha
+inoremap {  {<CR>}<Esc>O
+inoremap {{ {{<space><space>}}<Esc>F<space>i
+inoremap {% {%<space><space>%}<Esc>F<space>i
+
+" SmoothScroll: ----------------------------------- "
+nnoremap <silent> <C-d>   Lzz
+nnoremap <silent> <C-u>   Hzz
+nnoremap <silent> G       Gzz
+
 " Formmat: ----------------------------------------- "
 nnoremap <silent> <leader>i       mngg=G`nzz
 
@@ -147,11 +149,16 @@ fun! TrimWhite()
 endfun
 autocmd BufWritePre * :call TrimWhite()
 
-" Leave: ------------------------------------------- "
-nnoremap <silent> <C-q>           :q<CR>
-nnoremap <silent> <leader><C-q>   :bd<CR>
-nnoremap <silent> <C-s>           :wa<CR>
-nnoremap <silent> <C-c>           <Esc>
+" QuitAndSave: ------------------------------------- "
+nnoremap <silent> <leader>q   :q<CR>
+nnoremap <silent> <leader>Q   :bd<CR>
+nnoremap <silent> <leader>s   :wa<CR>
+
+" Terminal: ---------------------------------------- "
+if !has('nvim')
+  nnoremap <silent> <leader>t   :vert term<CR>
+  tnoremap <silent> <Esc>       <C-\><C-n>
+endif
 
 " Statusline: -------------------------------------- "
 function! GitBranch()
@@ -175,9 +182,9 @@ set statusline+=\ %Y\ %{&fileencoding?&fileencoding:&encoding}\
 set statusline+=\ %p%%\ %L\\%l\ :%c\ 
 
 " BufTabSwitch: ---------------------------------- "
-nnoremap  <silent> <leader><tab>    :if &modifiable && !&readonly && &modified<CR> :write<CR> :endif<CR>:bnext<CR>
-nnoremap  <silent> <leader><S-tab>  :if &modifiable && !&readonly && &modified<CR> :write<CR> :endif<CR>:bprevious<CR>
-nnoremap  <silent> <leader>-        <C-^>
+nnoremap  <silent> <leader><Tab>    :if &modifiable && !&readonly && &modified<CR> :write<CR> :endif<CR>:bnext<CR>
+nnoremap  <silent> <leader><S-Tab>  :if &modifiable && !&readonly && &modified<CR> :write<CR> :endif<CR>:bprevious<CR>
+nnoremap  <silent> <Tab>            <C-^>
 
 " PlugCaller: ------------------------------------ "
 " Note: if install slow in China, try switching
@@ -200,13 +207,13 @@ else
   Plug 'sheerun/vim-polyglot'
   Plug 'ap/vim-buftabline'
 
+  Plug 'norcalli/nvim-colorizer.lua'
+  Plug 'tpope/vim-commentary'
+
   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'kristijanhusak/defx-icons'
   Plug 'kristijanhusak/defx-git'
   Plug 't9md/vim-choosewin'
-
-  Plug 'norcalli/nvim-colorizer.lua'
-  Plug 'tpope/vim-commentary'
 
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -236,6 +243,19 @@ if !has('nvim')
   let g:Hexokinase_optInPatterns = 'full_hex,triple_hex,rgb,rgba,hsl,hsla,colour_names'
   nnoremap <leader>c :HexokinaseToggle
 endif
+
+
+" ComplettionSettings: ----------------------------- "
+" use Tab to scroll, and Enter to select "
+inoremap <expr><Tab>    pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr><CR>     pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+filetype indent plugin on      " To use $NVIM_HOME/after/ftplugin
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
+set signcolumn=number
+set updatetime=0        " Fast completion "
+
 
 " MorePluginSettings: ------------------------------ "
 source ~/.config/nvim/plugconfig/coc.vim

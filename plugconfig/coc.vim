@@ -1,16 +1,5 @@
-" ---- Complettion Settings ---"G
-" use Tab to scroll, and Enter to select "
-inoremap <expr><Tab>    pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr><CR>     pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-filetype indent plugin on      " To use $NVIM_HOME/after/ftplugin
-set completeopt=menuone,noinsert,noselect
-set shortmess+=c
-set signcolumn=number
-set updatetime=0        " Fast completion "
-
-
 let g:coc_global_extensions = [
+      \ 'coc-emoji',
       \ 'coc-marketplace',
       \ 'coc-json',
       \ 'coc-tailwindcss',
@@ -22,6 +11,40 @@ let g:coc_global_extensions = [
       \ 'coc-snippets',
       \ 'coc-jedi',
       \ ]
+
+" === Explorer === "
+autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+nmap <leader>e :CocCommand explorer<CR>
+
+" Explorer preset "
+let g:coc_explorer_global_presets = {
+\   'floating': {
+\     'position': 'floating',
+\     'open-action-strategy': 'sourceWindow',
+\     'floating-width': -50
+\   },
+\ }
+
+" Use preset argument to open it "
+nmap <leader>ef :CocCommand explorer --preset floating<CR>
+nmap <leader>ev :CocCommand explorer --preset floating ~/.config/nvim<CR>
+nmap <leader>ed :CocCommand explorer --preset floating ~/Documents/hub/doc<CR>
+
+" List all presets "
+nmap <leader>el :CocList explPresets
+
+" API "
+function! s:enter_explorer()
+  if &filetype == 'coc-explorer'
+    setl nu relativenumber
+    setl statusline=coc-explorer
+  endif
+endfunction
+augroup CocExplorerCustom
+  autocmd!
+  autocmd BufEnter * call <SID>enter_explorer()
+augroup END
+
 
 " Remap: "
 " Remap keys for gotos "
