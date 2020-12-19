@@ -1,3 +1,8 @@
+syntax on                       " let vim overrule your settings with default syntax 
+syntax enable                   " if you have $VIM_HOME/syntax/syntax.vim 
+filetype indent plugin on       " To use $VIM_HOME/after/ftplugin
+set nocompatible                " no compatible with vi or other vim
+
 set encoding=UTF-8      " the encoding displayed "
 set fileencoding=UTF-8  " The encoding written to file "
 
@@ -45,9 +50,6 @@ set clipboard=unnamed           " use register without name. Note: use `unnamedp
 
 set iskeyword+=-        " treat dash separated words as one word text object"
 set iskeyword+=@        " similar as above "
-
-syntax on               " let vim overrule your settings with default syntax "
-syntax enable           " if you have $VIMRUNTIME/syntax/syntax.vim "
 
 " Search: ----------------------------------- "
 set path+=**  " search down for subfolders provides tab-completion for all file related tasks "
@@ -101,7 +103,17 @@ let g:netrw_alto = 1
 let g:NetrwIsOpen = 1
 augroup netrw
   autocmd!
+  autocmd CursorHold * if (&filetype == 'netrw' && &number == 0) | 
+        \ setl nu relativenumber statusline=%#StatusLineNC#\ netrw | 
+        \ endif
   autocmd filetype netrw call NetrwMappings()
+
+  " open netrw when enter vim "
+	autocmd VimEnter * if expand("%") == "" | e . | endif
+  " Note: manually run `:b1` after vim open 
+  " will toggle the netrw line-number as well as clear buffer `1` in tabline.
+  " Then use `p` will keep only one window open.
+  " And use `<space>e` to toggle netrw whenever you want.
 augroup END
 
 " Windows: ----------------------------------------- "
@@ -153,21 +165,25 @@ autocmd BufWritePre * :call TrimWhite()
 nnoremap <silent> <leader>q   :q<CR>
 nnoremap <silent> <leader>Q   :bd<CR>
 nnoremap <silent> <leader>s   :wa<CR>
+nnoremap <silent> <C-c>       <C-c> <bar> <Esc>
 
 " Terminal: ---------------------------------------- "
 if !has('nvim')
-  nnoremap <silent> <leader>t   :vert term<CR>
+  nnoremap <silent> <leader>vt  :vert term<CR>
   tnoremap <silent> <Esc>       <C-\><C-n>
 endif
 
 " Statusline: -------------------------------------- "
 function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+  return system("git rev-parse --abbrev-ref @ 2>/dev/null | tr -d '\n'")
 endfunction
-
+function! GitStatus()
+  return system("[[ -n \"$(git status --porcelain " . shellescape(expand("%")) . ")\" ]] && echo -n +")
+endfunction
 function! StatuslineGit()
   let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0 ? ' '.l:branchname :''
+  let l:gitstatus = GitStatus()
+  return strlen(l:branchname) > 0 ? ' '.l:branchname.' '.l:gitstatus : ''
 endfunction
 
 set statusline=
@@ -254,15 +270,16 @@ endif
 
 
 " CompletionSettings: ----------------------------- "
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
+set signcolumn=number
+set updatetime=100        " Fast completion "
 " use Tab to scroll, and Enter to select "
 inoremap <expr><Tab>    pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr><CR>     pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-filetype indent plugin on      " To use $NVIM_HOME/after/ftplugin
-set completeopt=menuone,noinsert,noselect
-set shortmess+=c
-set signcolumn=number
-set updatetime=0        " Fast completion "
 
+
+" Plugins: --------------------------------------- "
 source ~/.config/nvim/plugconfig/coc.vim
 source ~/.config/nvim/plugconfig/fzf.vim
