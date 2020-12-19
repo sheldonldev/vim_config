@@ -5,7 +5,6 @@ set nocompatible                " no compatible with vi or other vim
 
 set encoding=UTF-8      " the encoding displayed "
 set fileencoding=UTF-8  " The encoding written to file "
-
 set showcmd             " Always show command line "
 set cmdheight=2         " Command line height is 2 "
 set laststatus=2        " Always display the status line "

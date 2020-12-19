@@ -3,9 +3,9 @@ autocmd BufWritePost * call defx#redraw()
 call defx#custom#column('git', 'show_ignored', 1)
 
 nnoremap <silent> <Leader>e
-      \ :<C-U>:Defx -show-ignored-files -buffer-name=defx<CR>
+      \ :<C-U>:Defx -show-ignored-files -resume -toggle<CR>
 nnoremap <silent> <Leader>ef
-      \ :<C-U>:Defx -show-ignored-files -resume -toggle -split=floating -bufname=defx<CR>
+      \ :<C-U>:Defx -show-ignored-files -resume -toggle -split=floating<CR>
 
 autocmd FileType defx call s:defx_my_settings()
 
