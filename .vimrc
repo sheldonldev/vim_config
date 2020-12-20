@@ -188,7 +188,7 @@ endfunction
 set statusline=
 set statusline+=%#PmenuThumb#
 set statusline+=\ %{StatuslineGit()}\ 
-set statusline+=%#TabLine#
+set statusline+=%#StatusLine#
 set statusline+=
 set statusline+=\ %f\ %m\ %R\ 
 set statusline+=%=
@@ -197,8 +197,8 @@ set statusline+=\ %Y\ %{&fileencoding?&fileencoding:&encoding}\
 set statusline+=\ %p%%\ %L\\%l\ :%c\ 
 
 " BufTabSwitch: ---------------------------------- "
-nnoremap  <silent> <leader><Tab>    :if &modifiable && !&readonly && &modified<CR> :write<CR> :endif<CR>:bnext<CR>
-nnoremap  <silent> <leader><S-Tab>  :if &modifiable && !&readonly && &modified<CR> :write<CR> :endif<CR>:bprevious<CR>
+nnoremap  <silent> <leader><Tab>    :bnext<CR> 
+nnoremap  <silent> <leader><S-Tab>  :bprevious<CR>
 nnoremap  <silent> <Tab>            <C-^>
 
 " PlugCaller: ------------------------------------ "

@@ -5,9 +5,6 @@ let g:loaded_python_provider = 0
 let g:python3_host_prog = expand("/usr/local/bin/python3")
 " let g:python3_host_prog = expand("/opt/anaconda3/envs/default/bin/python3")
 
-" if you use virtual node environment "
-"" let g:node_host_prog = expand("~/.nvm/versions/node/v12.16.1/bin/node")
-
 
 " --- integrated terminal --- "
 tnoremap <Esc> <C-\><C-n>
@@ -21,14 +18,12 @@ let &packpath = &runtimepath
 source ~/.vimrc
 
 
-" --- More Plugin Settings --- "
-source ~/.config/nvim/plugconfig/defx.vim
-source ~/.config/nvim/plugconfig/fzf.vim
-
 " === colorizer === "
 lua require'colorizer'.setup{}
 nnoremap <leader>c  :ColorizerToggle<CR>
 nnoremap <leader>ca :ColorizerAttachToBuffer<CR>
 
 
+" --- More Plugin Settings --- "
+source ~/.config/nvim/plugconfig/defx.vim
 
