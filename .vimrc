@@ -109,10 +109,10 @@ augroup netrw
 
   " open netrw when enter vim "
 	autocmd VimEnter * if expand("%") == "" | e . | endif
-  " Note: manually run `:b1` after vim open 
-  " will toggle the netrw line-number as well as clear buffer `1` in tabline.
-  " Then use `p` will keep only one window open.
-  " And use `<space>e` to toggle netrw whenever you want.
+  " Note: 
+  " In vim, manually press any key to toggle line number in explorer
+  " Use `p` will keep only one window open.
+  " Use `<space>e` to toggle netrw whenever you want.
 augroup END
 
 " Windows: ----------------------------------------- "
@@ -229,11 +229,6 @@ else
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'tpope/vim-commentary'
 
-  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'kristijanhusak/defx-icons'
-  Plug 'kristijanhusak/defx-git'
-  Plug 't9md/vim-choosewin'
-
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'airblade/vim-rooter'
@@ -273,6 +268,7 @@ set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 set signcolumn=number
 set updatetime=100        " Fast completion "
+
 " use Tab to scroll, and Enter to select "
 inoremap <expr><Tab>    pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
