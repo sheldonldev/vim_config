@@ -72,6 +72,7 @@ set timeoutlen=500
 let mapleader = " "
 
 " Netrw: ----------------------------------------- "
+let g:NetrwIsOpen = 1
 function! ToggleNetrw()
   if g:NetrwIsOpen
     let i = bufnr("$")
@@ -89,7 +90,7 @@ function! ToggleNetrw()
 endfunction
 
 function! NetrwMappings()
-  nnoremap <silent>  <leader>e  :call ToggleNetrw()<CR>
+  noremap <silent>  <leader>e  :call ToggleNetrw()<CR>
 endfunction
 
 let g:netrw_liststyle = 3
@@ -99,7 +100,6 @@ let g:netrw_banner = 0
 let g:netrw_preview = 1
 let g:netrw_alto = 1
 
-let g:NetrwIsOpen = 1
 augroup netrw
   autocmd!
   autocmd CursorHold * if (&filetype == 'netrw' && &number == 0) | 
