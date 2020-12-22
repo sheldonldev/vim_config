@@ -49,6 +49,9 @@ autocmd FileType scss setl iskeyword+=@-@
 " prettier-eslint and prettier-tslint are included with the installation of this extension.
 " eslint, tslint, and all peer dependencies required by your specific configuration
 " must be installed locally.
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  :call CocAction('format') 
+
 
 set statusline+=%#StatusLineNC#
 set statusline+=%{coc#status()}%{get(b:,'coc_current_function','')}

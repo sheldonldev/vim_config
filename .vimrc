@@ -138,9 +138,7 @@ inoremap '' ''<Esc>ha
 inoremap "" ""<Esc>ha
 inoremap `` ``<Esc>ha
 inoremap [] []<Esc>ha
-inoremap [  [<CR>]<Esc>O
 inoremap {} {}<Esc>ha
-inoremap {  {<CR>}<Esc>O
 inoremap {{ {{<space><space>}}<Esc>F<space>i
 inoremap {% {%<space><space>%}<Esc>F<space>i
 
