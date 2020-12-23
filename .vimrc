@@ -180,8 +180,6 @@ autocmd BufWritePre * :call TrimWhite()
 nnoremap <silent> <leader>q   :q<CR>
 nnoremap <silent> <leader>Q   :bd<CR>
 nnoremap <silent> <leader>s   :wa<CR>
-noremap  <silent> <C-c>       <C-c> <bar> <Esc>
-noremap  <silent> <Esc>       <C-c> <bar> <Esc>
 " }}}
 
 " Terminal: {{{
