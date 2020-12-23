@@ -70,7 +70,6 @@
   },
   "vetur.format.defaultFormatter.js": "prettier-eslint",
   "vetur.format.defaultFormatter.ts": "prettier-tslint",
-  "vetur.completion.autoImport": true,
+  "vetur.completion.autoImport": true
 
-  "snippets.userSnippetsDirectory": "~/.config/nvim/snippets"
 }
