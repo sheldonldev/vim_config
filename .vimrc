@@ -6,7 +6,7 @@ set nocompatible                " no compatible with vi or other vim
 set foldmethod=marker
 set encoding=UTF-8      " the encoding displayed "
 set fileencoding=UTF-8  " The encoding written to file "
- 
+
 set showcmd             " Always show command line "
 set cmdheight=2         " Command line height is 2 "
 set laststatus=2        " Always display the status line "
@@ -216,8 +216,12 @@ if !has('nvim')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'airblade/vim-rooter'
 
-  Plug 'neoclide/coc.nvim'
+  Plug 'https://github.com.cnpmjs.org/Valloric/YouCompleteMe'
+  " after installation, run: python3 ~/.install.py --all"
+
   Plug 'drmingdrmer/xptemplate'
+  Plug 'junegunn/vim-emoji'
+  Plug 'tpope/vim-commentary'
 
   Plug 'rrethy/vim-hexokinase'
 else
@@ -232,6 +236,7 @@ else
 
   Plug 'neoclide/coc.nvim'
   Plug 'drmingdrmer/xptemplate'
+  Plug 'junegunn/vim-emoji'
 
   Plug 'norcalli/nvim-colorizer.lua'
 endif
@@ -275,9 +280,9 @@ set rtp+=/usr/local/opt/fzf
 
 " This is the default extra key bindings "
 let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit' }
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-s': 'split',
+      \ 'ctrl-v': 'vsplit' }
 
 " Enable per-command history. "
 " CTRL-N and CTRL-P will be automatically bound to next-history and "
@@ -301,20 +306,20 @@ let $FZF_DEFAULT_COMMAND = "rg --files --hidden"
 
 " Customize fzf colors to match your color scheme "
 let g:fzf_colors = { 
-  \ 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'],
-  \ }
+      \ 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'],
+      \ }
 
 map <C-p> :Files<CR>
 map <leader>b :Buffers<CR>
@@ -324,13 +329,13 @@ nnoremap <leader>m :Marks<CR>
 
 " Get Files "
 command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 
 " Get text in files with Rg "
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+      \   fzf#vim#with_preview(), <bang>0)
 
 " Ripgrep advanced "
 function! RipgrepFzf(query, fullscreen)
@@ -345,9 +350,9 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 " Git grep "
 command! -bang -nargs=* GGrep
-  \ call fzf#vim#grep(
-  \   'git grep --line-number '.shellescape(<q-args>), 0,
-  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+      \ call fzf#vim#grep(
+      \   'git grep --line-number '.shellescape(<q-args>), 0,
+      \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
 " }}}
 
@@ -364,62 +369,9 @@ inoremap <expr><Tab>    pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr><CR>     pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-
-" Coc: ------------------------------------------- "
-" Completion and ESlint works fine, but some extensions seems
-" don't work with vim "
-let g:coc_global_extensions = [
-      \ 'coc-emoji',
-      \ 'coc-marketplace',
-      \ 'coc-json',
-      \ 'coc-tailwindcss',
-      \ 'coc-tsserver',
-      \ 'coc-vetur',
-      \ 'coc-eslint',
-      \ 'coc-prettier',
-      \ 'coc-jedi',
-      \ ]
-
-" Remap: "
-" Remap keys for gotos "
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window "
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" navigate diagnostics "
-nmap <silent> <C-k> <Plug>(coc-diagnostic-prev)
-nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
-
-" Remap for rename current word "
-nmap <leader>rn <Plug>(coc-rename)
-
-" Code action "
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" for scss "
-autocmd FileType scss setl iskeyword+=@-@
-
-" prettier-eslint and prettier-tslint are included with the installation of this extension.
-" eslint, tslint, and all peer dependencies required by your specific configuration
-" must be installed locally.
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  :call CocAction('format')<CR> 
-
-set statusline+=%#StatusLineNC#
-set statusline+=%{coc#status()}%{get(b:,'coc_current_function','')}
-
+" === vim-emoji === "
+set completefunc=emoji#complete
+inoremap <silent> <C-x>  <C-x><C-u>
 " }}}
 
 

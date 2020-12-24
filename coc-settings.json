@@ -1,7 +1,4 @@
 {
-  "coc.source.emoji.triggerCharacters": [":"],
-  "coc.source.emoji.filetypes": ["markdown", "html", "vue"],
-
   "languageserver": {
     "intelephense": {
       "command": "intelephense",
@@ -71,5 +68,4 @@
   "vetur.format.defaultFormatter.js": "prettier-eslint",
   "vetur.format.defaultFormatter.ts": "prettier-tslint",
   "vetur.completion.autoImport": true
-
 }
