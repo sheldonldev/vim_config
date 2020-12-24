@@ -53,12 +53,6 @@ set iskeyword+=-        " treat dash separated words as one word text object"
 set iskeyword+=@        " similar as above "
 "}}}"
 
-" Search: {{{
-set path+=**  " search down for subfolders provides tab-completion for all file related tasks "
-set wildignore+=**/node_modules/**  " ignore node_modules "
-set wildmenu  " Now you can us search commands such as :find :b :h with Tab incompletion and Enter the match"
-" }}}
-
 " Cursor: {{{
 " blinking cursor "
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
@@ -182,14 +176,6 @@ nnoremap <silent> <leader>Q   :bd<CR>
 nnoremap <silent> <leader>s   :wa<CR>
 " }}}
 
-" Terminal: {{{
-if !has('nvim')
-  nnoremap <silent> ht      :term<CR>
-  nnoremap <silent> jt      :vert term<CR>
-  tnoremap <silent> <Esc>   <C-\><C-n>
-endif
-" }}}
-
 " Statusline: {{{
 function! GitBranch()
   return system("git rev-parse --abbrev-ref @ 2>/dev/null | tr -d '\n'")
@@ -213,12 +199,6 @@ set statusline+=%=
 set statusline+=%#PmenuThumb#
 set statusline+=\ %Y\ %{&fileencoding?&fileencoding:&encoding}\ 
 set statusline+=\ %p%%\ %L\\%l\ :%c\ 
-" }}}
-
-" BufTabSwitch: {{{
-nnoremap  <silent> <leader><Tab>    :bnext<CR> 
-nnoremap  <silent> <leader><S-Tab>  :bprevious<CR>
-nnoremap  <silent> <Tab>            <C-^>
 " }}}
 
 " PlugCaller: {{{
@@ -266,22 +246,31 @@ set background=dark
 colorscheme gruvdark
 " }}}
 
-" SmallPlugins: {{{
+" BufTabLine: {{{
+" Switch: ---------------------------------------------- "
+nnoremap  <silent> <leader><Tab>    :bnext<CR> 
+nnoremap  <silent> <leader><S-Tab>  :bprevious<CR>
+nnoremap  <silent> <Tab>            <C-^>
 
 " === buftabline === "
 let g:buftabline_numbers = 1
+" }}}
 
+" ColorHighlight: {{{
 " === hexokinase === "
 if !has('nvim')
   let g:Hexokinase_highlighters = ['foregroundfull']
   let g:Hexokinase_optInPatterns = 'full_hex,triple_hex,rgb,rgba,hsl,hsla,colour_names'
   nnoremap <leader>c :HexokinaseToggle
 endif
-
 " }}}
 
-" FZF: {{{
+" Finder: {{{
+set path+=**  " search down for subfolders provides tab-completion for all file related tasks "
+set wildignore+=**/node_modules/**  " ignore node_modules "
+set wildmenu  " Now you can us search commands such as :find :b :h with Tab incompletion and Enter the match"
 
+" FZF: --------------------------------------------- "
 set rtp+=/usr/local/opt/fzf
 
 " This is the default extra key bindings "
