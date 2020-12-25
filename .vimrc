@@ -194,11 +194,9 @@ set statusline+=\ %p%%\ %L\\%l\ :%c\
 " }}}
 
 " Terminal: {{{
-if !has('nvim')
-  nnoremap <silent> jt      :vert term<CR>
-  nnoremap <silent> ht      :term<CR>
-  tnoremap <silent> <Esc>   <C-\><C-n>
-endif
+nnoremap <silent> jt      :vert term<CR>
+nnoremap <silent> ht      :term<CR>
+tnoremap <silent> <Esc>   <C-\><C-n>
 " }}}
 
 " PlugCaller: {{{
@@ -206,38 +204,21 @@ endif
 " to an accelorator such as 'https://github.com.cnpmjs.org' "
 
 call plug#begin('~/.vim/plugged')
-if !has('nvim')
-  Plug 'sheldonldev/vim-gruvdark'
-  Plug 'sheerun/vim-polyglot'
-  Plug 'ap/vim-buftabline'
+Plug 'lifepillar/vim-colortemplate'
+Plug 'sheldonldev/vim-gruvdark'
+Plug 'sheerun/vim-polyglot'
+Plug 'ap/vim-buftabline'
 
-  Plug 'junegunn/fzf.vim'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'airblade/vim-rooter'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'airblade/vim-rooter'
 
-  Plug 'neoclide/coc.nvim', { 'branch': 'release' } 
+Plug 'neoclide/coc.nvim', { 'branch': 'release' } 
+Plug 'drmingdrmer/xptemplate'
+Plug 'junegunn/vim-emoji'
 
-  Plug 'drmingdrmer/xptemplate'
-  Plug 'junegunn/vim-emoji'
-  Plug 'tpope/vim-commentary'
-  Plug 'rrethy/vim-hexokinase'
-else
-  Plug 'lifepillar/vim-colortemplate'
-  Plug 'sheldonldev/vim-gruvdark'
-  Plug 'sheerun/vim-polyglot'
-  Plug 'ap/vim-buftabline'
-
-  Plug 'junegunn/fzf.vim'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'airblade/vim-rooter'
-
-  Plug 'neoclide/coc.nvim', { 'branch': 'release' } 
-
-  Plug 'drmingdrmer/xptemplate'
-  Plug 'junegunn/vim-emoji'
-  Plug 'tpope/vim-commentary'
-  Plug 'norcalli/nvim-colorizer.lua'
-endif
+Plug 'tpope/vim-commentary'
+Plug 'rrethy/vim-hexokinase'
 call plug#end()
 " }}}
 
@@ -258,14 +239,6 @@ nnoremap  <silent> <Tab>            <C-^>
 let g:buftabline_numbers = 1
 " }}}
 
-" ColorHighlight: {{{
-" === hexokinase === "
-if !has('nvim')
-  let g:Hexokinase_highlighters = ['backgroundfull']
-  let g:Hexokinase_optInPatterns = 'full_hex,triple_hex,rgb,rgba,hsl,hsla,colour_names'
-  nnoremap <leader>c :HexokinaseToggle
-endif
-" }}}
 
 " Finder: {{{
 " Integrated: -------------------------------------- "
@@ -317,12 +290,12 @@ let g:fzf_colors = {
       \ 'header':  ['fg', 'Comment'],
       \ }
 
-map <C-f> :Files<CR>
-map <C-p> :GFiles<CR>
-map <leader>b :Buffers<CR>
-nnoremap <leader>g :Rg<CR>
-nnoremap <leader>t :Tags<CR>
-nnoremap <leader>m :Marks<CR>
+map       <C-f>     :Files<CR>
+map       <C-p>     :GFiles<CR>
+map       <leader>b :Buffers<CR>
+nnoremap  <leader>g :Rg<CR>
+nnoremap  <leader>t :Tags<CR>
+nnoremap  <leader>m :Marks<CR>
 
 " Get Files "
 command! -bang -nargs=? -complete=dir Files
@@ -365,23 +338,15 @@ inoremap <expr><Tab>    pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr><CR>     pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" === vim-commentory === "
-nnoremap <silent> <leader>/ :Commentary<CR>
-vnoremap <silent> <leader>/ :Commentary<CR>
-
-" === vim-emoji === "
-set completefunc=emoji#complete
-inoremap <silent> <C-x>  <C-x><C-u>
-
 " Coc: ------------------------------------------- "
 " Completion and ESlint works fine, but some extensions seems
 " don't work with vim "
 let g:coc_global_extensions = [
       \ 'coc-marketplace',
       \ 'coc-json',
-      \ 'coc-tailwindcss',
       \ 'coc-tsserver',
       \ 'coc-vetur',
+      \ 'coc-tailwindcss',
       \ 'coc-jedi',
       \ ]
 
@@ -422,4 +387,20 @@ nmap <leader>f  :call CocAction('format')<CR>
 
 set statusline+=%#StatusLineNC#
 set statusline+=%{coc#status()}%{get(b:,'coc_current_function','')}
+" }}}
+
+" OtherPlugins: {{{
+" === hexokinase === "
+let g:Hexokinase_highlighters = ['backgroundfull']
+let g:Hexokinase_optInPatterns = 'full_hex,triple_hex,rgb,rgba,hsl,hsla,colour_names'
+nnoremap <leader>c :HexokinaseToggle
+
+" === vim-commentory === "
+nnoremap <silent> <leader>/ :Commentary<CR>
+vnoremap <silent> <leader>/ :Commentary<CR>
+
+" === vim-emoji === "
+set completefunc=emoji#complete
+inoremap <silent> <C-x>  <C-x><C-u>
+
 " }}}
