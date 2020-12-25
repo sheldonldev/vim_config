@@ -215,8 +215,7 @@ if !has('nvim')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'airblade/vim-rooter'
 
-  Plug 'https://github.com.cnpmjs.org/Valloric/YouCompleteMe'
-  " after installation, run: python3 ~/.install.py --all"
+  Plug 'neoclide/coc.nvim', { 'branch': 'release' } 
 
   Plug 'drmingdrmer/xptemplate'
   Plug 'junegunn/vim-emoji'
@@ -374,8 +373,53 @@ vnoremap <silent> <leader>/ :Commentary<CR>
 set completefunc=emoji#complete
 inoremap <silent> <C-x>  <C-x><C-u>
 
-" === YCM === "
-if !has('nvim')
-  let g:ycm_filetype_blacklist = {}
-endif
+" Coc: ------------------------------------------- "
+" Completion and ESlint works fine, but some extensions seems
+" don't work with vim "
+let g:coc_global_extensions = [
+      \ 'coc-marketplace',
+      \ 'coc-json',
+      \ 'coc-tailwindcss',
+      \ 'coc-tsserver',
+      \ 'coc-vetur',
+      \ 'coc-jedi',
+      \ ]
 
+" Remap: "
+" Remap keys for gotos "
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window "
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" navigate diagnostics "
+nmap <silent> <C-k> <Plug>(coc-diagnostic-prev)
+nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
+
+" Remap for rename current word "
+nmap <leader>rn <Plug>(coc-rename)
+
+" Code action "
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" for scss "
+autocmd FileType scss setl iskeyword+=@-@
+
+" prettier must be installed locally.
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  :call CocAction('format')<CR> 
+
+set statusline+=%#StatusLineNC#
+set statusline+=%{coc#status()}%{get(b:,'coc_current_function','')}
+" }}}
