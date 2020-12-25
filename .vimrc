@@ -232,7 +232,7 @@ else
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'airblade/vim-rooter'
 
-  Plug 'neoclide/coc.nvim'
+  Plug 'neoclide/coc.nvim', { 'branch': 'release' } 
 
   Plug 'drmingdrmer/xptemplate'
   Plug 'junegunn/vim-emoji'

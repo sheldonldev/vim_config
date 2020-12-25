@@ -7,9 +7,9 @@ let g:python3_host_prog = expand("/usr/local/bin/python3")
 
 
 " --- integrated terminal --- "
-tnoremap <Esc> <C-\><C-n>
-nnoremap <A-v> :vsplit term://zsh<CR>
-nnoremap <A-b> :split term://zsh <bar> resize 5<CR>
+tnoremap <Esc>  <C-\><C-n>
+nnoremap jt     :vsplit term://zsh<CR>
+nnoremap ht     :split term://zsh <bar> resize 5<CR>
 
 
 " --- load ~/.vimrc and ~/.vim --- "
@@ -18,7 +18,7 @@ let &packpath = &runtimepath
 source ~/.vimrc
 
 
-" === colorizer === "
+" Colorizer: ------------------------------------- "
 lua require'colorizer'.setup{}
 nnoremap <leader>c  :ColorizerToggle<CR>
 nnoremap <leader>ca :ColorizerAttachToBuffer<CR>
