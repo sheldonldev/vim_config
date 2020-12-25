@@ -10,12 +10,12 @@ set fileencoding=UTF-8  " The encoding written to file "
 set showcmd             " Always show command line "
 set cmdheight=2         " Command line height is 2 "
 set laststatus=2        " Always display the status line "
-set showtabline=2       " Always display ths tab line "
 set ruler               " Ruler in status line "
-set pumheight=10        " Makes popup menu smaller "
-set showmatch           " bracket match highlight "
-set nowrap              " no wrap if line too long "
+set showtabline=2       " Always display ths tab line "
 set hidden              " Required to keep multiple buffers "
+set pumheight=10        " Makes popup menu smaller "
+set nowrap              " no wrap if line too long "
+set showmatch           " bracket match highlight "
 set cursorcolumn cursorline               " highlight the colum where the cursor is there "
 set number relativenumber                 " nice line numbers "
 
@@ -73,15 +73,7 @@ let mapleader = " "
 " smooth scroll "
 nnoremap <silent> <C-d>   Lzz
 nnoremap <silent> <C-u>   Hzz
-nnoremap <silent> G       Gzz
-
-" using arrowkeys in insert mode "
-if !has('nvim')
-  imap <Up>    <ESC>ka
-  imap <Down>  <ESC>ja
-  imap <Left>  <ESC>ha
-  imap <Right> <ESC>la
-endif
+nnoremap <silent> G       G<C-e><C-e>
 " }}}
 
 " Netrw: {{{
@@ -172,7 +164,7 @@ autocmd BufWritePre * :call TrimWhite()
 
 " QuitAndSave: {{{
 nnoremap <silent> <leader>q   :q<CR>
-nnoremap <silent> <leader>Q   :bd<CR>
+nnoremap <silent> <C-q>       :bd<CR>
 nnoremap <silent> <leader>s   :wa<CR>
 " }}}
 
@@ -201,8 +193,15 @@ set statusline+=\ %Y\ %{&fileencoding?&fileencoding:&encoding}\
 set statusline+=\ %p%%\ %L\\%l\ :%c\ 
 " }}}
 
-" PlugCaller: {{{
+" Terminal: {{{
+if !has('nvim')
+  nnoremap <silent> jt      :vert term<CR>
+  nnoremap <silent> ht      :term<CR>
+  tnoremap <silent> <Esc>   <C-\><C-n>
+endif
+" }}}
 
+" PlugCaller: {{{
 " Note: if install slow in China, try switching
 " to an accelorator such as 'https://github.com.cnpmjs.org' "
 
@@ -222,7 +221,6 @@ if !has('nvim')
   Plug 'drmingdrmer/xptemplate'
   Plug 'junegunn/vim-emoji'
   Plug 'tpope/vim-commentary'
-
   Plug 'rrethy/vim-hexokinase'
 else
   Plug 'lifepillar/vim-colortemplate'
@@ -235,13 +233,13 @@ else
   Plug 'airblade/vim-rooter'
 
   Plug 'neoclide/coc.nvim'
+
   Plug 'drmingdrmer/xptemplate'
   Plug 'junegunn/vim-emoji'
-
+  Plug 'tpope/vim-commentary'
   Plug 'norcalli/nvim-colorizer.lua'
 endif
 call plug#end()
-
 " }}}
 
 " ColorScheme: {{{
@@ -264,13 +262,14 @@ let g:buftabline_numbers = 1
 " ColorHighlight: {{{
 " === hexokinase === "
 if !has('nvim')
-  let g:Hexokinase_highlighters = ['foregroundfull']
+  let g:Hexokinase_highlighters = ['backgroundfull']
   let g:Hexokinase_optInPatterns = 'full_hex,triple_hex,rgb,rgba,hsl,hsla,colour_names'
   nnoremap <leader>c :HexokinaseToggle
 endif
 " }}}
 
 " Finder: {{{
+" Integrated: -------------------------------------- "
 set path+=**  " search down for subfolders provides tab-completion for all file related tasks "
 set wildignore+=**/node_modules/**  " ignore node_modules "
 set wildmenu  " Now you can us search commands such as :find :b :h with Tab incompletion and Enter the match"
@@ -294,9 +293,7 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:fzf_tags_command = 'ctags -R'
 
 " Border color "
-if has('nvim')
-  let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
-endif
+let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
 
 let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
 
@@ -321,7 +318,8 @@ let g:fzf_colors = {
       \ 'header':  ['fg', 'Comment'],
       \ }
 
-map <C-p> :Files<CR>
+map <C-f> :Files<CR>
+map <C-p> :GFiles<CR>
 map <leader>b :Buffers<CR>
 nnoremap <leader>g :Rg<CR>
 nnoremap <leader>t :Tags<CR>
@@ -363,16 +361,21 @@ set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 set signcolumn=number
 set updatetime=100        " Fast completion "
-
 " use Tab to scroll, and Enter to select "
 inoremap <expr><Tab>    pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr><CR>     pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
+" === vim-commentory === "
+nnoremap <silent> <leader>/ :Commentary<CR>
+vnoremap <silent> <leader>/ :Commentary<CR>
+
 " === vim-emoji === "
 set completefunc=emoji#complete
 inoremap <silent> <C-x>  <C-x><C-u>
-" }}}
 
-
+" === YCM === "
+if !has('nvim')
+  let g:ycm_filetype_blacklist = {}
+endif
 

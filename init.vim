@@ -23,6 +23,7 @@ lua require'colorizer'.setup{}
 nnoremap <leader>c  :ColorizerToggle<CR>
 nnoremap <leader>ca :ColorizerAttachToBuffer<CR>
 
+
 " Coc: ------------------------------------------- "
 " Completion and ESlint works fine, but some extensions seems
 " don't work with vim "
@@ -32,8 +33,6 @@ let g:coc_global_extensions = [
       \ 'coc-tailwindcss',
       \ 'coc-tsserver',
       \ 'coc-vetur',
-      \ 'coc-eslint',
-      \ 'coc-prettier',
       \ 'coc-jedi',
       \ ]
 
@@ -68,11 +67,10 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 " for scss "
 autocmd FileType scss setl iskeyword+=@-@
 
-" prettier-eslint and prettier-tslint are included with the installation of this extension.
-" eslint, tslint, and all peer dependencies required by your specific configuration
-" must be installed locally.
+" prettier must be installed locally.
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  :call CocAction('format')<CR> 
 
 set statusline+=%#StatusLineNC#
 set statusline+=%{coc#status()}%{get(b:,'coc_current_function','')}
+" }}}

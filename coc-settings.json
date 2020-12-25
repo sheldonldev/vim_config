@@ -14,43 +14,6 @@
   "diagnostic.level": "warning",
   "diagnostic.messageTarget": "echo",
 
-  "eslint.enable": true,
-  "eslint.quiet": true,
-  "eslint.packageManager": "yarn",
-  "eslint.run": "onSave",
-  "eslint.autoFix": true,
-  "eslint.autoFixOnSave": true,
-  "eslint.options": { "configFile": ".eslintrc.json" },
-  "eslint.filetypes": [
-    "javascript",
-    "typescript",
-    "javascriptreact",
-    "typescriptreact",
-    "typscript.tsx",
-    "vue"
-  ],
-
-  "prettier.requireConfig": false,
-  "prettier.eslintIntegration": true,
-  "prettier.tslintIntegration": true,
-  "prettier.trailingComma": "all",
-  "prettier.arrowParens": "avoid",
-  "prettier.htmlWhitespaceSensitivity": "strict",
-  "prettier.disableLanguages": [],
-  "coc.preferences.formatOnSaveFiletypes": [
-    "javascript",
-    "typescript",
-    "javascriptreact",
-    "typescriptreact",
-    "typescript.tsx",
-    "vue",
-    "json",
-    "css",
-    "markdown",
-    "html",
-    "vim"
-  ],
-
   "tsserver.enable": true,
   "tsserver.formatOnType": false,
   "tsserver.enableJavascript": true,
@@ -65,7 +28,7 @@
       "sortAttributes": true
     }
   },
-  "vetur.format.defaultFormatter.js": "prettier-eslint",
-  "vetur.format.defaultFormatter.ts": "prettier-tslint",
+  "vetur.format.defaultFormatter.js": "prettier",
+  "vetur.format.defaultFormatter.ts": "prettier",
   "vetur.completion.autoImport": true
 }
