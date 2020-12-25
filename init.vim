@@ -19,9 +19,9 @@ source ~/.vimrc
 
 
 " Colorizer: ------------------------------------- "
-lua require'colorizer'.setup{}
-nnoremap <leader>c  :ColorizerToggle<CR>
-nnoremap <leader>ca :ColorizerAttachToBuffer<CR>
+" lua require'colorizer'.setup{}
+" nnoremap <leader>c  :ColorizerToggle<CR>
+" nnoremap <leader>ca :ColorizerAttachToBuffer<CR>
 
 
 
