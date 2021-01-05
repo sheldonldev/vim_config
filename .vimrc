@@ -48,11 +48,6 @@ set smartcase                   " case sensitive if Capital is typed in "
 set clipboard=unnamed           " use register without name. Note: use `unnamedplus` if not macOS "
 " }}}
 
-" Keywords:{{{
-set iskeyword+=-        " treat dash separated words as one word text object"
-set iskeyword+=@        " similar as above "
-"}}}"
-
 " Cursor: {{{
 " blinking cursor "
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
@@ -194,8 +189,8 @@ set statusline+=\ %p%%\ %L\\%l\ :%c\
 " }}}
 
 " Terminal: {{{
-nnoremap <silent> jt      :vert term<CR>
-nnoremap <silent> ht      :term<CR>
+nnoremap <silent> <leader>jt      :vert term<CR>
+nnoremap <silent> <leader>ht      :term<CR>
 tnoremap <silent> <Esc>   <C-\><C-n>
 " }}}
 
@@ -214,8 +209,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'airblade/vim-rooter'
 
 Plug 'neoclide/coc.nvim', { 'branch': 'release' } 
-Plug 'drmingdrmer/xptemplate'
-Plug 'junegunn/vim-emoji'
+Plug 'honza/vim-snippets'
+" Plug 'drmingdrmer/xptemplate'
+" Plug 'mattn/emmet-vim'
 
 Plug 'tpope/vim-commentary'
 Plug 'rrethy/vim-hexokinase'
@@ -238,7 +234,6 @@ nnoremap  <silent> <Tab>            <C-^>
 " === buftabline === "
 let g:buftabline_numbers = 1
 " }}}
-
 
 " Finder: {{{
 " Integrated: -------------------------------------- "
@@ -348,6 +343,8 @@ let g:coc_global_extensions = [
       \ 'coc-vetur',
       \ 'coc-tailwindcss',
       \ 'coc-jedi',
+      \ 'coc-snippets',
+      \ 'coc-emoji',
       \ ]
 
 " Remap: "
@@ -393,14 +390,10 @@ set statusline+=%{coc#status()}%{get(b:,'coc_current_function','')}
 " === hexokinase === "
 let g:Hexokinase_highlighters = ['backgroundfull']
 let g:Hexokinase_optInPatterns = 'full_hex,triple_hex,rgb,rgba,hsl,hsla,colour_names'
-nnoremap <leader>c :HexokinaseToggle
+nnoremap <leader>c :HexokinaseToggle<CR>
 
 " === vim-commentory === "
 nnoremap <silent> <leader>/ :Commentary<CR>
 vnoremap <silent> <leader>/ :Commentary<CR>
-
-" === vim-emoji === "
-set completefunc=emoji#complete
-inoremap <silent> <C-x>  <C-x><C-u>
 
 " }}}
