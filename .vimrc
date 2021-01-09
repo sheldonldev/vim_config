@@ -205,13 +205,10 @@ Plug 'sheerun/vim-polyglot'
 Plug 'ap/vim-buftabline'
 
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'airblade/vim-rooter'
 
 Plug 'neoclide/coc.nvim', { 'branch': 'release' } 
 Plug 'honza/vim-snippets'
-" Plug 'drmingdrmer/xptemplate'
-" Plug 'mattn/emmet-vim'
 
 Plug 'tpope/vim-commentary'
 Plug 'rrethy/vim-hexokinase'
@@ -337,8 +334,8 @@ inoremap <expr><CR>     pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Completion and ESlint works fine, but some extensions seems
 " don't work with vim "
 let g:coc_global_extensions = [
-      \ 'coc-marketplace',
       \ 'coc-json',
+      \ 'coc-html',
       \ 'coc-tsserver',
       \ 'coc-vetur',
       \ 'coc-tailwindcss',

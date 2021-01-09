@@ -6,6 +6,7 @@
         "--stdio"
       ],
       "filetypes": [
+        "markdown",
         "php"
       ],
       "initializationOptions": {
@@ -13,13 +14,21 @@
       }
     }
   },
-  "diagnostic.refreshAfterSave": true,
   "diagnostic.level": "warning",
   "diagnostic.messageTarget": "echo",
+  "html.format.enable": true,
+  "html.format.indentInnerHtml": true,
+  "html.autoClosingTags": true,
+  "html.filetypes": [
+    "html",
+    "handlebars",
+    "htmldjango",
+    "blade",
+    "javascript",
+    "javascriptreact"
+  ],
   "tsserver.enable": true,
-  "tsserver.formatOnType": false,
   "tsserver.enableJavascript": true,
-  "tsserver.reportStyleChecksAsWarnings": false,
   "typescript.format.enabled": true,
   "typescript.preferences.quoteStyle": "double",
   "javascript.format.enabled": true,
@@ -32,11 +41,12 @@
   "vetur.format.defaultFormatter.js": "prettier",
   "vetur.format.defaultFormatter.ts": "prettier",
   "vetur.completion.autoImport": true,
-
   "coc.source.emoji.filetypes": [
     "markdown",
     "html",
     "vue"
   ],
-  "coc.source.emoji.triggerCharacters": ["?"]
+  "coc.source.emoji.triggerCharacters": [
+    "?"
+  ]
 }
