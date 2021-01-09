@@ -61,6 +61,11 @@ let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 " }}}
 
+" Keywords:{{{
+set iskeyword+=-        " treat dash separated words as one word text object"
+set iskeyword+=@        " similar as above "
+"}}}"
+
 " Keybindings: {{{
 set timeout ttimeoutlen=1 timeoutlen=500
 let mapleader = " " 
