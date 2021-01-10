@@ -49,6 +49,7 @@
   "coc.source.emoji.triggerCharacters": [
     "?"
   ],
+
   "snippets.userSnippetsDirectory": "~/.vim/snips",
   "snippets.extends": {"javascriptreact":["javascript"]}
 }

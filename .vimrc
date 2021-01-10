@@ -204,7 +204,7 @@ tnoremap <silent> <Esc>   <C-\><C-n>
 " to an accelorator such as 'https://github.com.cnpmjs.org' "
 
 call plug#begin('~/.vim/plugged')
-Plug 'lifepillar/vim-colortemplate'
+" Plug 'lifepillar/vim-colortemplate'
 Plug 'sheldonldev/vim-gruvdark'
 Plug 'sheerun/vim-polyglot'
 Plug 'ap/vim-buftabline'
@@ -345,8 +345,8 @@ let g:coc_global_extensions = [
       \ 'coc-vetur',
       \ 'coc-tailwindcss',
       \ 'coc-jedi',
-      \ 'coc-snippets',
       \ 'coc-emoji',
+      \ 'coc-snippets'
       \ ]
 
 " Remap: "
