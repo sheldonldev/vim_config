@@ -185,7 +185,7 @@ set statusline=
 set statusline+=%#PmenuThumb#
 set statusline+=\ %{StatuslineGit()}\ 
 set statusline+=%#StatusLine#
-set statusline+=
+set statusline+=
 set statusline+=\ %f\ %m\ %R\ 
 set statusline+=%=
 set statusline+=%#PmenuThumb#
@@ -216,7 +216,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'honza/vim-snippets'
 
 Plug 'tpope/vim-commentary'
-Plug 'rrethy/vim-hexokinase'
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 call plug#end()
 " }}}
 
