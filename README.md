@@ -14,4 +14,15 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 vim ~/.vim/.vimrc
 # command:`:PlugInstall`
 # reopen
+
+# To use the fzf finder, do this in your mac
+brew install fzf
+
+# (Optional)
+# To install useful key bindings and fuzzy completion:
+$(brew --prefix)/opt/fzf/install
+
+brew install ripgrep
+
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 ```
