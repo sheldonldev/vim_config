@@ -17,10 +17,8 @@ vim ~/.vim/.vimrc
 
 # To use the fzf finder, do this in your mac
 brew install fzf
-
-# (Optional)
 # To install useful key bindings and fuzzy completion:
-$(brew --prefix)/opt/fzf/install
+$(brew --prefix)/opt/fzf/install # Optional
 
 brew install ripgrep
 

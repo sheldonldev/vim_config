@@ -1,18 +1,18 @@
 {
   "languageserver": {
-    "intelephense": {
-      "command": "intelephense",
-      "args": [
-        "--stdio"
-      ],
-      "filetypes": [
-        "markdown",
-        "php"
-      ],
-      "initializationOptions": {
-        "storagePath": "/tmp/intelephense"
-      }
-    }
+    /* "intelephense": { */
+    /*   "command": "intelephense", */
+    /*   "args": [ */
+    /*     "--stdio" */
+    /*   ], */
+    /*   "filetypes": [ */
+    /*     "markdown", */
+    /*     "php" */
+    /*   ], */
+    /*   "initializationOptions": { */
+    /*     "storagePath": "/tmp/intelephense" */
+    /*   } */
+    /* } */
   },
   "diagnostic.level": "warning",
   "diagnostic.messageTarget": "echo",
