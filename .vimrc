@@ -165,7 +165,7 @@ autocmd BufWritePre * :call TrimWhite()
 " QuitAndSave: {{{
 nnoremap <silent> <leader>q   :q<CR>
 nnoremap <silent> <C-q>       :bd<CR>
-nnoremap <silent> <leader>s   :wa<CR>
+" set `:wa\n` in iTerm2 to <D-s>
 " }}}
 
 " Statusline: {{{
