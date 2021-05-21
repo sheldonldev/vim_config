@@ -74,6 +74,8 @@ let mapleader = " "
 nnoremap <silent> <C-d>   Lzz
 nnoremap <silent> <C-u>   Hzz
 nnoremap <silent> G       G<C-e><C-e>
+nnoremap <silent> j       jzz
+nnoremap <silent> k       kzz
 " }}}
 
 " Netrw: {{{
