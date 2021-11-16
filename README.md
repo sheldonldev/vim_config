@@ -55,7 +55,8 @@ vim ~/.vim/.vimrc
 
 ```bash
 # To use the fzf finder, do this in your mac
-brew install fzf                                                                                                                                                                                                                                                                   1
+brew install fzf
+
 # To install useful key bindings and fuzzy completion:
 $(brew --prefix)/opt/fzf/install # Optional
 
