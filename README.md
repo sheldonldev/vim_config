@@ -1,4 +1,24 @@
-# README                                                                                                                                                                                                                                                                              1
+# README
+
+## Basic Setup
+
+```bash
+# if you want to backup old one
+mv ~/.vim ~/.vim.backup
+
+# clone this repo to ~/.vim and soft link the .vimrc to ~
+cd ~ && git clone https://github.com/sheldonldev/vim_config.git .vim
+ln -s ~/.vim/.vimrc ~/.vimrc
+
+# install vim-plug
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+vim ~/.vim/.vimrc
+# command:`:PlugInstall`
+# reopen
+```
+
 ## Dependencies
 
 - `hexokinase` depends on golang
@@ -30,24 +50,6 @@ nvm install 14.5.3
 nvm exec 14.5.3 node --version # use specific version
 ```
 
-## Basic Setup
-
-```bash
-# if you want to backup old one
-mv ~/.vim ~/.vim.backup
-
-# clone this repo to ~/.vim and soft link the .vimrc to ~
-cd ~ && git clone https://github.com/sheldonldev/vim_config.git .vim
-ln -s ~/.vim/.vimrc ~/.vimrc
-
-# install vim-plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-vim ~/.vim/.vimrc
-# command:`:PlugInstall`
-# reopen
-```
 
 ## Enable fzf
 
